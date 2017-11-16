@@ -5,4 +5,5 @@
  */
 export { default as Main } from './Main';
 export { default as WelcomeScreen } from './WelcomeScreen';
+export { default as UserHome } from './userHome';
 export { Login, Signup } from './auth-form';
