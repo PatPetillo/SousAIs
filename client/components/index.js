@@ -4,6 +4,8 @@
  * having to figure out which file they belong to!
  */
 export { default as Main } from './Main';
+export { default as Navbar } from './Navbar';
 export { default as WelcomeScreen } from './WelcomeScreen';
+export { default as WelcomeScreenCarousel } from './Carousel';
 export { default as UserHome } from './UserHome';
 export { Login, Signup } from './auth-form';

@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome } from './components';
+import { Main, Login, WelcomeScreen, UserHome, Navbar } from './components';
 // import WelcomeScreen from './components/WelcomeScreen';
 import { me } from './store';
 
@@ -21,14 +21,17 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
-        <Main>
-          <Switch>
-            <Route exact path="/" component={WelcomeScreen} />
-            <Route path="/userPage" component={UserHome} />
-            <Route exact component={Login} />
+        <div>
+          <Navbar />
+          <Main>
+            <Switch>
+              <Route exact path="/" component={WelcomeScreen} />
+              <Route path="/userPage" component={UserHome} />
+              <Route exact component={Login} />
 
-          </Switch>
-        </Main>
+            </Switch>
+          </Main>
+        </div>
       </Router>
     );
   }
