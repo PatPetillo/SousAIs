@@ -5,39 +5,27 @@ import { NavLink } from 'react-router-dom';
 
 const WelcomeScreen = () => (
   <div>
-    <div className="py-5 h-25">
+    <nav className="navbar navbar-expand-md bg-primary navbar-dark">
       <div className="container">
-        <div className="row text-center">
-          <div className="col-md-12 h-25">
-            <h1 className="">FaceSafe</h1>
-          </div>
+        <a className="navbar-brand" href="#"><i className="fa d-inline fa-lg fa-cloud" /><b>Sous</b></a>
+        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon" /> </button>
+        <div className="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="#"><i className="fa d-inline fa-lg fa-bookmark-o" />Recipes</a>
+            </li>
+
+          </ul>
+          <a className="btn navbar-btn ml-2 text-white btn-secondary"><i className="fa d-inline fa-lg fa-user-circle-o" /> Sign in</a>
         </div>
       </div>
-    </div>
-    <div className="">
-      <div className="container">
+    </nav>
+    <div className="py-5 text-center opaque-overlay">
+      <div className="container py-5">
         <div className="row">
-          <div className="col-md-12">
-            <form className="form-inline m-0" method="post" action="https://formspree.io/">
-              <input type="email" name="email" className="form-control ml-auto" placeholder="Enter email" />
-              <button type="submit" className="btn btn-primary mr-auto">Subscribe</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="py-5">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="mx-auto text-center">
-              <NavLink to="#" className="btn btn-primary w-25" href="">Sign In</NavLink>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="mx-auto text-center">
-              <NavLink to="#" className="btn btn-primary w-25" href="">Sign Up</NavLink>
-            </div>
+          <div className="col-md-12 text-white">
+            <h1 className="display-3 mb-4">Sous with Alexa</h1>
+            <p className="lead mb-5" />
           </div>
         </div>
       </div>
