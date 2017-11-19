@@ -25,7 +25,7 @@ function product() {
     products.push(FridgeItems.create({
       name: Faker.commerce.productName(),
       calories: +Faker.commerce.price(),
-      picture: 'http://juliandance.org/wp-content/uploads/2016/01/RedApple.jpg',
+      image: Faker.image.food(),
     }));
   }
   return products;
