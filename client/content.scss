@@ -7,6 +7,19 @@
   z-index: 10000;
 }
 
+.center{
+  text-align: center
+}
+
+.flexContainer{
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+.fridge-items{
+  margin: 10px;
+}
+
 .navbar-brand {
   font-size: 1.5em;
 }
