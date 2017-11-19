@@ -7,7 +7,7 @@ import { auth } from '../store';
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, error } = props;
+  const { name, handleSubmit, error } = props;
 
   return (
     <div className="py-5">
@@ -24,11 +24,16 @@ const AuthForm = (props) => {
                 <input className="form-control" name="password" type="password" />
               </div>
               <div className="form-group">
-                <button type="submit">{displayName}</button>
+                <button type="submit">Log in</button>
               </div>
               {error && error.response && <div> {error.response.data} </div>}
             </form>
-            <a href="/auth/google">{displayName} with Google</a>
+            <button id="google">
+            <a href="/auth/google">{}</a>
+            </button>
+            <button id="amazon">
+              <a href="/auth/amazon">{}</a>
+            </button>
           </div>
         </div>
       </div>
