@@ -8,4 +8,4 @@ export { default as Navbar } from './Navbar';
 export { default as WelcomeScreen } from './WelcomeScreen';
 export { default as WelcomeScreenCarousel } from './Carousel';
 export { default as UserHome } from './UserHome';
-export { Login, Signup } from './auth-form';
+export { Login, Signup } from './AuthForm';
