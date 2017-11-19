@@ -1,7 +1,10 @@
 .navbar {
   height: 60px;
+  position: fixed;
+  width: 100%;
   background: transparent!important;
   font-size: 1.2em;
+  z-index: 10000;
 }
 
 .navbar-brand {
@@ -13,18 +16,20 @@
 }
 
 .carousel-img {
-  width: 50vw;
-  height: 55vh;
+  width: 20vw;
+  height: 600px;
   margin: auto;
 }
 
 .welcome-page {
-  // .banner{
-    // background-image: url('http://sf.co.ua/14/05/wallpaper-1257559.jpg');
-  // }
+  height: 100%;
+  .banner{
+    height: 50%;
+  }
   
   .carousel-info {
     display: flex;
+    max-height: 50%;
     flex: 1;
     .how-it-works {
       width: 100%;
