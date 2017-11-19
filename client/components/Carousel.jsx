@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 export default function WelcomeScreenCarousel() {
   return(
-    <div className="carousel-img">
+    <div className="carousel-container">
     <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} interval={3000}>
       <div>
         <img  className="carousel-img" src ="https://static01.nyt.com/images/2016/12/08/dining/08COOKING-SPICY-PEANUT-STEW2/08COOKING-SPICY-PEANUT-STEW2-videoSixteenByNineJumbo1600.jpg" />
