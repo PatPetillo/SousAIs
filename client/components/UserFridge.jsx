@@ -21,6 +21,7 @@ const food = [{
 function UserFridge() {
   return (
       <div className="py-5">
+          <h2 className="center">Devon's Fridge</h2>
           <div className="container flexContainer">
       {food.length && food.map(item => (
                   <div className="fridge-items" >
