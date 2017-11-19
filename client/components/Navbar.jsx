@@ -10,14 +10,14 @@ const Navbar = () => (
           <NavLink className="nav-link" to="#">Recipes</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="#">Saved Recipes</NavLink>
+          <NavLink className="nav-link" to="#"><i className="fa fa-cutlery" aria-hidden="true" />Saved Recipes</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="#">My Fridge</NavLink>
         </li>
       </ul>
       <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
-        <i className="fa d-inline fa-lg fa-user-circle-o" /> Sign in
+        <i className="fa fa-sign-in" aria-hidden="true" /> Sign in
       </NavLink>
     </div>
   </nav>
