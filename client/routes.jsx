@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome, Navbar } from './components';
+import { Main, Login, WelcomeScreen, UserHome, Navbar, AuthForm } from './components';
 // import WelcomeScreen from './components/WelcomeScreen';
 import { me } from './store';
 
@@ -13,25 +13,22 @@ import { me } from './store';
  */
 class Routes extends Component {
   componentDidMount() {
-   
+    // this.props.loadInitialData();
   }
 
   render() {
-    // const {isLoggedIn} = this.props
+    const { isLoggedIn } = this.props;
 
     return (
       <Router history={history}>
-        <div>
-          <Navbar />
-          <Main>
-            <Switch>
-              <Route exact path="/" component={WelcomeScreen} />
-              <Route path="/userPage" component={UserHome} />
-              <Route exact component={Login} />
-
-            </Switch>
-          </Main>
-        </div>
+        <Main>
+          <Switch>
+            <Route exact path="/" component={WelcomeScreen} />
+            <Route path="/userPage" component={UserHome} />
+            <Route path="/signIn" component={Login} />
+            <Route component={Login} />
+          </Switch>
+        </Main>
       </Router>
     );
   }
@@ -41,8 +38,6 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => ({
-  // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-  // Otherwise, state.user will be an empty object, and state.user.id will be falsey
   isLoggedIn: !!state.user.id,
 });
 
@@ -57,7 +52,7 @@ export default connect(mapState, mapDispatch)(Routes);
 /**
  * PROP TYPES
  */
-// Routes.propTypes = {
-//   loadInitialData: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired,
-// };
+Routes.propTypes = {
+  loadInitialData: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+};

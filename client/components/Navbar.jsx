@@ -4,17 +4,21 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => (
   <nav className="navbar navbar-expand-md bg-primary navbar-dark">
     <div className="container">
-      <a className="navbar-brand" href="#"><i className="fa d-inline fa-lg fa-cloud" /><b> Sous</b></a>
-      <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon" /> </button>
-      <div className="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            
-            <a className="nav-link" href="#"><i className="fa fa-cutlery" aria-hidden="true" /> My Recipes</a>
-          </li>
-        </ul>
-        <a className="btn navbar-btn ml-2 text-white btn-secondary"><i className="fa fa-sign-in" aria-hidden="true" /> Sign in</a>
-      </div>
+      <NavLink className="navbar-brand" to="#"><i className="fa d-inline fa-lg fa-cloud" />Sous</NavLink>
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <NavLink className="nav-link" to="#">Recipes</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="#"><i className="fa fa-cutlery" aria-hidden="true" />Saved Recipes</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="#">My Fridge</NavLink>
+        </li>
+      </ul>
+      <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
+        <i className="fa fa-sign-in" aria-hidden="true" /> Sign in
+      </NavLink>
     </div>
   </nav>
 );
