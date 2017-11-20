@@ -5,6 +5,7 @@ const Fridge = require('./Fridge')
 
 
 FridgeItems.belongsToMany(User, { through: Fridge });
+Fridge.belongsTo(FridgeItems);
 
 
 
