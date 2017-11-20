@@ -18,23 +18,35 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
-  axios.get(`https://trackapi.nutritionix.com/v2/search/instant?query=${foodItem}`, {
+  let foodAmount;
+  axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
       'x-app-id': nutrixApp,
       'x-app-key': nutrix,
     },
   })
     .then((response) => {
-      console.log(response.data);
-      res.json(response.data.common[0]);
+      foodAmount = response.data.foods[0].serving_weight_grams;
+      return response.data.foods;
     })
-    .then((topost) => {
-      FridgeItems.findOrCreate({
+    .then(foodData => FridgeItems.findOrCreate({
+      where: {
+        name: foodData[0].food_name,
+        image: foodData[0].photo.highres, // do quantity later
+      },
+    }))
+    .then(([createdItem]) => {
+      return Fridge.update({
+        quantity: foodAmount,
+      }, {
         where: {
-          name: foodItem,
+          fridgeItemId: createdItem.id,
+          userId: req.session.passport.user,
         },
       });
-    });
+    })
+    .then(() => res.send('Updated Sucessfully'))
+    .catch(next);
 });
 
 module.exports = router;
