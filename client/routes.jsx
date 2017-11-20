@@ -13,7 +13,7 @@ import { me } from './store';
  */
 class Routes extends Component {
   componentDidMount() {
-    // this.props.loadInitialData();
+    this.props.loadInitialData();
   }
 
   render() {
