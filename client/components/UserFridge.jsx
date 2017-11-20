@@ -1,5 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import SingleItem from './SingleItem';
+
 const food = [{
   name: 'Banana',
   calories: 20,
@@ -29,6 +32,7 @@ function UserFridge() {
               <p>{item.name}</p>
               <img src={item.image} alt="yuchen's fault" />
               <p>{item.calories}</p>
+              {/* <SingleItem props={item.name} /> */}
             </NavLink>
           </div>
         ))}
