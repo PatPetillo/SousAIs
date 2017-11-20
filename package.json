@@ -37,7 +37,7 @@
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.8",
-    "react": "^16.0.0",
+    "react": "^16.1.1",
     "react-dom": "^16.0.0",
     "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.2",
