@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 class AddItem extends Component {
   constructor(props) {
@@ -34,6 +36,5 @@ class AddItem extends Component {
     );
   }
 }
-
 
 export default AddItem;

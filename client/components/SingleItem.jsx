@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 
 const singleProduct = 'SingleProduct';
 const recipes = ['cook', 'fried', 'grill'];
@@ -11,7 +14,7 @@ const SingleItem = () => (
       {recipes.length && recipes.map(recipe => <div>{recipe}</div>)}
     </div>
     <div>
-      {nutritionList}
+      {nutritionList.length && nutritionList.map(nutrition => <div>{nutrition}</div>)}
     </div>
   </div>
 );
