@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom'
 const food = [{
   name: 'Banana',
   calories: 20,
@@ -25,9 +25,11 @@ function UserFridge() {
       <div className="container flexContainer">
         {food.length && food.map(item => (
           <div className="fridge-items" >
-            <p>{item.name}</p>
-            <img src={item.image} alt="yuchen's fault" />
-            <p>{item.calories}</p>
+            <NavLink to="/singleItem" >
+              <p>{item.name}</p>
+              <img src={item.image} alt="yuchen's fault" />
+              <p>{item.calories}</p>
+            </NavLink>
           </div>
         ))}
       </div>
