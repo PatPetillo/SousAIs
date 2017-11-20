@@ -10,10 +10,10 @@ const SingleItem = () => (
   <div>
     <div>{singleProduct}</div>
     <div>
-      {recipes.length && recipes.map(recipe => <div>{recipe}</div>)}
+      {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
     </div>
     <div>
-      {nutritionList.length && nutritionList.map(nutrition => <div>{nutrition}</div>)}
+      {nutritionList.length && nutritionList.map(nutrition => <div key={nutrition}>{nutrition}</div>)}
     </div>
   </div>
 );

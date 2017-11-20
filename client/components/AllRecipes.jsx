@@ -7,7 +7,7 @@ const allRecipes = [{ recipe: 'recipe1 from all recipes' }, { recipe: 'recipe2 f
 const AllRecipes = () => (
   <div>
     {
-        allRecipes.length && allRecipes.map(singleRecipe => <div>{singleRecipe.recipe}</div>)
+        allRecipes.length && allRecipes.map(oneRecipe => <div key={oneRecipe.recipe}>{oneRecipe.recipe}</div>)
     }
   </div>
 );
