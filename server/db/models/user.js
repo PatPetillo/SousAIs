@@ -25,12 +25,14 @@ const User = db.define('user', {
 
 module.exports = User;
 
+const newLocal = function (candidatePwd) {
+  return User.encryptPassword(candidatePwd, this.salt) === this.password;
+};
+
 /**
  * instanceMethods
  */
-User.prototype.correctPassword = function (candidatePwd) {
-  return User.encryptPassword(candidatePwd, this.salt) === this.password;
-};
+User.prototype.correctPassword = newLocal;
 
 /**
  * classMethods
