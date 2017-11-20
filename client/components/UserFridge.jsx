@@ -33,6 +33,7 @@ function UserFridge() {
           </div>
         ))}
       </div>
+      <NavLink to="/addItem">Add An Item</NavLink>
     </div>
   );
 }
