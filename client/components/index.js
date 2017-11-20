@@ -10,3 +10,4 @@ export { default as WelcomeScreenCarousel } from './Carousel';
 export { default as UserHome } from './UserHome';
 export { default as UserFridge } from './UserFridge';
 export { Login, Signup } from './AuthForm';
+export { default as SingleItem } from './SingleItem';
