@@ -1,5 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import SingleItem from './SingleItem';
+
 const food = [{
   name: 'Banana',
   calories: 20,
@@ -24,15 +27,18 @@ function UserFridge() {
       <h2 className="center">Devon's Fridge</h2>
       <div className="container flexContainer">
         {food.length && food.map(item => (
-          <div className="fridge-items" >
-            <NavLink to="/singleItem" >
+          <div className="fridge-items" key={item.id}>
+            <NavLink to={`/singleItem/${item.id}`} >
               <p>{item.name}</p>
               <img src={item.image} alt="yuchen's fault" />
               <p>{item.calories}</p>
+              {/* <SingleItem props={item.name} /> */}
             </NavLink>
           </div>
+          
         ))}
       </div>
+      <NavLink to="/addItem">Add An Item</NavLink>
     </div>
   );
 }
