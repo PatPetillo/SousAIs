@@ -24,7 +24,7 @@ class Routes extends Component {
         <Main>
           <Switch>
             <Route exact path="/" component={WelcomeScreen} />
-            <Route exact path="/singleItem" component={SingleItem} />
+            <Route exact path="/singleItem/:id" component={SingleItem} />
             <Route path="/userPage" component={UserHome} />
             <Route path="/signIn" component={Login} />
             <Route path="/myFridge" component={UserFridge} />
