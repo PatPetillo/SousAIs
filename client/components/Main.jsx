@@ -19,8 +19,8 @@ const Main = (props) => {
       <Navbar isLoggedIn={isLoggedIn} />
       {children}
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
