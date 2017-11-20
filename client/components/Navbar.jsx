@@ -21,7 +21,7 @@ const Navbar = props => (
       </ul>
       { !props.isLoggedIn && <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
         <img src="/icons/key-25.svg" /> Sign in</NavLink>}
-      { props.isLoggedIn && <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" onClick={props.logOut}>
+      { props.isLoggedIn && <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/" onClick={props.logOut}>
         <img src="/icons/key-25.svg" /> Sign Out</NavLink>}
     </div>
   </nav>
