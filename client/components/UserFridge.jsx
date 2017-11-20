@@ -27,7 +27,7 @@ function UserFridge() {
       <h2 className="center">Devon's Fridge</h2>
       <div className="container flexContainer">
         {food.length && food.map(item => (
-          <div className="fridge-items" >
+          <div className="fridge-items" key={item.id}>
             <NavLink to={`/singleItem/${item.id}`} >
               <p>{item.name}</p>
               <img src={item.image} alt="yuchen's fault" />

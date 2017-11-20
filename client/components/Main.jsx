@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
@@ -11,16 +11,34 @@ import { Navbar } from './';
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = (props) => {
-  const { children, handleClick, isLoggedIn } = props
+class Main extends Component {
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
 
-  return (
-    <div>
-      <Navbar isLoggedIn={isLoggedIn} />
-      {children}
-    </div>
-  );
-};
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  
+  handleScroll() {
+    const [nav] = document.getElementsByClassName('navbar');
+    if (window.scrollY > 70) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+
+  render() {
+    const { children, handleClick, isLoggedIn } = this.props
+    return (
+      <div>
+        <Navbar isLoggedIn={isLoggedIn} />
+        {children}
+      </div>
+    );
+  }
+}
 
 /**
  * CONTAINER
