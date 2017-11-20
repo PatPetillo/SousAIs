@@ -28,13 +28,14 @@ function UserFridge() {
       <div className="container flexContainer">
         {food.length && food.map(item => (
           <div className="fridge-items" >
-            <NavLink to="/singleItem" >
+            <NavLink to={`/singleItem/${item.id}`} >
               <p>{item.name}</p>
               <img src={item.image} alt="yuchen's fault" />
               <p>{item.calories}</p>
               {/* <SingleItem props={item.name} /> */}
             </NavLink>
           </div>
+          
         ))}
       </div>
       <NavLink to="/addItem">Add An Item</NavLink>

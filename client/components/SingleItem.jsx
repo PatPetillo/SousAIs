@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-
 const singleProduct = 'SingleProduct';
 const recipes = ['cook', 'fried', 'grill'];
 const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
