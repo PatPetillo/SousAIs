@@ -1,23 +1,21 @@
 import React from 'react';
-const singleProduct = 'SingleProduct'
-const recipes = ['cook', 'fried', 'grill' ]
-const nutritionList = ['vitamin A', 'potassium', 'magnessium' ]
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-function SingleItem(props){
- 
-    return (
-        <div>
-            <div>{singleProduct}</div>
-            <div>
-            {recipes.length&&recipes.map(recipe => {
-                return <div>{recipe}</div>
-            })}
-            </div>
-            <div>
-            {nutritionList}
-            </div>
-        </div>
-    )
-}
+const singleProduct = 'SingleProduct';
+const recipes = ['cook', 'fried', 'grill'];
+const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 
-export default SingleItem
+const SingleItem = () => (
+  <div>
+    <div>{singleProduct}</div>
+    <div>
+      {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
+    </div>
+    <div>
+      {nutritionList.length && nutritionList.map(nutrition => <div key={nutrition}>{nutrition}</div>)}
+    </div>
+  </div>
+);
+
+export default SingleItem;
