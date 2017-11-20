@@ -1,35 +1,33 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
-const db = require('../index')
-const User = db.model('user')
+const { expect } = require('chai');
+const db = require('../index');
+
+const User = db.model('user');
 
 describe('User model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
+  beforeEach(() => db.sync({ force: true }));
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
-      let cody
+      let devon;
 
-      beforeEach(() => {
-        return User.create({
-          email: 'cody@puppybook.com',
-          password: 'bones'
-        })
-          .then(user => {
-            cody = user
-          })
+      beforeEach(() => User.create({
+        name: 'devon',
+        email: 'devon@gmail.com',
+        password: 'javascriptisfun',
       })
-
+        .then((user) => {
+          devon = user;
+        }));
+        
       it('returns true if the password is correct', () => {
-        expect(cody.correctPassword('bones')).to.be.equal(true)
-      })
+        expect(devon.correctPassword('javascriptisfun')).to.be.equal(true);
+      });
 
       it('returns false if the password is incorrect', () => {
-        expect(cody.correctPassword('bonez')).to.be.equal(false)
-      })
-    }) // end describe('correctPassword')
-  }) // end describe('instanceMethods')
-}) // end describe('User model')
+        expect(devon.correctPassword('javascriptistoohard')).to.be.equal(false);
+      });
+    });
+  });
+});
