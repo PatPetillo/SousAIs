@@ -18,7 +18,7 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
-
+    console.log(isLoggedIn)
     return (
       <Router history={history}>
         <Main>
@@ -27,10 +27,16 @@ class Routes extends Component {
             <Route exact path="/singleItem/:id" component={SingleItem} />
             <Route path="/userPage" component={UserHome} />
             <Route path="/signIn" component={Login} />
-            <Route path="/myFridge" component={UserFridge} />
+            
             <Route path="/addItem" component={AddItem} />
             <Route path="/savedRecipes" component={SavedRecipes} />
             <Route path="/allRecipes" component={AllRecipes} />
+            {
+              isLoggedIn &&
+              <Switch>
+                <Route path="/myFridge" component={UserFridge} />
+              </Switch>
+            }
             <Route component={Login} />
           </Switch>
         </Main>
