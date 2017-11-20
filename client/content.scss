@@ -4,7 +4,16 @@
   width: 100%;
   background: transparent!important;
   font-size: 1.2em;
+  top: 0;
   z-index: 10000;
+  transition: 0.5s;
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+}
+.nav-scrolled {
+  background-color: rgba(52, 3, 61, 0.9)!important;
 }
 
 .center{
@@ -23,37 +32,39 @@
   margin: 10px;
 }
 
-.navbar-brand {
-  font-size: 1.5em;
+.red-words {
+  color: rgb(202, 51, 5);
 }
 
-.red-words {
-  color: rgb(46, 4, 4);
+.carousel-container {
+  width: 50vw;
 }
 
 .carousel-img {
-  width: 20vw;
-  height: 600px;
-  margin: auto;
+  width: 50vw;
+  height: 60vh;
 }
 
 .welcome-page {
   height: 100%;
   .banner{
-    height: 50%;
+    height: 50vh;
   }
   
   .carousel-info {
     display: flex;
-    max-height: 50%;
+    max-height: 60vh;
     flex: 1;
     .how-it-works {
+      display: flex;
       width: 100%;
+      height: 60vh;
       text-align: center;
       background-image: url('https://i.pinimg.com/originals/99/6a/23/996a23011bafdd615b58d4019f2052bb.jpg');
+      justify-content: center;
+      align-items: center;
 
       h1 {
-        margin-top: 50%;
         color: #fff
       }
     }
