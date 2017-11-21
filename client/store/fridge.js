@@ -19,7 +19,7 @@ export const fetchProducts = () =>
 export default function (state = [], action) {
   switch (action.type) {
     case GET_USER_ITEMS:
-      return action.products;
+      return action.items;
     case REMOVE_USER_ITEM:
       return state; // filter!=
     default:
