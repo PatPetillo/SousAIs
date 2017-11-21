@@ -6,9 +6,6 @@ const FridgeItems = db.define('fridgeItems', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  calories: {
-    type: Sequelize.INTEGER,
-  },
   image: {
     type: Sequelize.STRING,
   },
