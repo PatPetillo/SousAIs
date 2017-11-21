@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem } from './components';
+import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes } from './components';
 // import WelcomeScreen from './components/WelcomeScreen';
 import { me } from './store';
 
@@ -13,23 +13,30 @@ import { me } from './store';
  */
 class Routes extends Component {
   componentDidMount() {
-    // this.props.loadInitialData();
+    this.props.loadInitialData();
   }
 
   render() {
     const { isLoggedIn } = this.props;
-
-
+    console.log(isLoggedIn)
     return (
       <Router history={history}>
         <Main>
           <Switch>
             <Route exact path="/" component={WelcomeScreen} />
-            <Route exact path="/singleItem" component={SingleItem} />
+            <Route exact path="/singleItem/:id" component={SingleItem} />
             <Route path="/userPage" component={UserHome} />
             <Route path="/signIn" component={Login} />
-            <Route path="/myFridge" component={UserFridge} />
-           
+            
+            <Route path="/addItem" component={AddItem} />
+            <Route path="/savedRecipes" component={SavedRecipes} />
+            <Route path="/allRecipes" component={AllRecipes} />
+            {
+              isLoggedIn &&
+              <Switch>
+                <Route path="/myFridge" component={UserFridge} />
+              </Switch>
+            }
             <Route component={Login} />
           </Switch>
         </Main>
