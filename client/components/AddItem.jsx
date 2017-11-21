@@ -36,10 +36,6 @@ class AddItem extends Component {
   }
 }
 
-// const mapDispatch = dispatch => ({
-//   add: dispatch(AddProductThunk()),
-// });
-const mapState = {};
 const mapDispatch = { AddProductThunk };
 
 export default connect(null, mapDispatch)(AddItem);
