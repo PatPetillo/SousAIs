@@ -11,10 +11,13 @@ router.post('/login', (req, res, next) => {
       } else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password');
       } else {
-        req.login(user, err => (err ? next(err)
-          : Fridge.findCreateFind({ where: { userId: user.id } })
-            .then(foundCart =>
-              res.json(foundCart))));
+        req.login(user, (err) => {
+          if (err) next(err);
+          else {
+            res.json(user);
+            Fridge.findCreateFind({ where: { userId: user.id } });
+          }
+        });
       }
     })
     .catch(next);
