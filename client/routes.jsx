@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
 import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes } from './components';
+import { fetchProducts } from './store/fridge';
+
 // import WelcomeScreen from './components/WelcomeScreen';
 import { me } from './store';
 
@@ -55,6 +57,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   loadInitialData() {
     dispatch(me());
+    dispatch(fetchProducts());
   },
 });
 
