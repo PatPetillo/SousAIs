@@ -6,16 +6,27 @@ const singleProduct = 'SingleProduct';
 const recipes = ['cook', 'fried', 'grill'];
 const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 
-const SingleItem = () => (
-  <div>
-    <div>{singleProduct}</div>
+function SingleItem(props) {
+  console.log(props);
+  const singleItem = props.fridge.filter(item => item.id === +props.match.params.id);
+  console.log(singleItem)
+  return (
     <div>
-      {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
+      <div>{singleItem.length && singleItem[0].fridgeItem.name}</div>
+      <img src={singleItem.length && singleItem[0].fridgeItem.image} alt="Yuchen's falult" />
+      <div>
+        {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
+      </div>
+      <div>
+        {nutritionList.length && nutritionList.map(nutrition => <div key={nutrition}>{nutrition}</div>)}
+      </div>
     </div>
-    <div>
-      {nutritionList.length && nutritionList.map(nutrition => <div key={nutrition}>{nutrition}</div>)}
-    </div>
-  </div>
-);
+  );
+}
 
-export default SingleItem;
+
+const mapState = ({ fridge }) => ({ fridge });
+const mapDispatch = {};
+export default connect(mapState, mapDispatch)(SingleItem);
+
+// export default SingleItem;
