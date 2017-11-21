@@ -72,15 +72,32 @@
 }
 
 #google {
-   background-image: url('/auth/btn_google_signin_light_normal_web.png');
-   height: 46px;
-   width: 191px;
-  }
+  background-image: url('/auth/btn_google_signin_light_normal_web.png');
+  height: 46px;
+  width: 191px;
+}
 
-  #amazon {
-   background-image: url('/auth/amazon.png');
-   height: 46px;
-   width: 176px;
-   margin: 10px;
-  }
+#amazon {
+  background-image: url('/auth/amazon.png');
+  height: 46px;
+  width: 176px;
+  margin: 10px;
+}
 
+.addItemForm {
+  text-align: center;
+  margin-top: 30%;
+}
+
+.savedRecipes {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width:500em;
+  height:500em;
+}

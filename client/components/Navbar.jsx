@@ -13,7 +13,7 @@ const Navbar = props => (
           <NavLink className="nav-link" to="/allRecipes">Recipes</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/savedRecipes"><img className="fa fa-cutlery" alt="devon" aria-hidden="true" />Saved Recipes</NavLink>
+          <NavLink className="nav-link" to="/savedRecipes">Saved Recipes</NavLink>
         </li>
         <li className="nav-item">
           <NavLink to="/myFridge" className="nav-link" >My Fridge</NavLink>
