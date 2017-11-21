@@ -7,12 +7,12 @@ class UserFridge extends Component {
     // this.props.grabFridge();
   }
   render() {
-    console.log(this.props);
+    const { fridge, user } = this.props;
     return (
       <div className="py-5">
-        <h2 className="center">Devon's Fridge</h2>
+        <h2 className="center"> {`${user.name}'s Fridge`} </h2>
         <div className="container flexContainer">
-          {this.props.fridge.length && this.props.fridge.map(item => (
+          {fridge[0].fridgeItemId && fridge.length && fridge.map(item => (
             <div className="fridge-items" key={item.fridgeItem.name}>
               <NavLink to={`/singleItem/${item.id}`} >
                 <p>{item.fridgeItem.name}</p>
@@ -28,6 +28,6 @@ class UserFridge extends Component {
 }
 
 
-const mapState = ({ fridge }) => ({ fridge });
+const mapState = ({ fridge, user }) => ({ fridge, user });
 const mapDispatch = {};
 export default connect(mapState, mapDispatch)(UserFridge);
