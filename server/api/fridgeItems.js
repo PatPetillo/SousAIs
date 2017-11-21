@@ -9,7 +9,10 @@ router.get('/', (req, res, next) => {
     where: {
       userId: req.session.passport.user,
     },
-    include: [{ all: true }],
+    include: [{
+      model: FridgeItems,
+      include: [{ all: true }],
+    }],
   })
     .then(items => res.json(items))
     .catch(next);
