@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom';
 const savedRecipes = [{ recipe: 'recipe1 from saved recipes' }, { recipe: 'recipe2 from saved recipes' }, { recipe: 'recipe3 from saved recipes' }];
 
 const SavedRecipes = () => (
-  <div>
+  <div className="page-content">
     {
-        savedRecipes.length && savedRecipes.map(singleRecipe => <div key={singleRecipe.recipe}>{singleRecipe.recipe}</div>)
+      savedRecipes.length && savedRecipes.map(singleRecipe =>
+        (<div key={singleRecipe.recipe}>{singleRecipe.recipe}</div>))
     }
   </div>
 );
