@@ -1,12 +1,34 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-const UserHome = () => (
-  <div>
-    
-  </div>
-);
+/**
+ * COMPONENT
+ */
+export const UserHome = (props) => {
+  const {email} = props
 
-export default UserHome;
+  return (
+    <div>
+      <h3>Welcome, {email}</h3>
+    </div>
+  )
+}
 
+/**
+ * CONTAINER
+ */
+const mapState = (state) => {
+  return {
+    email: state.user.email
+  }
+}
+
+export default connect(mapState)(UserHome)
+
+/**
+ * PROP TYPES
+ */
+UserHome.propTypes = {
+  email: PropTypes.string
+}
