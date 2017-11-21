@@ -12,7 +12,7 @@ const AuthForm = (props) => {
   return (
     <div className="py-5">
       <div className="container">
-        <div className="row">
+        <div className="row auth-form">
           <div className="col-md-12">
             <form onSubmit={handleSubmit} name={name}>
               <div className="form-group">
