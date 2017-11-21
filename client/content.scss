@@ -1,3 +1,27 @@
+.auth-form {
+  margin-top: 10em!important;
+  background-color: #fff;
+  border-radius: 5em 5% 35em 5em;
+  padding: 5vw;
+  width: 100%;
+}
+
+.motto {
+  background-color: rgb(52, 3, 61);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  h1 {
+    margin: 0;
+    padding: 0.3em;
+  }
+}
+
+.page-content {
+  margin: 8em;
+  background: #fff;
+  border-radius: 5em 5% 35em 5em;
+}
+
 .navbar {
   height: 60px;
   position: fixed;
@@ -33,7 +57,12 @@
 }
 
 .red-words {
-  color: rgb(202, 51, 5);
+  color: rgb(175, 8, 8);
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
 }
 
 .carousel-container {
@@ -64,9 +93,23 @@
       justify-content: center;
       align-items: center;
 
-      h1 {
-        color: #fff
+      .description-head {
+        color: rgb(133, 44, 44);
+        text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
       }
+
+      .descriptions {
+        display: flex;
+        * {
+          color: #fff;
+          padding: 2em;
+        }
+      }
+
     }
   }
 }

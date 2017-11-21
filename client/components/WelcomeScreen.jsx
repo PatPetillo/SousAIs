@@ -1,7 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-// import { NavLink } from 'react-router-dom';
 import { WelcomeScreenCarousel } from './';
+
+const descriptions = [
+  'Keeps track of the contents of your fridge',
+  'Provides you with the nutritional info you need to make well informed choices',
+  'Takes the guess work out of cooking',
+];
 
 const WelcomeScreen = () => (
   <div className="welcome-page">
@@ -16,14 +20,24 @@ const WelcomeScreen = () => (
       </div>
     </div>
 
+    <div className="motto"> <h1> Cooking - reinvented </h1> </div>
+
     <div className="carousel-info">
       <div> <WelcomeScreenCarousel /> </div>
-      <div className="how-it-works bg-primary"><h1> TRY NOW </h1> </div>
+      <div className="how-it-works bg-primary">
+        <div className="all-descriptions">
+          <h1 className="description-head"> Sous is your personal kitchen assistant </h1>
+          <div className="descriptions">
+            {
+              descriptions.map(description => (
+                <p className="lead"> {description} </p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 );
 
 export default WelcomeScreen;
-// const mapState = (state) => {}
-
-// export default connect(mapState)(WelcomeScreen)
