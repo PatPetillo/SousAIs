@@ -24,7 +24,7 @@ function product() {
   for (let i = 1; i < 16; i++) {
     products.push(FridgeItems.create({
       name: Faker.commerce.productName(),
-      image: Faker.image.food(),
+      image: 'https://media.istockphoto.com/photos/red-apple-with-water-drops-isolated-picture-id495870175?k=6&m=495870175&s=612x612&w=0&h=fc6JeWQHsvckh-KtRqOA9h5UWyELl9Bhyn7pdnfJc9k=',
     }));
   }
   return products;
