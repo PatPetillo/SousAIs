@@ -24,7 +24,6 @@ function product() {
   for (let i = 1; i < 16; i++) {
     products.push(FridgeItems.create({
       name: Faker.commerce.productName(),
-      calories: +Faker.commerce.price(),
       image: Faker.image.food(),
     }));
   }

@@ -1,12 +1,9 @@
 const User = require('./user');
 const FridgeItems = require('./FridgeItems');
-const Fridge = require('./Fridge')
+const Fridge = require('./Fridge');
 
-
-
-FridgeItems.belongsToMany(User, { through: Fridge });
+Fridge.belongsTo(User);
 Fridge.belongsTo(FridgeItems);
-
 
 
 module.exports = {
