@@ -1,20 +1,16 @@
+// /* global describe beforeEach it */
+
 // import React from 'react';
-// import chai, { expect } from 'chai';
-// import chaiEnzyme from 'chai-enzyme';
-
-// chai.use(chaiEnzyme());
+// import { expect } from 'chai';
 // import { shallow } from 'enzyme';
-// import { spy } from 'sinon';
-// import sinonChai from 'sinon-chai';
+// import sinon from 'sinon';
 
-// chai.use(sinonChai);
-
-// import { AuthForm, Carousel, Main, Navbar, UserFridge, userHome, WelcomeScreen } from './';
+// import AuthForm from './AuthForm';
 
 // describe('<AuthForm />', () => {
 //   it('renders three <Foo /> components', () => {
 //     const wrapper = shallow(<AuthForm />);
-//     expect(wrapper.find(AuthForm)).to.have.length(3);
+//     expect(wrapper.find(Foo)).to.have.length(3);
 //   });
 
 //   it('renders an `.icon-star`', () => {
