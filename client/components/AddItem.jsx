@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { AddProductThunk } from '../store/fridge';
 
 class AddItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      quantity: '',
+      food: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,15 +17,15 @@ class AddItem extends Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    // axio post here
-    console.log(this.state);
+    this.props.AddProductThunk(this.state);
   }
   render() {
+    console.log("HEL",this.props)
     return (
       <form className="addItemForm">
         <div>
           <label >Food</label>
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input type="text" name="food" onChange={this.handleChange} />
         </div>
         <div>
           <label >Quantity</label>
@@ -37,4 +37,10 @@ class AddItem extends Component {
   }
 }
 
-export default AddItem;
+// const mapDispatch = dispatch => ({
+//   add: dispatch(AddProductThunk()),
+// });
+const mapState = {};
+const mapDispatch = { AddProductThunk };
+
+export default connect(null, mapDispatch)(AddItem);
