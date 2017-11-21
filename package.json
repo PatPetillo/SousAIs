@@ -16,13 +16,12 @@
     "start": "node server",
     "start-dev": "npm run build-client-watch & npm run start-server",
     "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
-    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/sous-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/sous-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js ./client/**/*.spec.jsx --compilers js:babel-register"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.16.1",
     "bootstrap": "^4.0.0-beta.2",
     "chai": "^3.5.0",
@@ -62,6 +61,7 @@
     "babel-eslint": "^8.0.1",
     "babel-loader": "^6.2.10",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
