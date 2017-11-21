@@ -32,10 +32,8 @@ function UserFridge() {
               <p>{item.name}</p>
               <img src={item.image} alt="yuchen's fault" />
               <p>{item.calories}</p>
-              {/* <SingleItem props={item.name} /> */}
             </NavLink>
-          </div>
-          
+          </div>      
         ))}
       </div>
       <NavLink to="/addItem">Add An Item</NavLink>
