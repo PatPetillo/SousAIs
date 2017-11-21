@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+// THIS IS JUST FOR COMMIT CHECK
 class AddItem extends Component {
   constructor(props) {
     super(props);
