@@ -1,42 +1,52 @@
-const router = require('express').Router()
-const User = require('../db/models/user')
-module.exports = router
+const router = require('express').Router();
+const { User, Fridge } = require('../db/models');
+
+module.exports = router;
 
 router.post('/login', (req, res, next) => {
-  User.findOne({where: {email: req.body.email}})
-    .then(user => {
+  User.findOne({ where: { email: req.body.email } })
+    .then((user) => {
       if (!user) {
-        res.status(401).send('User not found')
+        res.status(401).send('User not found');
       } else if (!user.correctPassword(req.body.password)) {
-        res.status(401).send('Incorrect password')
+        res.status(401).send('Incorrect password');
       } else {
-        req.login(user, err => (err ? next(err) : res.json(user)))
+        req.login(user, (err) => {
+          if (err) next(err);
+          else {
+            res.json(user);
+            Fridge.findCreateFind({ where: { userId: user.id } });
+          }
+        });
       }
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
-    .then(user => {
-      req.login(user, err => (err ? next(err) : res.json(user)))
+    .then((user) => {
+      req.login(user, err => (err ? next(err)
+        : Fridge.findCreateFind({ where: { userId: user.id } })
+          .then(foundCart =>
+            res.json(foundCart))));
     })
-    .catch(err => {
+    .catch((err) => {
       if (err.name === 'SequelizeUniqueConstraintError') {
-        res.status(401).send('User already exists')
+        res.status(401).send('User already exists');
       } else {
-        next(err)
+        next(err);
       }
-    })
-})
+    });
+});
 
 router.post('/logout', (req, res) => {
-  req.logout()
-  res.redirect('/')
-})
+  req.logout();
+  res.redirect('/');
+});
 
 router.get('/me', (req, res) => {
-  res.json(req.user)
-})
+  res.json(req.user);
+});
 
-router.use('/google', require('./google'))
+router.use('/google', require('./google'));
