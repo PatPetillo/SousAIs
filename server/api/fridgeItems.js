@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
-const { nutrix, nutrixApp } = require('../../secrets');
-
 
 router.get('/', (req, res, next) => {
   Fridge.findAll({
@@ -23,8 +21,8 @@ router.post('/', (req, res, next) => {
   let foodAmount;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': nutrixApp,
-      'x-app-key': nutrix,
+      'x-app-id': process.env.NUTRIX_ID,
+      'x-app-key': process.env.NUTRIX_KEY,
     },
   })
     .then((response) => {
