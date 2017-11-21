@@ -20,7 +20,6 @@ class AddItem extends Component {
     this.props.AddProductThunk(this.state);
   }
   render() {
-    console.log("HEL",this.props)
     return (
       <form className="addItemForm">
         <div>
