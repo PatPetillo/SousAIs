@@ -1,7 +1,7 @@
 {
   "name": "sous",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Recipe Companion app w/ Alexa",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -12,7 +12,7 @@
     "deploy": "script/deploy",
     "lint": "eslint ./ --ignore-path .gitignore",
     "postinstall": "touch secrets.js",
-    "seed": "node script/seed.js",
+    "seed": "node seed.js",
     "start": "node server",
     "start-dev": "npm run build-client-watch & npm run start-server",
     "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public",
@@ -42,7 +42,6 @@
     "prop-types": "^15.5.8",
     "react": "^16.1.1",
     "react-dom": "^16.0.0",
-    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.2",
     "react-responsive-carousel": "^3.1.28",
     "react-router": "^4.1.1",
