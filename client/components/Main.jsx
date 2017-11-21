@@ -33,7 +33,7 @@ class Main extends Component {
     const { children, handleClick, isLoggedIn } = this.props
     return (
       <div>
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} logOut={handleClick} />
         {children}
       </div>
     );
