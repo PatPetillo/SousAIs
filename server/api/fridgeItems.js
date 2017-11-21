@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const { FridgeItems, Fridge, User } = require('../db/models/');
+const { FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
 
 
 router.get('/', (req, res, next) => {
-  console.log(req.session.passport.user, 'passport user');
   Fridge.findAll({
     where: {
       userId: req.session.passport.user,
@@ -38,15 +37,23 @@ router.post('/', (req, res, next) => {
         image: foodData[0].photo.highres, // do quantity later
       },
     }))
-    .then(([createdItem]) => {
-      return Fridge.update({
-        quantity: foodAmount,
-      }, {
-        where: {
+    .then(([createdItem, wasCreated]) => {
+      if (wasCreated) {
+        Fridge.create({
           fridgeItemId: createdItem.id,
           userId: req.session.passport.user,
-        },
-      });
+          quantity: foodAmount,
+        });
+      } else {
+        Fridge.update({
+          quantity: foodAmount,
+        }, {
+          where: {
+            fridgeItemId: createdItem.id,
+            userId: req.session.passport.user,
+          },
+        });
+      }
     })
     .then(() => res.send('Updated Sucessfully'))
     .catch(next);
