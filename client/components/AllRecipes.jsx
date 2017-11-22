@@ -12,7 +12,7 @@ class AllRecipes extends Component {
         recipe.length && recipe.map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
-           <NavLink to={`/singleRecipe/${oneRecipe.id}`}>Directions </NavLink>
+            <NavLink to={`/singleRecipe/${oneRecipe.id}`}>Directions </NavLink>
           </div>))
        }
       </div>
