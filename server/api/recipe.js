@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const {
-  RecipeUser, User, Fridge, FridgeItems, Recipe,
-} = require('../db/models');
+const { User, Fridge, FridgeItems, Recipe } = require('../db/models');
 const axios = require('axios');
 const key = require('../../secrets').spoon;
 
@@ -58,23 +56,10 @@ router.get('/', (req, res, next) => {
           info.forEach(el => arrToUpdate.push(Recipe.create(el)));
           return Promise.all(arrToUpdate)
             .then((recipes) => {
-              recipes.forEach(r => user.addRecipe(r.id));
+              recipes.forEach(toSetR => user.addRecipe(toSetR.id));
               res.json(recipes);
             });
         });
     });
 });
 
-
-// router.get('/', (req, res, next) => {
-//   User.findById(req.session.passport.user)
-//     .then((user) => {
-//       return Recipe.findAll()
-//         .then((found) => {
-//           found.forEach((el) => {
-//             user.addRecipe(el.id);
-//           });
-//           res.json(found);
-//         });
-//     });
-// });
