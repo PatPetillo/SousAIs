@@ -1,15 +1,15 @@
 const User = require('./user');
 const db = require('../db');
-const FridgeItems = require('./FridgeItems');
-const Fridge = require('./Fridge');
+const FridgeItems = require('./fridgeItems');
+const Fridge = require('./fridge');
 const Recipe = require('./recipe');
 
-const RecipeUser = db.define('RecipeUser', {});
+const RecipeUser = db.define('recipeUser', {});
 
-Fridge.belongsTo(User);
-Fridge.belongsTo(FridgeItems);
+User.belongsToMany(FridgeItems, { through: Fridge });
+FridgeItems.belongsToMany(User, { through: Fridge });
+// User.belongsToMany(Recipe, { through: RecipeUser });
 Recipe.belongsToMany(User, { through: RecipeUser });
-User.belongsToMany(Recipe, {through: RecipeUser });
 
 module.exports = {
   User,
