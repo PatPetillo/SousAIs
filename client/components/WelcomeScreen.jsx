@@ -30,7 +30,7 @@ const WelcomeScreen = () => (
           <div className="descriptions">
             {
               descriptions.map(description => (
-                <p className="lead"> {description} </p>
+                <p className="lead" key={description}> {description} </p>
               ))
             }
           </div>
