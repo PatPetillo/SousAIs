@@ -1,3 +1,14 @@
+.logo {
+  padding-top: 0.3em;
+  height: 5em;
+  width: 5em;
+}
+
+.key {
+  height: 1.5em;
+  width: 1.5em;
+}
+
 .auth-form {
   margin-top: 10em!important;
   background-color: #fff;
@@ -47,14 +58,35 @@
   margin-bottom: 2%;
 }
 
+.singleItem{
+  text-align: center;
+  margin-top: 5%;
+  p{
+    color: white;
+    font-size: 2em;
+  }
+}
+
 .flexContainer{
   display: flex;
   flex-direction: row;
-  color: white;
+  overflow: auto;
+  flex-wrap: wrap;
 }
 .fridge-items{
   margin: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  p{
+    color: white;
+  }
+  img{
+  width: 200px;
+  height: 200px;
+  }
 }
+
+
 
 .red-words {
   color: rgb(175, 8, 8);
@@ -130,6 +162,15 @@
 .addItemForm {
   text-align: center;
   margin-top: 30%;
+}
+
+.all-recipes {
+  margin: 8em;
+  background: #fff;
+  border-radius: 1em 1em 1em 1em;
+  * {
+    padding: 0.8em;
+  }
 }
 
 .savedRecipes {
