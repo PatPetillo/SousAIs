@@ -3,21 +3,6 @@ const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
 
-
-// router.get('/', (req, res, next) => {
-//   Fridge.findAll({
-//     where: {
-//       userId: 1//req.session.passport.user,
-//     },
-//     include: [{
-//       all:true,nested:true
-//     }],
-  
-// })
-//     .then(items => res.json(items))
-//     .catch(next);
-// });
-
 router.get('/', (req, res, next) => {
   User.findById(1)
   .then(user=>{
