@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = props => (
-
-  <nav className="navbar navbar-expand-md bg-primary navbar-dark">
-    {console.log(props)}
+  <nav className="navbar navbar-expand-md navbar-dark">
     <div className="container">
-      <NavLink className="navbar-brand" to="/"><img className="fa d-inline fa-lg fa-cloud" src="/icons/cart-simple.svg" />Sous</NavLink>
+      <NavLink to="/"><img className="logo" src="/icons/logo.svg" /></NavLink>
       <ul className="navbar-nav">
         <li className="nav-item">
           <NavLink className="nav-link" to="/allRecipes">Recipes</NavLink>
@@ -20,9 +18,9 @@ const Navbar = props => (
         </li>
       </ul>
       { !props.isLoggedIn && <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
-        <img src="/icons/key-25.svg" /> Sign in</NavLink>}
+        <img className="key" src="/icons/key-25.svg" /> Sign In</NavLink>}
       { props.isLoggedIn && <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/" onClick={props.logOut}>
-        <img src="/icons/key-25.svg" /> Sign Out</NavLink>}
+        <img className="key" src="/icons/key-25.svg" /> Sign Out</NavLink>}
     </div>
   </nav>
 );
