@@ -17,6 +17,13 @@ const users = [
     googleId: 'PatP',
   },
   {
+    email: '1',
+    name: 'Pat',
+    password: '1',
+    salt: '1',
+    googleId: 'PatP',
+  },
+  {
     email: 'Bderiel@gmail.com',
     name: 'Brian',
     password: 'nodeisfun',
