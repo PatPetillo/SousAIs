@@ -21,18 +21,10 @@ router.get('/', (req, res, next) => {
   User.findById(req.session.passport.user)
     .then((founduser) => {
       user = founduser;
+      return user.getFridgeItems();
     })
-    .then(() => Fridge.findAll({
-      where: {
-        userId: req.session.passport.user,
-      },
-      include: [{
-        model: FridgeItems,
-        include: [{ all: true }],
-      }],
-    }))
     .then((foundItems) => {
-      const ingredients = foundItems.map(x => x.fridgeItem.name);
+      const ingredients = foundItems.map(x => x.name);
       console.log(ingredients.join('2%C'));
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=5&ranking=1`, {
         headers: {
