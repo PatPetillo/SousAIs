@@ -17,7 +17,7 @@ const users = [
     googleId: 'PatP',
   },
   {
-    email: 'BrianDeriel@gmail.com',
+    email: 'Bderiel@gmail.com',
     name: 'Brian',
     password: 'nodeisfun',
     salt: '2',
@@ -38,9 +38,9 @@ const users = [
     googleId: 'WaleJ',
   },
   {
-    email: 'YuchenChen@gmail.com',
+    email: '1@gmail.com',
     name: 'Yuchen',
-    password: 'reduxisfun',
+    password: '1',
     salt: '5',
     googleId: 'YuchenC',
   },
