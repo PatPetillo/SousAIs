@@ -9,7 +9,6 @@ const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 function SingleItem(props) {
   console.log(props);
   const singleItem = props.fridge.filter(item => item.id === +props.match.params.id);
-  console.log(singleItem)
   return (
     <div>
       <div>{singleItem.length && singleItem[0].name}</div>
