@@ -7,11 +7,10 @@ const recipes = ['cook', 'fried', 'grill'];
 const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 
 function SingleItem(props) {
-  console.log(props);
   const singleItem = props.fridge.filter(item => item.id === +props.match.params.id);
   return (
-    <div>
-      <div>{singleItem.length && singleItem[0].name}</div>
+    <div className="singleItem">
+      <p>{singleItem.length && singleItem[0].name.toUpperCase()}</p>
       <img src={singleItem.length && singleItem[0].image} alt="Yuchen's fault" />
       <div>
         {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
