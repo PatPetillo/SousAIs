@@ -5,16 +5,6 @@ const key = require('../../secrets').spoon;
 
 module.exports = router;
 
-// router.get('/', (req, res, next) => {
-//   Recipe.findAll({
-//     // explicitly select only the id and email fields - even though
-//     // users' passwords are encrypted, it won't help if we just
-//     // send everything to anyone who asks!
-//     attributes: ['id', 'email'],
-//   })
-//     .then(users => res.json(users))
-//     .catch(next);
-// });
 
 router.get('/', (req, res, next) => {
   let user;
@@ -25,7 +15,6 @@ router.get('/', (req, res, next) => {
     })
     .then((foundItems) => {
       const ingredients = foundItems.map(x => x.name);
-      console.log(ingredients.join('2%C'));
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=5&ranking=1`, {
         headers: {
           'X-Mashape-Key': key,
@@ -52,6 +41,7 @@ router.get('/', (req, res, next) => {
               res.json(recipes);
             });
         });
-    });
+    })
+    .catch(next);
 });
 

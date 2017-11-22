@@ -12,8 +12,8 @@ function SingleItem(props) {
   console.log(singleItem)
   return (
     <div>
-      <div>{singleItem.length && singleItem[0].fridgeItem.name}</div>
-      <img src={singleItem.length && singleItem[0].fridgeItem.image} alt="Yuchen's falult" />
+      <div>{singleItem.length && singleItem[0].name}</div>
+      <img src={singleItem.length && singleItem[0].image} alt="Yuchen's fault" />
       <div>
         {recipes.length && recipes.map(recipe => <div key={recipe}>{recipe}</div>)}
       </div>
