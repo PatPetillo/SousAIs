@@ -1,17 +1,10 @@
 const router = require('express').Router();
-const { FridgeItems, Fridge } = require('../db/models/');
+const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 
 router.get('/', (req, res, next) => {
-  Fridge.findAll({
-    where: {
-      userId: req.session.passport.user,
-    },
-    include: [{
-      model: FridgeItems,
-      include: [{ all: true }],
-    }],
-  })
+  User.findById(req.session.passport.user)
+    .then(user => user.getFridgeItems())
     .then(items => res.json(items))
     .catch(next);
 });
@@ -32,7 +25,7 @@ router.post('/', (req, res, next) => {
     .then(foodData => FridgeItems.findOrCreate({
       where: {
         name: foodData[0].food_name,
-        image: foodData[0].photo.highres, // do quantity later
+        image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
     .then(([createdItem, wasCreated]) => {
