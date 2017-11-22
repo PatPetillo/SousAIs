@@ -153,6 +153,15 @@
   margin-top: 30%;
 }
 
+.all-recipes {
+  margin: 8em;
+  background: #fff;
+  border-radius: 1em 1em 1em 1em;
+  * {
+    padding: 0.8em;
+  }
+}
+
 .savedRecipes {
   display: flex;
   flex: 1;
