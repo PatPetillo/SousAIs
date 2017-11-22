@@ -47,14 +47,35 @@
   margin-bottom: 2%;
 }
 
+.singleItem{
+  text-align: center;
+  margin-top: 5%;
+  p{
+    color: white;
+    font-size: 2em;
+  }
+}
+
 .flexContainer{
   display: flex;
   flex-direction: row;
-  color: white;
+  overflow: auto;
+  flex-wrap: wrap;
 }
 .fridge-items{
   margin: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  p{
+    color: white;
+  }
+  img{
+  width: 200px;
+  height: 200px;
+  }
 }
+
+
 
 .red-words {
   color: rgb(175, 8, 8);
