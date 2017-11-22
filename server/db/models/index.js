@@ -4,6 +4,7 @@ const FridgeItems = require('./fridgeItems');
 const Fridge = require('./fridge');
 const Recipe = require('./recipe');
 
+// some changes
 const RecipeUser = db.define('recipeUser', {});
 
 User.belongsToMany(FridgeItems, { through: Fridge });
