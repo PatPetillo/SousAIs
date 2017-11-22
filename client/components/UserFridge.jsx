@@ -12,11 +12,11 @@ class UserFridge extends Component {
       <div className="py-5">
         <h2 className="center"> {`${user.name}'s Fridge`} </h2>
         <div className="container flexContainer">
-          {fridge[0].fridgeItemId && fridge.length && fridge.map(item => (
-            <div className="fridge-items" key={item.fridgeItem.name}>
+          {fridge.length && fridge.map(item => (
+            <div className="fridge-items" key={item.name}>
               <NavLink to={`/singleItem/${item.id}`} >
-                <p>{item.fridgeItem.name}</p>
-                <img src={item.fridgeItem.image} alt="yuchen's fault" />
+                <p>{item.name}</p>
+                <img src={item.image} alt="yuchen's fault" />
               </NavLink>
             </div>
           ))}
