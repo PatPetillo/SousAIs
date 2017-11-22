@@ -1,18 +1,12 @@
 const router = require('express').Router();
-const { FridgeItems, Fridge } = require('../db/models/');
+const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
 
-
 router.get('/', (req, res, next) => {
-  Fridge.findAll({
-    where: {
-      userId: req.session.passport.user,
-    },
-    include: [{
-      model: FridgeItems,
-      include: [{ all: true }],
-    }],
+  User.findById(1)
+  .then(user=>{
+    return user.getFridgeItems()
   })
     .then(items => res.json(items))
     .catch(next);
