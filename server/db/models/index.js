@@ -8,7 +8,7 @@ const RecipeUser = db.define('recipeUser', {});
 
 User.belongsToMany(FridgeItems, { through: Fridge });
 FridgeItems.belongsToMany(User, { through: Fridge });
-// User.belongsToMany(Recipe, { through: RecipeUser });
+User.belongsToMany(Recipe, { through: RecipeUser });
 Recipe.belongsToMany(User, { through: RecipeUser });
 
 module.exports = {
