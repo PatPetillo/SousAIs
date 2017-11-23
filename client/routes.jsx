@@ -4,8 +4,9 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes } from './components';
+import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe } from './components';
 import { fetchProducts } from './store/fridge';
+import { fetchRecipe } from './store/recipe';
 
 // import WelcomeScreen from './components/WelcomeScreen';
 import { me } from './store';
@@ -31,11 +32,13 @@ class Routes extends Component {
             
             <Route path="/addItem" component={AddItem} />
             <Route path="/savedRecipes" component={SavedRecipes} />
-            <Route path="/allRecipes" component={AllRecipes} />
             {
               isLoggedIn &&
               <Switch>
                 <Route path="/myFridge" component={UserFridge} />
+                <Route path="/singleRecipe/:id" component={SingleRecipe}/>
+                <Route path="/allRecipes" component={AllRecipes} />
+          
               </Switch>
             }
             <Route component={Login} />
@@ -57,6 +60,7 @@ const mapDispatch = dispatch => ({
   loadInitialData() {
     dispatch(me());
     dispatch(fetchProducts());
+    dispatch(fetchRecipe());
   },
 });
 
