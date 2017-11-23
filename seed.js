@@ -17,6 +17,13 @@ const users = [
     googleId: 'PatP',
   },
   {
+    email: '1',
+    name: 'Pat',
+    password: '1',
+    salt: '1',
+    googleId: 'PatP',
+  },
+  {
     email: 'Bderiel@gmail.com',
     name: 'Brian',
     password: 'nodeisfun',
@@ -44,6 +51,14 @@ const users = [
     salt: '5',
     googleId: 'YuchenC',
   },
+  {
+    email: '1@gmail.com',
+    name: 'test',
+    password: '1',
+    salt: '1',
+    googleId: '1',
+  },
+
 ];
 
 const fridgeItems = [
@@ -146,6 +161,146 @@ const fridges = [
   {
     quantity: 1.0,
     userId: 2,
+    fridgeItemId: 7,
+  },
+  {
+    quantity: 2.0,
+    userId: 3,
+    fridgeItemId: 1,
+  },
+  {
+    quantity: 2.0,
+    userId: 3,
+    fridgeItemId: 2,
+  },
+  {
+    quantity: 2.0,
+    userId: 3,
+    fridgeItemId: 3,
+  },
+  {
+    quantity: 1.0,
+    userId: 3,
+    fridgeItemId: 4,
+  },
+  {
+    quantity: 1.0,
+    userId: 3,
+    fridgeItemId: 5,
+  },
+  {
+    quantity: 1.0,
+    userId: 3,
+    fridgeItemId: 6,
+  },
+  {
+    quantity: 1.0,
+    userId: 3,
+    fridgeItemId: 7,
+  },
+  {
+    quantity: 2.0,
+    userId: 4,
+    fridgeItemId: 1,
+  },
+  {
+    quantity: 2.0,
+    userId: 4,
+    fridgeItemId: 2,
+  },
+  {
+    quantity: 2.0,
+    userId: 4,
+    fridgeItemId: 3,
+  },
+  {
+    quantity: 1.0,
+    userId: 4,
+    fridgeItemId: 4,
+  },
+  {
+    quantity: 1.0,
+    userId: 4,
+    fridgeItemId: 5,
+  },
+  {
+    quantity: 1.0,
+    userId: 4,
+    fridgeItemId: 6,
+  },
+  {
+    quantity: 1.0,
+    userId: 4,
+    fridgeItemId: 7,
+  },
+  {
+    quantity: 2.0,
+    userId: 5,
+    fridgeItemId: 1,
+  },
+  {
+    quantity: 2.0,
+    userId: 5,
+    fridgeItemId: 2,
+  },
+  {
+    quantity: 2.0,
+    userId: 5,
+    fridgeItemId: 3,
+  },
+  {
+    quantity: 1.0,
+    userId: 5,
+    fridgeItemId: 4,
+  },
+  {
+    quantity: 1.0,
+    userId: 5,
+    fridgeItemId: 5,
+  },
+  {
+    quantity: 1.0,
+    userId: 5,
+    fridgeItemId: 6,
+  },
+  {
+    quantity: 1.0,
+    userId: 5,
+    fridgeItemId: 7,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 1,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 2,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 3,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 4,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 5,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 6,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
     fridgeItemId: 7,
   },
 ];

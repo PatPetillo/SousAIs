@@ -15,7 +15,7 @@ class UserFridge extends Component {
           {fridge.length && fridge.map(item => (
             <div className="fridge-items" key={item.name}>
               <NavLink to={`/singleItem/${item.id}`} >
-                <p>{item.name}</p>
+                <p>{item.name.toUpperCase()}</p>
                 <img src={item.image} alt="yuchen's fault" />
               </NavLink>
             </div>
