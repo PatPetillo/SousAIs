@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { logout } from '../store';
 import { Navbar } from './';
 
@@ -13,24 +13,21 @@ import { Navbar } from './';
  */
 class Main extends Component {
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    document.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    document.removeEventListener('scroll', this.handleScroll);
   }
-  
+
   handleScroll() {
     const [nav] = document.getElementsByClassName('navbar');
-    if (window.scrollY > 70) {
-      nav.classList.add('nav-scrolled');
-    } else {
-      nav.classList.remove('nav-scrolled');
-    }
+    if (this.scrollY > 70) nav.classList.add('nav-scrolled');
+    else nav.classList.remove('nav-scrolled');
   }
 
   render() {
-    const { children, handleClick, isLoggedIn } = this.props
+    const { children, handleClick, isLoggedIn } = this.props;
     return (
       <div>
         <Navbar isLoggedIn={isLoggedIn} logOut={handleClick} />
@@ -43,23 +40,17 @@ class Main extends Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    isLoggedIn: !!state.user.id
-  }
-}
+const mapState = state => ({ isLoggedIn: !!state.user.id });
 
-const mapDispatch = (dispatch) => {
-  return {
-    handleClick () {
-      dispatch(logout())
-    }
-  }
-}
+const mapDispatch = dispatch => ({
+  handleClick() {
+    dispatch(logout());
+  },
+});
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Main))
+export default withRouter(connect(mapState, mapDispatch)(Main));
 
 /**
  * PROP TYPES
@@ -67,5 +58,5 @@ export default withRouter(connect(mapState, mapDispatch)(Main))
 Main.propTypes = {
   children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+  isLoggedIn: PropTypes.bool.isRequired,
+};
