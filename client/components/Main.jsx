@@ -13,11 +13,11 @@ import { Navbar } from './';
  */
 class Main extends Component {
   componentDidMount() {
-    document.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll() {
