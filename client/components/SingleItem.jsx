@@ -27,4 +27,3 @@ const mapState = ({ fridge }) => ({ fridge });
 const mapDispatch = {};
 export default connect(mapState, mapDispatch)(SingleItem);
 
-// export default SingleItem;
