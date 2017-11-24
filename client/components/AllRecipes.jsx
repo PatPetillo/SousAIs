@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-class AllRecipes extends Component {
-  render() {
-    const { recipe, user } = this.props;
-    return (
-      <div className="all-recipes page-content">
-        <h1>{`${user.name}'s recipes`}</h1>
-        {
+const AllRecipes = (props) => {
+  const { recipe, user } = props;
+  return (
+    <div className="all-recipes page-content">
+      <h1>{`${user.name}'s recipes`}</h1>
+      {
         recipe.length && recipe.map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
-            <NavLink to={`/singleRecipe/${oneRecipe.id}`}>Directions </NavLink>
+            <NavLink to={`/singleRecipe/${oneRecipe.id}`} recipe={oneRecipe}>
+              <h3>Directions </h3>
+            </NavLink>
           </div>))
-       }
-      </div>
-    );
-  }
-}
+      }
+    </div>
+  );
+};
 
 const mapState = ({ recipe, user }) => ({ recipe, user });
-const mapDispatch = {};
-export default connect(mapState, mapDispatch)(AllRecipes);
+export default connect(mapState)(AllRecipes);
+
+AllRecipes.propTypes = {
+  recipe: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+};

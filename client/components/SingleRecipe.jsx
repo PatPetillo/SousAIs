@@ -1,27 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
-const SingleRecipes = () => {
-  const { recipe, user } = this.props;
+const SingleRecipe = (props) => {
+  const { recipe, match } = props;
   return (
-    <div className="all-recipes page-content">
-      <h1>{`${user.name}'s recipe`}</h1>
+    <div className="page-content">
       {
-      recipe.length && recipe.map((oneRecipe) => {
-        if (oneRecipe.id === this.props.match.params.id) {
-          return (
-            <div key={oneRecipe.id}>
-              <h2>{oneRecipe.name}</h2>
-              {oneRecipe.steps.split('.').map(sentence => (<div> {sentence}</div>))}
-            </div>);
-}
-})
+        recipe.map(singleRecipe => (
+          (singleRecipe.id === +match.params.id)
+          ?
+            <div key={singleRecipe.id}>
+              <h2> {singleRecipe.name} </h2>
+              <ol>
+                {
+                  singleRecipe.steps.split('.').map(sentence => (
+                    (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
+                }
+              </ol>
+            </div>
+          : null))
       }
     </div>
   );
 };
-const mapState = ({ recipe, user }) => ({ recipe, user });
-const mapDispatch = {};
-export default connect(mapState, mapDispatch)(SingleRecipes);
 
+const mapState = ({ recipe }) => ({ recipe });
+export default connect(mapState)(SingleRecipe);
+
+SingleRecipe.propTypes = {
+  recipe: PropTypes.arrayOf(PropTypes.any).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
