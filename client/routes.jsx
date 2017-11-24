@@ -5,11 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
 import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe } from './components';
-import { fetchProducts } from './store/fridge';
-import { fetchRecipe } from './store/recipe';
-
-// import WelcomeScreen from './components/WelcomeScreen';
-import { me } from './store';
+import { fetchProducts, fetchRecipe, me } from './store';
 
 /**
  * COMPONENT
@@ -26,19 +22,17 @@ class Routes extends Component {
         <Main>
           <Switch>
             <Route exact path="/" component={WelcomeScreen} />
-            <Route exact path="/singleItem/:id" component={SingleItem} />
-            <Route path="/userPage" component={UserHome} />
             <Route path="/signIn" component={Login} />
-            
-            <Route path="/addItem" component={AddItem} />
-            <Route path="/savedRecipes" component={SavedRecipes} />
             {
               isLoggedIn &&
               <Switch>
                 <Route path="/myFridge" component={UserFridge} />
-                <Route path="/singleRecipe/:id" component={SingleRecipe}/>
+                <Route path="/savedRecipes" component={SavedRecipes} />
+                <Route path="/singleRecipe/:id" component={SingleRecipe} />
                 <Route path="/allRecipes" component={AllRecipes} />
-          
+                <Route path="/addItem" component={AddItem} />
+                <Route path="/userPage" component={UserHome} />
+                <Route exact path="/singleItem/:id" component={SingleItem} />
               </Switch>
             }
             <Route component={Login} />
