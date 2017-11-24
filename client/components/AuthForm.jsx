@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { auth } from '../store';
-import { fetchProducts } from '../store/fridge';
+import { auth, fetchProducts } from '../store';
 
 /**
  * COMPONENT

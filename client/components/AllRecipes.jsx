@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const AllRecipes = (props) => {
   const { recipe, user } = props;
   return (
-    <div className="all-recipes page-content">
+    <div className="page-content">
       <h1>{`${user.name}'s recipes`}</h1>
       {
         recipe.length && recipe.map(oneRecipe => (

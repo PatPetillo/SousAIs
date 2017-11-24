@@ -4,13 +4,6 @@
   width: 5em;
 }
 
-.body-bg {
-  position: absolute;
-  margin-top: 0;
-  z-index: -1;
-  height: 100vh;
-  width: 100vw;
-}
 .key {
   height: 1.5em;
   width: 1.5em;
@@ -21,7 +14,7 @@
   background-color: #fff;
   border-radius: 5em 5% 35em 5em;
   padding: 5vw;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .motto {
@@ -32,12 +25,6 @@
     margin: 0;
     padding: 0.3em;
   }
-}
-
-.page-content {
-  margin: 8em;
-  background: #fff;
-  border-radius: 5em 5% 35em 5em;
 }
 
 .navbar {
@@ -60,7 +47,6 @@
 
 .center{
   text-align: center;
-  color : white;
   margin-top : 3%;
   margin-bottom: 2%;
 }
@@ -74,26 +60,22 @@
   }
 }
 
-.flexContainer{
+.flex-container{
   display: flex;
   flex-direction: row;
   overflow: auto;
   flex-wrap: wrap;
 }
+
 .fridge-items{
   margin: 10px;
   text-align: center;
   font-size: 1.5em;
-  p{
-    color: white;
-  }
   img{
   width: 200px;
   height: 200px;
   }
 }
-
-
 
 .red-words {
   color: rgb(175, 8, 8);
@@ -171,12 +153,12 @@
   margin-top: 30%;
 }
 
-.all-recipes {
+.page-content {
   margin: 8em;
   background: #fff;
   border-radius: 1em 1em 1em 1em;
   * {
-    padding: 0.8em;
+    padding: 0.4em;
   }
 }
 

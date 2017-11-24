@@ -7,10 +7,15 @@
 
 body {
   margin: 0;
-  /*background-image: url('http://sf.co.ua/14/05/wallpaper-1257559.jpg');*/
-
+  background: url('http://sf.co.ua/14/05/wallpaper-1257559.jpg') no-repeat fixed;
+  
   a {
     text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: grey;
   }
 
   label {
