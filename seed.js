@@ -51,14 +51,6 @@ const users = [
     salt: '5',
     googleId: 'YuchenC',
   },
-  {
-    email: '1@gmail.com',
-    name: 'test',
-    password: '1',
-    salt: '1',
-    googleId: '1',
-  },
-
 ];
 
 const fridgeItems = [
