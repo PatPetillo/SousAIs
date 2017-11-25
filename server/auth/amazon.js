@@ -3,7 +3,7 @@ const router = require('express').Router()
 const util = require('util')
 const AmazonStrategy = require('passport-amazon').Strategy;
 const { User } = require('../db/models')
-module.exports = router
+module.exports = router;
 
 /**
  * For OAuth keys and other secrets, your Node process will search
@@ -36,14 +36,14 @@ const strategy = new AmazonStrategy(amazonConfig, (token, refreshToken, profile,
             User.create({ name, email, amazonId })
             .then(createdUser => done(null, createdUser))
         ))
-        .catch(done)
-})
+        .catch(done);
+});
 
-passport.use(strategy)
+passport.use(strategy);
 
-router.get('/', passport.authenticate('amazon', { scope: 'email' }))
+router.get('/', passport.authenticate('amazon', { scope: 'email' }));
 
 router.get('/callback', passport.authenticate('amazon', {
     successRedirect: '/home',
-    failureRedirect: '/login'
-}))
+    failureRedirect: '/login',
+}));

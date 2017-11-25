@@ -34,6 +34,7 @@
     "express-session": "^1.15.1",
     "faker": "^4.1.0",
     "history": "^4.6.3",
+    "https-server": "^0.1.2",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-amazon": "^1.0.0",
