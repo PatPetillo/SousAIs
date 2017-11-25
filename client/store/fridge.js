@@ -22,6 +22,7 @@ export const AddProductThunk = item =>
     axios.post('/api/fridge', item)
       .then(res =>
         dispatch(addItem(res.data)))
+      .then(() => history.push('/myfridge'))
       .catch(err => console.log(err));
 
 export const fetchProducts = () =>
