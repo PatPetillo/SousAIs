@@ -1,13 +1,10 @@
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
-const { nutrix, nutrixApp } = require('../../secrets');
 
 router.get('/', (req, res, next) => {
-  User.findById(1)
-  .then(user=>{
-    return user.getFridgeItems()
-  })
+  User.findById(req.session.passport.user)
+    .then(user => user.getFridgeItems())
     .then(items => res.json(items))
     .catch(next);
 });
@@ -17,8 +14,8 @@ router.post('/', (req, res, next) => {
   let foodAmount;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': nutrixApp,
-      'x-app-key': nutrix,
+      'x-app-id': process.env.NUTRIX_ID,
+      'x-app-key': process.env.NUTRIX_KEY,
     },
   })
     .then((response) => {
@@ -28,7 +25,7 @@ router.post('/', (req, res, next) => {
     .then(foodData => FridgeItems.findOrCreate({
       where: {
         name: foodData[0].food_name,
-        image: foodData[0].photo.highres, // do quantity later
+        image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
     .then(([createdItem, wasCreated]) => {

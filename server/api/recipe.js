@@ -1,20 +1,15 @@
 const router = require('express').Router();
-const { User, Fridge, FridgeItems, Recipe } = require('../db/models');
+const {
+    User,
+    Fridge,
+    FridgeItems,
+    Recipe
+} = require('../db/models');
 const axios = require('axios');
 const key = require('../../secrets').spoon;
 
 module.exports = router;
 
-// router.get('/', (req, res, next) => {
-//   Recipe.findAll({
-//     // explicitly select only the id and email fields - even though
-//     // users' passwords are encrypted, it won't help if we just
-//     // send everything to anyone who asks!
-//     attributes: ['id', 'email'],
-//   })
-//     .then(users => res.json(users))
-//     .catch(next);
-// });
 
 router.get('/', (req, res, next) => {
     let user;
@@ -58,28 +53,28 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     User.findById(req.session.passport.user)
         .then((foundUser) => {
-            foundUser.crSteps = req.body.steps
-            return foundUser
+            foundUser.crSteps = req.body.steps;
+            return foundUser;
         })
-        .then(update => {
-            res.json(update.crSteps)
+        .then((update) => {
+            res.json(update.crSteps);
         });
 });
 
 router.get('/steps', (req, res, next) => {
     User.findById(req.session.passport.user)
         .then((foundUser) => {
-            res.json(foundUser.crSteps)
-        })
-})
+            res.json(foundUser.crSteps);
+        });
+});
 
 router.get('/nextstep', (req, res, next) => {
     User.findById(req.session.passport.user)
         .then((foundUser) => {
-            foundUser.crSteps = foundUser.crSteps.slice(1)
+            foundUser.crSteps = foundUser.crSteps.slice(1);
         })
-        .then(update => {
-            if (!update.length) res.json(["The recipe is complete! Enjoy your meal"])
-            else res.json(update.crSteps)
+        .then((update) => {
+            if (!update.length) res.json(['The recipe is complete! Enjoy your meal']);
+            else res.json(update.crSteps);
         });
 });

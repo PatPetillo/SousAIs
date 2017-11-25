@@ -1,7 +1,7 @@
 const User = require('./user');
 const db = require('../db');
-const FridgeItems = require('./fridgeItems');
-const Fridge = require('./fridge');
+const FridgeItems = require('./FridgeItems');
+const Fridge = require('./Fridge');
 const Recipe = require('./recipe');
 
 const RecipeUser = db.define('recipeUser', {});
