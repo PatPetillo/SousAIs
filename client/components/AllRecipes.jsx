@@ -14,10 +14,10 @@ const disableButton = (e) => {
 };
 
 const AllRecipes = (props) => {
-  console.log('console.log',props)
-  const { user , saveRecipeToStore } = props;
-  const { recipes} = props.recipe;
-  
+  console.log('console.log', props);
+  const { user, saveRecipeToStore } = props;
+  const { recipes } = props.recipe;
+
   return (
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
@@ -30,10 +30,14 @@ const AllRecipes = (props) => {
             </NavLink>
             <NavLink to="#">
               {/* should dispatch a thunk to add to savedRecipes */}
-              <button className="btn btn-primary my-3" onClick={(e) => { 
+              <button
+                className="btn btn-primary my-3"
+                onClick={(e) => {
                 disableButton(e);
-                saveRecipeToStore(oneRecipe) 
-                }}>Save Recipe</button>
+                saveRecipeToStore(oneRecipe);
+                }}
+              >Save Recipe
+              </button>
             </NavLink>
           </div>))
         : <div className="btn btn-primary my-3">Search for recipes</div>
