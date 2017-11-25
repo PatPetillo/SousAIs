@@ -21,16 +21,16 @@ class AddItem extends Component {
   }
   render() {
     return (
-      <form className="addItemForm">
+      <form className="addItemForm page-content">
         <div>
           <label >Food</label>
           <input type="text" name="food" onChange={this.handleChange} />
         </div>
         <div>
-          <label >Quantity</label>
+          <label>Quantity</label>
           <input type="text" name="quantity" onChange={this.handleChange} />
         </div>
-        <button type="submit" onClick={this.handleSubmit} >Add Item To Fridge</button>
+        <button className="btn btn-primary" type="submit" onClick={this.handleSubmit} >Add Item To Fridge</button>
       </form>
     );
   }
