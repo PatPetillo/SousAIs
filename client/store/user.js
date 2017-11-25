@@ -1,6 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 import { fetchProducts } from './fridge';
+import { fetchRecipe } from './recipe';
 
 /**
  * ACTION TYPES
@@ -33,10 +34,13 @@ export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then((res) => {
-        return dispatch(getUser(res.data));
+        dispatch(getUser(res.data));
       })
       .then(() => {
         dispatch(fetchProducts());
+      })
+      .then(() => {
+        dispatch(fetchRecipe());
         history.push('/');
       })
       .catch(error =>
@@ -45,7 +49,7 @@ export const auth = (email, password, method) =>
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
-      .then((_) => {
+      .then(() => {
         dispatch(removeUser());
         history.push('/login');
       })
