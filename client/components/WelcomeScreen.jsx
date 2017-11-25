@@ -20,17 +20,17 @@ const WelcomeScreen = () => (
       </div>
     </div>
 
-    <div className="motto"> <h1> Cooking - reinvented </h1> </div>
+    <div className="motto bg-secondary"> <h1> Cooking - reinvented </h1> </div>
 
     <div className="carousel-info">
-      <div> <WelcomeScreenCarousel /> </div>
+      <div className="carousel-container"> <WelcomeScreenCarousel /> </div>
       <div className="how-it-works bg-primary">
         <div className="all-descriptions">
           <h1 className="description-head"> Sous is your personal kitchen assistant </h1>
           <div className="descriptions">
             {
               descriptions.map(description => (
-                <p className="lead"> {description} </p>
+                <p className="lead" key={description}> {description} </p>
               ))
             }
           </div>

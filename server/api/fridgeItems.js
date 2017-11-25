@@ -1,19 +1,13 @@
+//import { create } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-test-renderer';
+
 const router = require('express').Router();
-const { FridgeItems, Fridge } = require('../db/models/');
+const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
 
-
 router.get('/', (req, res, next) => {
-  Fridge.findAll({
-    where: {
-      userId: req.session.passport.user,
-    },
-    include: [{
-      model: FridgeItems,
-      include: [{ all: true }],
-    }],
-  })
+  User.findById(req.session.passport.user)
+    .then(user => user.getFridgeItems())
     .then(items => res.json(items))
     .catch(next);
 });
@@ -21,6 +15,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
   let foodAmount;
+  let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
       'x-app-id': nutrixApp,
@@ -34,18 +29,19 @@ router.post('/', (req, res, next) => {
     .then(foodData => FridgeItems.findOrCreate({
       where: {
         name: foodData[0].food_name,
-        image: foodData[0].photo.highres, // do quantity later
+        image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
-    .then(([createdItem, wasCreated]) => {
+    .then(([createdItem, wasCreated]) => { // why is this an array
+      itemToReturn= createdItem
       if (wasCreated) {
-        Fridge.create({
+         Fridge.create({
           fridgeItemId: createdItem.id,
           userId: req.session.passport.user,
           quantity: foodAmount,
         });
       } else {
-        Fridge.update({
+        return Fridge.update({
           quantity: foodAmount,
         }, {
           where: {
@@ -55,7 +51,7 @@ router.post('/', (req, res, next) => {
         });
       }
     })
-    .then(() => res.send('Updated Sucessfully'))
+    .then(() => res.json(itemToReturn))
     .catch(next);
 });
 

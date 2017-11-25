@@ -14,3 +14,4 @@ export { default as SingleItem } from './SingleItem';
 export { default as AddItem } from './AddItem';
 export { default as SavedRecipes } from './SavedRecipe';
 export { default as AllRecipes } from './AllRecipes';
+export { default as SingleRecipe } from './SingleRecipe';
