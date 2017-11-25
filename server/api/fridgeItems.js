@@ -1,3 +1,5 @@
+//import { create } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-test-renderer';
+
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
@@ -13,10 +15,11 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
   let foodAmount;
+  let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': process.env.NUTRIX_ID,
-      'x-app-key': process.env.NUTRIX_KEY,
+      'x-app-id': nutrixApp,
+      'x-app-key': nutrix,
     },
   })
     .then((response) => {
@@ -29,15 +32,16 @@ router.post('/', (req, res, next) => {
         image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
-    .then(([createdItem, wasCreated]) => {
+    .then(([createdItem, wasCreated]) => { // why is this an array
+      itemToReturn= createdItem
       if (wasCreated) {
-        Fridge.create({
+         Fridge.create({
           fridgeItemId: createdItem.id,
           userId: req.session.passport.user,
           quantity: foodAmount,
         });
       } else {
-        Fridge.update({
+        return Fridge.update({
           quantity: foodAmount,
         }, {
           where: {
@@ -47,7 +51,7 @@ router.post('/', (req, res, next) => {
         });
       }
     })
-    .then(() => res.send('Updated Sucessfully'))
+    .then(() => res.json(itemToReturn))
     .catch(next);
 });
 
