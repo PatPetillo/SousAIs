@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
       })
         .then((apiRes) => {
           const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
-          return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=false`, {
+          return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
             headers: {
               'X-Mashape-Key': key,
               Accept: 'application/json',
