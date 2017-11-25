@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../history';
+import { fetchProducts } from './fridge';
 
 /**
  * ACTION TYPES
@@ -32,7 +33,10 @@ export const auth = (email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { email, password })
       .then((res) => {
-        dispatch(getUser(res.data));
+        return dispatch(getUser(res.data));
+      })
+      .then(() => {
+        dispatch(fetchProducts());
         history.push('/');
       })
       .catch(error =>

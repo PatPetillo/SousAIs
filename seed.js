@@ -50,6 +50,8 @@ const users = [
     password: '1',
     salt: '6',
     googleId: 'test',
+    salt: '1',
+    googleId: '1',
   },
 
 ];
@@ -259,6 +261,41 @@ const fridges = [
   {
     quantity: 1.0,
     userId: 5,
+    fridgeItemId: 7,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 1,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 2,
+  },
+  {
+    quantity: 2.0,
+    userId: 6,
+    fridgeItemId: 3,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 4,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 5,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
+    fridgeItemId: 6,
+  },
+  {
+    quantity: 1.0,
+    userId: 6,
     fridgeItemId: 7,
   },
 ];

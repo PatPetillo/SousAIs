@@ -1,15 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Muli');
 @import './style.scss';
 @import './content.scss';
 * {
-  font-family: 'Quicksand', sans-serif!important;
+  font-family: 'Muli', sans-serif!important;
 }
+
 body {
   margin: 0;
-  background-image: url('http://sf.co.ua/14/05/wallpaper-1257559.jpg');
-
+  background: url('/imgs/more-food.jpg') no-repeat fixed;
+  background-size: cover;
+  
   a {
     text-decoration: none;
+    color: rgba(130,30,100,1);
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: rgba(15,180,231,1);
   }
 
   label {
@@ -21,6 +29,19 @@ body {
     margin: 1em;
   }
 
+  button {
+    cursor:pointer;
+  }
+
+  button:disabled {
+    cursor:no-drop;
+  }
+
+}
+
+body.fridge {
+  background: url('/imgs/fridge-bg.jpeg') no-repeat fixed;
+  background-size: cover;
 }
 
 

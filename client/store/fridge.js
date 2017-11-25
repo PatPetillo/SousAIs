@@ -22,6 +22,7 @@ export const AddProductThunk = item =>
     axios.post('/api/fridge', item)
       .then(res =>
         dispatch(addItem(res.data)))
+      .then(() => history.push('/myfridge'))
       .catch(err => console.log(err));
 
 export const fetchProducts = () =>
@@ -30,9 +31,11 @@ export const fetchProducts = () =>
       .then(res =>
         dispatch(getItems(res.data)))
       .catch(err => console.log(err));
+/**
+ * Reducer
+ */
 
-
-export default function (state = [], action) {
+export default (state = [], action) => {
   switch (action.type) {
     case ADD_ITEM_TO_FRIDGE:
       return [...state, action.item];
@@ -43,4 +46,4 @@ export default function (state = [], action) {
     default:
       return state;
   }
-}
+};
