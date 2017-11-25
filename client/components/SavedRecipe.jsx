@@ -2,16 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const savedRecipes = [{ recipe: 'recipe1 from saved recipes' }, { recipe: 'recipe2 from saved recipes' }, { recipe: 'recipe3 from saved recipes' }];
+const savedRecipes = [ {recipe:"recipe"}]
+const SavedRecipes = (props) => {
+  // const { savedRecipes } = props.recipe;
+  console.log("console.log in saved",props.recipe.savedRecipe)
+  return (
+    <div className="page-content">
+      {
+        props.recipe.savedRecipe.length && props.recipe.savedRecipe.map(singleRecipe =>
+          (<div key={singleRecipe.id}>{singleRecipe.name + " " + singleRecipe.steps}</div>))
+      }
+    </div>
+  );
+};
 
-const SavedRecipes = () => (
-  <div className="page-content">
-    {
-      savedRecipes.length && savedRecipes.map(singleRecipe =>
-        (<div key={singleRecipe.recipe}>{singleRecipe.recipe}</div>))
-    }
-  </div>
-);
+const mapState = ({ recipe }) => ({ recipe });
 
-
-export default SavedRecipes;
+export default connect(mapState)(SavedRecipes);
