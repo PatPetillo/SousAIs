@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 const SingleRecipe = (props) => {
   const { match } = props;
   const { recipes } = props.recipe;
-  console.log("props in single",props)
   return (
     <div className="page-content">
       {

@@ -14,10 +14,8 @@ const disableButton = (e) => {
 };
 
 const AllRecipes = (props) => {
-  console.log('console.log', props);
   const { user, saveRecipeToStore } = props;
   const { recipes } = props.recipe;
-
   return (
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
