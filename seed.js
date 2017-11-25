@@ -17,13 +17,6 @@ const users = [
     googleId: 'PatP',
   },
   {
-    email: '1',
-    name: 'Pat',
-    password: '1',
-    salt: '1',
-    googleId: 'PatP',
-  },
-  {
     email: 'Bderiel@gmail.com',
     name: 'Brian',
     password: 'nodeisfun',
@@ -45,12 +38,22 @@ const users = [
     googleId: 'WaleJ',
   },
   {
-    email: '1@gmail.com',
+    email: 'Yuchen@gmail.com',
     name: 'Yuchen',
-    password: '1',
+    password: '111',
     salt: '5',
     googleId: 'YuchenC',
   },
+  {
+    email: '1@gmail.com',
+    name: 'test',
+    password: '1',
+    salt: '6',
+    googleId: 'test',
+    salt: '1',
+    googleId: '1',
+  },
+
 ];
 
 const fridgeItems = [
