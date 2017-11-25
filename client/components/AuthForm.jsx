@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth } from '../store';
 import { fetchProducts } from '../store/fridge';
-
+import axios from 'axios';
 /**
  * COMPONENT
  */
@@ -30,9 +30,17 @@ const AuthForm = (props) => {
               {error && error.response && <div> {error.response.data} </div>}
             </form>
             <button id="google">
-            <a href="/auth/google">{}</a>
+              <a href="/auth/google">{}</a>
             </button>
-            <button id="amazon">
+            <button
+              id="amazon"
+              onClick={() => {
+                axios.get('/auth/amazon')
+                .then(() => {
+                  console.log('success');
+                });
+            }}
+            >
               <a href="/auth/amazon">{}</a>
             </button>
           </div>
