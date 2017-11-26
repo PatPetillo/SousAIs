@@ -5,7 +5,7 @@ import history from '../history';
  * ACTION TYPES
  */
 const GET_USER_ITEMS = 'GET_USER_ITEMS';
-const REMOVE_USER_ITEM = 'REMOVE_USER_ITEM';
+const REMOVE_FRIDGE_ITEM = 'REMOVE_FRIDGE_ITEM';
 const ADD_ITEM_TO_FRIDGE = 'ADD_ITEM_TO_FRIDGE';
 
 /**
@@ -13,6 +13,7 @@ const ADD_ITEM_TO_FRIDGE = 'ADD_ITEM_TO_FRIDGE';
  */
 const getItems = items => ({ type: GET_USER_ITEMS, items });
 const addItem = item => ({ type: ADD_ITEM_TO_FRIDGE, item });
+const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
 
 /**
  * THUNK CREATORS
@@ -31,6 +32,14 @@ export const fetchProducts = () =>
       .then(res =>
         dispatch(getItems(res.data)))
       .catch(err => console.log(err));
+
+export const removeItem = itemId =>
+  dispatch =>
+    axios.delete(`/api/fridge/${itemId}`)
+      .then(res => res.data)
+      .then(dispatch(remove(itemId)))
+      .catch(err => console.log(err));
+
 /**
  * Reducer
  */
@@ -41,8 +50,8 @@ export default (state = [], action) => {
       return [...state, action.item];
     case GET_USER_ITEMS:
       return action.items;
-    case REMOVE_USER_ITEM:
-      return state; // filter!=
+    case REMOVE_FRIDGE_ITEM:
+      return state.filter(fridgeItems => (fridgeItems.id !== action.itemId));
     default:
       return state;
   }
