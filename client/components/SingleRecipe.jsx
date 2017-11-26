@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const SingleRecipe = (props) => {
-  const { recipe, match } = props;
+  const { match } = props;
+  const { recipes } = props.recipe;
   return (
     <div className="page-content">
       {
-        recipe.map(singleRecipe => (
+        recipes.length && recipes.map(singleRecipe => (
           (singleRecipe.id === +match.params.id)
           ?
             <div key={singleRecipe.id}>
               <h2> {singleRecipe.name} </h2>
               <ol>
                 {
-                  singleRecipe.steps.split('.').map(sentence => (
+                singleRecipe.steps.split('.').map(sentence => (
                     (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
                 }
               </ol>
