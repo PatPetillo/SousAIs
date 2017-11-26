@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { saveRecipeToStore } from '../store/recipe';
 
 const disableButton = (e) => {
   const originalSize = e.target.offsetWidth;
@@ -13,12 +14,13 @@ const disableButton = (e) => {
 };
 
 const AllRecipes = (props) => {
-  const { recipe, user } = props;
+  const { user, saveRecipeToStore } = props;
+  const { recipes, savedRecipe } = props.recipe;
   return (
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
       {
-        recipe.length ? recipe.map(oneRecipe => (
+        recipes.length ? recipes.map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
             <NavLink to={`/singleRecipe/${oneRecipe.id}`}>
@@ -26,7 +28,14 @@ const AllRecipes = (props) => {
             </NavLink>
             <NavLink to="#">
               {/* should dispatch a thunk to add to savedRecipes */}
-              <button className="btn btn-primary my-3" onClick={disableButton}>Save Recipe</button>
+              <button
+                className="btn btn-primary my-3"
+                onClick={(e) => {
+                disableButton(e);
+                saveRecipeToStore(oneRecipe);
+                }}
+              >{savedRecipe.includes(oneRecipe) ? 'Saved' : 'Save This Recipe'}
+              </button>
             </NavLink>
           </div>))
         : <div className="btn btn-primary my-3">Search for recipes</div>
@@ -36,7 +45,9 @@ const AllRecipes = (props) => {
 };
 
 const mapState = ({ recipe, user }) => ({ recipe, user });
-export default connect(mapState)(AllRecipes);
+const mapDispatch = { saveRecipeToStore };
+export default connect(mapState, mapDispatch)(AllRecipes);
+
 
 AllRecipes.propTypes = {
   recipe: PropTypes.arrayOf(PropTypes.object).isRequired,

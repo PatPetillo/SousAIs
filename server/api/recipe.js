@@ -31,11 +31,18 @@ router.get('/', (req, res, next) => {
           });
         })
         .then((rcps) => {
-          //res.json(rcps);
-          console.log(rcps.data[0].analyzedInstructions[0].steps)
           const arrToUpdate = [];
-          const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions);
-          const info = meals.map(meal => ({ name: meal.title, steps: meal.analyzedInstructions[0].steps.map(el=>el.step).join('$$'), userId: req.session.passport.user }));
+          console.log(rcps.data[0].nutrition)
+          const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
+          const info = meals.map(meal => ({ name: meal.title, 
+            steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'), 
+            userId: req.session.passport.user,
+            calories: meal.nutrition.nutrients[0].amount + ' ' + meal.nutrition.nutrients[0].unit,
+            fat: meal.nutrition.nutrients[1].amount + ' ' + meal.nutrition.nutrients[1].unit,
+            carbohydrates: meal.nutrition.nutrients[3].amount + ' ' + meal.nutrition.nutrients[3].unit,
+            sugar: meal.nutrition.nutrients[4].amount + ' ' + meal.nutrition.nutrients[4].unit,
+            sodium: meal.nutrition.nutrients[6].amount + ' ' + meal.nutrition.nutrients[6].unit, 
+          }));
           info.forEach(el => arrToUpdate.push(Recipe.create(el)));
           return Promise.all(arrToUpdate)
             .then((recipes) => {
