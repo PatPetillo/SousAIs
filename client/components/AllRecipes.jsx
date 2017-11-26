@@ -15,7 +15,7 @@ const disableButton = (e) => {
 
 const AllRecipes = (props) => {
   const { user, saveRecipeToStore } = props;
-  const { recipes } = props.recipe;
+  const { recipes, savedRecipe } = props.recipe;
   return (
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
@@ -34,7 +34,7 @@ const AllRecipes = (props) => {
                 disableButton(e);
                 saveRecipeToStore(oneRecipe);
                 }}
-              >Save Recipe
+              >{savedRecipe.includes(oneRecipe) ? 'Saved' : 'Save This Recipe'}
               </button>
             </NavLink>
           </div>))
