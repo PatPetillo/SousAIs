@@ -26,10 +26,10 @@ class AddItem extends Component {
           <label >Food</label>
           <input type="text" name="food" onChange={this.handleChange} />
         </div>
-        <div>
+        {/* <div>
           <label>Quantity</label>
           <input type="text" name="quantity" onChange={this.handleChange} />
-        </div>
+        </div> */}
         <button className="btn btn-primary" type="submit" onClick={this.handleSubmit} >Add Item To Fridge</button>
       </form>
     );
