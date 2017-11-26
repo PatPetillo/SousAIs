@@ -1,23 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { deleteSavedRecipeFromStore } from '../store/recipe';
 
 const SavedRecipes = (props) => {
   const { savedRecipe } = props.recipe;
+  const { deleteSavedRecipeFromStore } = props;
+
   return (
     <div className="page-content">
       {
-        savedRecipe.length? savedRecipe.map(singleRecipe =>
+        savedRecipe.length ? savedRecipe.map(singleRecipe =>
           (<div key={singleRecipe.id}>
-            <div key={singleRecipe.id}>
-              <h2> {singleRecipe.name} </h2>
-              <ol>
-                {
-                singleRecipe.steps.split('.').map(sentence => (
-                    (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
-                }
-              </ol>
-            </div>
+            <h2>{singleRecipe.name}</h2>
+            <NavLink to={`/singleRecipe/${singleRecipe.id}`}>
+              <div className="btn btn-primary my-3">Directions</div>
+            </NavLink>
+            <button className="btn btn-primary my-3" onClick={() => deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
           </div>))
           : <h1>You don't have any saved recipe yet!</h1>
       }
@@ -25,5 +24,6 @@ const SavedRecipes = (props) => {
   );
 };
 const mapState = ({ recipe }) => ({ recipe });
+const mapDispatch = { deleteSavedRecipeFromStore };
 
-export default connect(mapState)(SavedRecipes);
+export default connect(mapState, mapDispatch)(SavedRecipes);
