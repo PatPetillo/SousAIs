@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const {
-    User,
-    Fridge,
-    FridgeItems,
-    Recipe
+  User, Fridge, FridgeItems, Recipe, RecipeUser,
 } = require('../db/models');
 const axios = require('axios');
 const key = require('../../secrets').spoon;
