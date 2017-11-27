@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSingleItemRecipeToStore } from '../store/recipe';
 
-const recipes = ['cook', 'fried', 'grill'];
-const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
+
 
 class SingleItem extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class SingleItem extends Component {
   }
   render() {
     const singleItem = this.props.fridge.filter(item => item.id === +this.props.match.params.id);
-    const recipes = this.props.recipe.singleItemRecipes
+    const recipes = this.props.recipe.singleItemRecipes;
     return (
       <div className="singleItem">
         <p>{singleItem.length && singleItem[0].name.toUpperCase()}</p>

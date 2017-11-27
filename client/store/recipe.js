@@ -38,7 +38,9 @@ export const deleteSavedRecipeFromStore = recipe =>
 
 export const saveRecipeToStore = recipe =>
   dispatch =>
-    dispatch(saveRecipe(recipe));
+    axios.put(`/api/recipe/savedRecipe/${recipe.id}`)
+      .then(dispatch(saveRecipe(recipe)))
+      .catch(err => console.log(err));
 
 export const fetchRecipe = () =>
   dispatch =>
