@@ -20,15 +20,6 @@ body {
     color: rgba(15,180,231,1);
   }
 
-  label {
-    display: block;
-  }
-
-  nav a {
-    display: inline-block;
-    margin: 1em;
-  }
-
   button {
     cursor:pointer;
   }
@@ -37,11 +28,22 @@ body {
     cursor:no-drop;
   }
 
+  label {
+    display: block;
+  }
+
+   nav a {
+    display: inline-block;
+    margin: 1em;
+  }
+
 }
 
 body.fridge {
   background: url('/imgs/fridge-bg.jpeg') no-repeat fixed;
   background-size: cover;
 }
+
+
 
 
