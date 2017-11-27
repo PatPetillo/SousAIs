@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-
+import { error, fetchRecipe} from './';
 /**
  * ACTION TYPES
  */
@@ -21,10 +21,15 @@ const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
 export const AddProductThunk = item =>
   dispatch =>
     axios.post('/api/fridge', item)
-      .then(res =>
-        dispatch(addItem(res.data)))
+      .then((res) => {
+        dispatch(addItem(res.data));
+        dispatch(error(''));
+      })
+      .then(() => {
+        dispatch(fetchRecipe());
+      })
       .then(() => history.push('/myfridge'))
-      .catch(err => console.log(err));
+      .catch(() => dispatch(error('Please enter a real food item')));
 
 export const fetchProducts = () =>
   dispatch =>

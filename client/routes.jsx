@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe } from './components';
+import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe, SingleRecipeSingleItem } from './components';
 import { fetchSavedRecipe, fetchProducts, fetchRecipe, me } from './store';
 
 /**
@@ -32,7 +32,8 @@ class Routes extends Component {
                 <Route path="/allRecipes" component={AllRecipes} />
                 <Route path="/addItem" component={AddItem} />
                 <Route path="/userPage" component={UserHome} />
-                <Route path="/singleItem/:id" component={SingleItem} />
+                <Route exact path="/singleItem/:id" component={SingleItem} />
+                <Route exact path="/:recipename" component={SingleRecipeSingleItem} />
               </Switch>
             }
             <Route component={Login} />
