@@ -9,6 +9,7 @@ const Recipe = db.define('recipe', {
   carbohydrates: Sequelize.STRING,
   sugar: Sequelize.STRING,
   sodium: Sequelize.STRING,
+  image: Sequelize.STRING,
 });
 
 module.exports = Recipe;
