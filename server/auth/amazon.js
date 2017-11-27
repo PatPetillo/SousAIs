@@ -1,8 +1,8 @@
-const passport = require('passport')
-const router = require('express').Router()
-const util = require('util')
+const passport = require('passport');
+const router = require('express').Router();
+const util = require('util');
 const AmazonStrategy = require('passport-amazon').Strategy;
-const { User } = require('../db/models')
+const { User } = require('../db/models');
 module.exports = router;
 
 /**
@@ -22,13 +22,13 @@ module.exports = router;
 const amazonConfig = {
     clientID: 'amzn1.application-oa2-client.6518f0c6c7a94a79aa24c53628764366',
     clientSecret: '4b62b5c7365a6f828c64b2b0b6f282fc4a7633f2ecc268d0f068c7ded31b45b6',
-    callbackURL: 'https://127.0.0.1:8083/auth/amazon/callback'
-}
+    callbackURL: 'https://127.0.0.1:8083/auth/amazon/callback',
+};
 
 const strategy = new AmazonStrategy(amazonConfig, (token, refreshToken, profile, done) => {
-    const amazonId = profile.id
-    const name = profile.displayName
-    const email = profile.emails[0].value
+    const amazonId = profile.id;
+    const name = profile.displayName;
+    const email = profile.emails[0].value;
 
     User.find({ where: { amazonId } })
         .then(foundUser => (foundUser ?
@@ -41,7 +41,7 @@ const strategy = new AmazonStrategy(amazonConfig, (token, refreshToken, profile,
 
 passport.use(strategy);
 
-router.get('/', passport.authenticate('amazon', { scope: 'email' }));
+router.get('/', passport.authenticate('amazon', { scope: ['profile', 'email'] }));
 
 router.get('/callback', passport.authenticate('amazon', {
     successRedirect: '/home',
