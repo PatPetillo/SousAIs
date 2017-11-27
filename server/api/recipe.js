@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
     })
     .then((foundItems) => {
       const ingredients = foundItems.map(x => x.name);
-      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=5&ranking=1`, {
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=10&ranking=2`, {
         headers: {
           'X-Mashape-Key': key,
           Accept: 'application/json',
@@ -86,7 +86,48 @@ router.put('/savedRecipe/:recipeId', (req, res, next) => {
     .catch(next);
 });
 
-router.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('There was an Express error.');
+
+// Get possible recipes only base on  one item.
+
+router.get('/:itemId', (req, res, next) => {
+  FridgeItems.findById(req.params.itemId)
+    .then((foundItem) => {
+      console.log('founditem', foundItem);
+      const ingredients = foundItem.name;
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=5&ranking=1`, {
+        headers: {
+          'X-Mashape-Key': key,
+          Accept: 'application/json',
+        },
+      })
+        .then((apiRes) => {
+          const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
+          return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
+            headers: {
+              'X-Mashape-Key': key,
+              Accept: 'application/json',
+            },
+          });
+        })
+        .then((rcps) => {
+          const arrToUpdate = [];
+          const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
+          const info = meals.map(meal => ({
+ name: meal.title,
+            steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
+            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            image: meal.image,
+          }));
+          info.forEach(el => arrToUpdate.push(Recipe.build(el)));
+          return Promise.all(arrToUpdate)
+            .then((recipes) => {
+              res.json(recipes);
+            });
+        });
+    })
+    .catch(next);
 });
