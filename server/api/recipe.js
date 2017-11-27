@@ -13,7 +13,7 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
     let user;
-    User.findById(req.session.passport.user)
+    User.findById(1)
         .then((founduser) => {
             user = founduser;
             return user.getFridgeItems();
@@ -51,7 +51,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    User.findById(req.session.passport.user)
+    User.findById(1)
         .then((foundUser) => {
             foundUser.crSteps = req.body.steps;
             return foundUser;
@@ -62,14 +62,14 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/steps', (req, res, next) => {
-    User.findById(req.session.passport.user)
+    User.findById(1)
         .then((foundUser) => {
             res.json(foundUser.crSteps);
         });
 });
 
 router.get('/nextstep', (req, res, next) => {
-    User.findById(req.session.passport.user)
+    User.findById(1)
         .then((foundUser) => {
             foundUser.crSteps = foundUser.crSteps.slice(1);
         })
