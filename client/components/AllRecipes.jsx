@@ -31,6 +31,7 @@ const AllRecipes = (props) => {
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <NavLink to="#">
+<<<<<<< HEAD
               {savedRecipe.includes(oneRecipe)
                 ? <button className="btn disabled-btn" disabled>
                   Saved
@@ -39,6 +40,17 @@ const AllRecipes = (props) => {
                     Save This Recipe
                   </button>
               }
+=======
+              {/* should dispatch a thunk to add to savedRecipes */}
+              <button
+                className="btn btn-primary my-3"
+                onClick={(e) => {
+                  disableButton(e);
+                  saveRecipeToStore(oneRecipe);
+                }}
+              >{savedRecipe.includes(oneRecipe) ? 'Saved' : 'Save This Recipe'}
+              </button>
+>>>>>>> master
             </NavLink>
           </div>))
         : (
