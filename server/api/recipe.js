@@ -34,7 +34,6 @@ router.get('/', (req, res, next) => {
       });
     })
     .then((rcps) => {
-      // const arrToUpdate = [];
       const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
       const info = meals.map(meal => ({
         name: meal.title,
@@ -47,6 +46,7 @@ router.get('/', (req, res, next) => {
         sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
         image: meal.image,
       }));
+      res.json(info);
       info.forEach(el => Recipe.findOrCreate({
         where: {
           name: el.name,
@@ -65,8 +65,7 @@ router.get('/', (req, res, next) => {
           }
         }));
     })
-    .then(() => Recipe.findAll())
-    .then(allRecipes => res.json(allRecipes));
+    .catch(next);
 });
 
 router.put('/savedRecipe/:recipeId', (req, res, next) => {
