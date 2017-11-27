@@ -27,7 +27,7 @@ const AllRecipes = (props) => {
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
-            <NavLink to={`/singleRecipe/${oneRecipe.id}`}>
+            <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <NavLink to="#">
