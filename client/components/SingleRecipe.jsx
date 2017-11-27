@@ -15,7 +15,7 @@ const SingleRecipe = (props) => {
               <h2> {singleRecipe.name} </h2>
               <ol>
                 {
-                singleRecipe.steps.split('.').map(sentence => (
+                singleRecipe.steps.split('$$').map(sentence => (
                     (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
                 }
               </ol>
