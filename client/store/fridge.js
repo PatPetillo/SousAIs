@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { error } from './';
+import { error, fetchRecipe} from './';
 /**
  * ACTION TYPES
  */
@@ -25,7 +25,9 @@ export const AddProductThunk = item =>
         dispatch(addItem(res.data));
         dispatch(error(''));
       })
-
+      .then(() => {
+        dispatch(fetchRecipe());
+      })
       .then(() => history.push('/myfridge'))
       .catch(() => dispatch(error('Please enter a real food item')));
 
