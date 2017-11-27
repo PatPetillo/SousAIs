@@ -35,8 +35,8 @@ const AllRecipes = (props) => {
               <button
                 className="btn btn-primary my-3"
                 onClick={(e) => {
-                disableButton(e);
-                saveRecipeToStore(oneRecipe);
+                  disableButton(e);
+                  saveRecipeToStore(oneRecipe);
                 }}
               >{savedRecipe.includes(oneRecipe) ? 'Saved' : 'Save This Recipe'}
               </button>
