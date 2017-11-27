@@ -9,7 +9,7 @@ const SingleRecipeSingleItem = (props) => {
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <img className="recipeImage" src={recipe.image} />
+          <img className="recipe-image" src={recipe.image} />
           <ol>
             {
           recipe.steps.split('$$').map(sentence => (
