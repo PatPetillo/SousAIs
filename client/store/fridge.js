@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { error, fetchRecipe} from './';
+import { error, fetchRecipe } from './';
 /**
  * ACTION TYPES
  */
