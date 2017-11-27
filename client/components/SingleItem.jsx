@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSingleItemRecipeToStore } from '../store/recipe';
 
-
+const recipes = ['cook', 'fried', 'grill'];
+const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 
 class SingleItem extends Component {
   constructor(props) {
