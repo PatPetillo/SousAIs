@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getSingleItemRecipeToStore } from '../store/recipe';
 
-const recipes = ['cook', 'fried', 'grill'];
-const nutritionList = ['vitamin A', 'potassium', 'magnessium'];
 
 class SingleItem extends Component {
   constructor(props) {
@@ -23,15 +21,10 @@ class SingleItem extends Component {
         <div>
           {recipes.length && recipes.map(recipe => <div key={recipe.image}><NavLink to={`/${recipe.name.split(' ').join('')}`}>{recipe.name}</NavLink></div>)}
         </div>
-        <div>
-          {nutritionList.length && nutritionList.map(nutrition => <div key={nutrition}>{nutrition}</div>)}
-        </div>
       </div>
     );
   }
 }
-
-
 
 const mapState = ({ fridge, recipe }) => ({ fridge, recipe });
 const mapDispatch = { getSingleItemRecipeToStore };
