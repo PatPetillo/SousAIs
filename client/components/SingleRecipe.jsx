@@ -31,6 +31,6 @@ const mapState = ({ recipe }) => ({ recipe });
 export default connect(mapState)(SingleRecipe);
 
 SingleRecipe.propTypes = {
-  recipe: PropTypes.arrayOf(PropTypes.any).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
