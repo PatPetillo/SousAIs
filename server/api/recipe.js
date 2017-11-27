@@ -68,7 +68,15 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/savedRecipe/:recipeId', (req, res, next) => {
+router.get('/savedRecipes', (req, res, next) => {
+  User.findById(req.session.passport.user)
+    .then(user => user.getRecipes())
+    .then(recipes => recipes.filter(recipe => recipe.recipeUser.saved))
+    .then(savedRecipes => res.json(savedRecipes))
+    .catch(next);
+});
+
+router.put('/saveRecipe/:recipeId', (req, res, next) => {
   const id = Number(req.params.recipeId);
   User.findById(req.session.passport.user)
     .then((foundUser) => {
@@ -82,7 +90,25 @@ router.put('/savedRecipe/:recipeId', (req, res, next) => {
         },
       );
     })
-    .then(() => res.json(`Recipe with ${id} was saved to the database.`))
+    .then(() => res.json(`Recipe with ${id} was saved.`))
+    .catch(next);
+});
+
+router.put('/deleteRecipe/:recipeId', (req, res, next) => {
+  const id = Number(req.params.recipeId);
+  User.findById(req.session.passport.user)
+    .then((foundUser) => {
+      RecipeUser.update(
+        { saved: false },
+        {
+          where: {
+            userId: foundUser.id,
+            recipeId: id,
+          },
+        },
+      );
+    })
+    .then(() => res.json(`Recipe with ${id} was unsaved.`))
     .catch(next);
 });
 

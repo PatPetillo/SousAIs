@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
 import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe, SingleRecipeSingleItem } from './components';
-import { fetchProducts, fetchRecipe, me } from './store';
+import { fetchSavedRecipe, fetchProducts, fetchRecipe, me } from './store';
 
 /**
  * COMPONENT
@@ -56,6 +56,7 @@ const mapDispatch = dispatch => ({
     dispatch(me());
     dispatch(fetchProducts());
     dispatch(fetchRecipe());
+    dispatch(fetchSavedRecipe());
   },
 });
 
