@@ -38,7 +38,6 @@ class UserFridge extends Component {
   }
 }
 
-
 const mapState = ({ fridge, user }) => ({ fridge, user });
 
 const mapDispatch = dispatch => ({
