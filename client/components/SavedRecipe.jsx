@@ -13,6 +13,7 @@ const SavedRecipes = (props) => {
         savedRecipe.length ? savedRecipe.map(singleRecipe =>
           (<div key={singleRecipe.id}>
             <h2>{singleRecipe.name}</h2>
+            <div><img className="savedRecipeImage" src={singleRecipe.image} /></div>
             <NavLink to={`/singleRecipe/${singleRecipe.id}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
