@@ -5,12 +5,14 @@ import history from '../history';
  * ACTION TYPES
  */
 const GET_RECIPE = 'GET_RECIPE';
+const GET_SAVED_RECIPE = 'GET_SAVED_RECIPE';
 const SAVE_RECIPE = 'SAVE_RECIPE';
 const DELETE_SAVED_RECIPE = 'DELETE_SAVED_RECIPE';
 /**
  * ACTION CREATORS
  */
 const getRecipe = recipes => ({ type: GET_RECIPE, recipes });
+const getSavedRecipe = recipes => ({ type: GET_SAVED_RECIPE, recipes });
 const saveRecipe = recipe => ({ type: SAVE_RECIPE, recipe });
 const deleteSavedRecipe = recipe => ({ type: DELETE_SAVED_RECIPE, recipe });
 /**
@@ -18,12 +20,21 @@ const deleteSavedRecipe = recipe => ({ type: DELETE_SAVED_RECIPE, recipe });
  */
 export const deleteSavedRecipeFromStore = recipe =>
   dispatch =>
-    dispatch(deleteSavedRecipe(recipe));
+    axios.put(`/api/recipe/deleteRecipe/${recipe.id}`)
+      .then(dispatch(deleteSavedRecipe(recipe)))
+      .catch(err => console.log(err));
 
 export const saveRecipeToStore = recipe =>
   dispatch =>
-    axios.put(`/api/recipe/savedRecipe/${recipe.id}`)
+    axios.put(`/api/recipe/saveRecipe/${recipe.id}`)
       .then(dispatch(saveRecipe(recipe)))
+      .catch(err => console.log(err));
+
+export const fetchSavedRecipe = recipes =>
+  dispatch =>
+    axios.get('/api/recipe/savedRecipes')
+      .then(res => 
+        dispatch(getSavedRecipe(res.data)))
       .catch(err => console.log(err));
 
 export const fetchRecipe = () =>
@@ -48,6 +59,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { savedRecipe: [...state.savedRecipe, action.recipe] });
     case GET_RECIPE:
       return Object.assign({}, state, { recipes: action.recipes });
+    case GET_SAVED_RECIPE:
+      return Object.assign({}, state, { savedRecipe: action.recipes });
     default:
       return state;
   }
