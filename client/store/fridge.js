@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { error, fetchRecipe} from './';
+import { error, fetchRecipe } from './';
 /**
  * ACTION TYPES
  */
@@ -43,6 +43,9 @@ export const removeItem = itemId =>
     axios.delete(`/api/fridge/${itemId}`)
       .then(res => res.data)
       .then(dispatch(remove(itemId)))
+      .then(() => {
+        dispatch(fetchRecipe());
+      })
       .catch(err => console.log(err));
 
 /**
