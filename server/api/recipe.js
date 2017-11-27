@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
       return user.getFridgeItems();
     })
     .then((foundItems) => {
+      console.log("founditems",foundItems)
       const ingredients = foundItems.map(x => x.name);
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=10&ranking=2`, {
         headers: {
