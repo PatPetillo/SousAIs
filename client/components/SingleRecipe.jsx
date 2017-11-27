@@ -13,6 +13,7 @@ const SingleRecipe = (props) => {
           ?
             <div key={singleRecipe.id}>
               <h2> {singleRecipe.name} </h2>
+              <img className="singleRecipeImage" src={singleRecipe.image} />
               <ol>
                 {
                 singleRecipe.steps.split('.').map(sentence => (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { saveRecipeToStore } from '../store/recipe';
+import ReactLoading from 'react-loading';
 
 const disableButton = (e) => {
   const originalSize = e.target.offsetWidth;
@@ -23,6 +24,9 @@ const AllRecipes = (props) => {
         recipes.length ? recipes.map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
+            <div>
+              <img className="oneRecipeImage" src={oneRecipe.image} />
+            </div>
             <NavLink to={`/singleRecipe/${oneRecipe.id}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
@@ -38,7 +42,12 @@ const AllRecipes = (props) => {
               </button>
             </NavLink>
           </div>))
-        : <div className="btn btn-primary my-3">Search for recipes</div>
+        : (
+          <div>
+            <div className="btn btn-primary my-3">Searching for recipes...</div>
+            <div className="react-loading" ><ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" /></div>
+          </div>
+          )
       }
     </div>
   );
