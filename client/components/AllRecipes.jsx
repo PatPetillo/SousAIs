@@ -60,7 +60,7 @@ export default connect(mapState, mapDispatch)(AllRecipes);
 
 
 AllRecipes.propTypes = {
-  recipe: PropTypes.arrayOf(PropTypes.object).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   saveRecipeToStore: PropTypes.func.isRequired,
 };
