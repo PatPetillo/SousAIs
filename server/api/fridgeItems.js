@@ -1,3 +1,5 @@
+// import { create } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-test-renderer';
+
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
@@ -6,6 +8,19 @@ router.get('/', (req, res, next) => {
     User.findById(1)
         .then(user => user.getFridgeItems())
         .then(items => res.json(items))
+        .catch(next);
+});
+
+router.delete('/:itemId', (req, res, next) => {
+    const itemId = Number(req.params.itemId);
+    User.findById(req.session.passport.user)
+        .then(user => Fridge.destroy({
+            where: {
+                userId: user.id,
+                fridgeItemId: itemId,
+            },
+        }))
+        .then(() => res.json(`Item with ${itemId} was deleted.`))
         .catch(next);
 });
 
