@@ -32,7 +32,6 @@ router.get('/', (req, res, next) => {
         })
         .then((rcps) => {
           const arrToUpdate = [];
-          console.log(rcps.data[0])
           const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
           const info = meals.map(meal => ({ name: meal.title, 
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'), 
