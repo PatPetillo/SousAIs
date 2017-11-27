@@ -26,8 +26,6 @@ class SingleItem extends Component {
   }
 }
 
-
-
 const mapState = ({ fridge, recipe }) => ({ fridge, recipe });
 const mapDispatch = { getSingleItemRecipeToStore };
 export default connect(mapState, mapDispatch)(SingleItem);
