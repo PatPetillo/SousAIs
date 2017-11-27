@@ -7,7 +7,7 @@ router.use('/fridge', require('./fridgeItems'));
 router.use('/recipe', require('./recipe'));
 
 router.get('/test', (req, res, next) => {
-    res.send('Hello Wale');
+    res.send('Hello Wale!');
 });
 
 router.use((req, res, next) => {
