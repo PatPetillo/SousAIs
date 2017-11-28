@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  User, Fridge, FridgeItems, Recipe, RecipeUser,
+  User, FridgeItems, Recipe, RecipeUser,
 } = require('../db/models');
 const axios = require('axios');
 const key = require('../../secrets').spoon;
@@ -28,6 +28,7 @@ router.get('/', (req, res, next) => {
       }
     })
     .then((apiRes) => {
+      // console.log(apiRes, 'apiRes');
       const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
         headers: {
@@ -37,16 +38,25 @@ router.get('/', (req, res, next) => {
       });
     })
     .then((rcps) => {
+      // const arrToUpdate = [];
+      // console.log(rcps.data[0].nutrition.nutrients);
       const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
       const info = meals.map(meal => ({
         name: meal.title,
+        ingredientAmount: meal.extendedIngredients.map(el => el.originalString).join('$$'),
+        readyInMinutes: meal.readyInMinutes,
+        diets: meal.diets.join('$$'),
+        servings: meal.servings,
+        spoonacularScore: meal.spoonacularScore,
         steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
         userId: req.session.passport.user,
         calories: `${meal.nutrition.nutrients[0].amount} ${meal.nutrition.nutrients[0].unit}`,
         fat: `${meal.nutrition.nutrients[1].amount} ${meal.nutrition.nutrients[1].unit}`,
         carbohydrates: `${meal.nutrition.nutrients[3].amount} ${meal.nutrition.nutrients[3].unit}`,
+        cholesterol: `${meal.nutrition.nutrients[5].amount} ${meal.nutrition.nutrients[5].unit}`,
         sugar: `${meal.nutrition.nutrients[4].amount} ${meal.nutrition.nutrients[4].unit}`,
         sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
+        protein: `${meal.nutrition.nutrients[7].amount} ${meal.nutrition.nutrients[7].unit}`,
         image: meal.image,
       }));
       socket.emit('get_recipes', info);
@@ -54,12 +64,19 @@ router.get('/', (req, res, next) => {
       info.forEach(el => Recipe.findOrCreate({
         where: {
           name: el.name,
+          ingredientAmount: el.ingredientAmount,
+          readyIn: el.readyInMinutes,
+          diets: el.diets,
+          servings: el.servings,
+          spoonacularScore: el.spoonacularScore,
           steps: el.steps,
           calories: el.calories,
           fat: el.fat,
           carbohydrates: el.carbohydrates,
+          cholesterol: el.cholesterol,
           sugar: el.sugar,
           sodium: el.sodium,
+          protein: el.protein,
           image: el.image,
         },
       })
@@ -69,6 +86,8 @@ router.get('/', (req, res, next) => {
           }
         }));
     })
+    .then(() => Recipe.findAll())
+    .then(allRecipes => res.json(allRecipes))
     .catch(next);
 });
 
@@ -115,7 +134,6 @@ router.put('/deleteRecipe/:recipeId', (req, res, next) => {
     .then(() => res.json(`Recipe with ${id} was unsaved.`))
     .catch(next);
 });
-
 
 // Get possible recipes only base on  one item.
 
@@ -210,4 +228,3 @@ router.get('/alexa/:food', (req, res, next) => {
     })
     .catch(next);
 });
-
