@@ -14,7 +14,10 @@ router.post('/login', (req, res, next) => {
         req.login(user, (err) => {
           if (err) next(err);
           else {
-            res.json(user);
+            res.json({
+              name: user.name,
+              id: user.id,
+            });
             Fridge.findCreateFind({ where: { userId: user.id } });
           }
         });
@@ -46,7 +49,10 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/me', (req, res) => {
-  res.json(req.user);
+  res.json({
+    name: req.user.name,
+    id: req.user.id,
+  });
 });
 
 router.use('/google', require('./google'));

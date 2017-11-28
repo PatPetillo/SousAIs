@@ -119,7 +119,7 @@ router.get('/:itemId', (req, res, next) => {
   FridgeItems.findById(req.params.itemId)
     .then((foundItem) => {
       const ingredients = foundItem.name;
-      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=5&ranking=1`, {
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
         headers: {
           'X-Mashape-Key': key,
           Accept: 'application/json',

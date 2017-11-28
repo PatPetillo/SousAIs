@@ -119,6 +119,8 @@
   align-items: center;
   justify-content: center;
 }
+
+
 .red-words {
   color: rgb(175, 8, 8);
   text-shadow:
@@ -130,9 +132,8 @@
 
 .singleItem{
   text-align: center;
-  margin-top: 5%;
   p{
-    color: white;
+    color: black;
     font-size: 2em;
   }
   img{
@@ -140,7 +141,7 @@
     width: 300px;
   }
   a{
-    color: white;
+    color:rgba(130,30,100,1);;
   }
 }
 
