@@ -2,6 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteSavedRecipeFromStore } from '../store/recipe';
+import EventEmitter from 'events';
+
+class MyEmitter extends EventEmitter {}
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('an event occurred!');
+});
 
 const SavedRecipes = (props) => {
   const { savedRecipe } = props.recipe;
