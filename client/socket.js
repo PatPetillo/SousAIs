@@ -12,6 +12,7 @@ socket.on('post_to_fridge', (addedItem) => {
 });
 
 socket.on('get_fridge', (fridgeItems) => {
+  console.log(fridgeItems);
   // store.dispatch(fetchProducts(fridgeItems));
 });
 
