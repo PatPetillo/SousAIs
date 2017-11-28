@@ -38,7 +38,7 @@ router.get('/', (req, res, next) => {
       const info = meals.map(meal => ({
         name: meal.title,
         steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
-        userId: req.session.passport.user,
+        userId: 1,
         calories: `${meal.nutrition.nutrients[0].amount} ${meal.nutrition.nutrients[0].unit}`,
         fat: `${meal.nutrition.nutrients[1].amount} ${meal.nutrition.nutrients[1].unit}`,
         carbohydrates: `${meal.nutrition.nutrients[3].amount} ${meal.nutrition.nutrients[3].unit}`,
