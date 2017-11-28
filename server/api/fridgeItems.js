@@ -1,16 +1,18 @@
-// import { create } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-test-renderer';
-
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
+const { socket } = require('../');
 
 module.exports = router;
 
 router.get('/', (req, res, next) => {
   User.findById(req.session.passport.user)
     .then(user => user.getFridgeItems())
-    .then(items => res.json(items))
+    .then((items) => {
+      socket.emit('get_fridge', items);
+      res.json(items);
+    })
     .catch(next);
 });
 
