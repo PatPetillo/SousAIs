@@ -16,7 +16,7 @@ class AddItem extends Component {
   handleSubmit(evt) {
     evt.target.food.value = '';
     evt.preventDefault();
-    this.props.addProductThunk(this.state, true);
+    this.props.addProductThunk(this.state);
   }
   render() {
     const { errors } = this.props;
