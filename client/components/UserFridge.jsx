@@ -51,4 +51,5 @@ export default connect(mapState, mapDispatch)(UserFridge);
 UserFridge.propTypes = {
   fridge: PropTypes.arrayOf(PropTypes.object).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

@@ -68,6 +68,7 @@ const initialState = {
   recipes: [],
   savedRecipe: [],
   singleItemRecipes: [],
+  singleItemRecipeList: [],
 };
 
 export default (state = initialState, action) => {
@@ -75,7 +76,7 @@ export default (state = initialState, action) => {
     case CLEAR_SINGLE_ITEM_RECIPE:
       return Object.assign({}, state, { singleItemRecipes: action.recipes });
     case GET_SINGLE_ITEM_RECIPE:
-      return Object.assign({}, state, { singleItemRecipes: action.recipes });
+      return Object.assign({}, state, { singleItemRecipes: action.recipes, singleItemRecipeList: action.recipes });
     case DELETE_SAVED_RECIPE:
       return Object.assign({}, state, { savedRecipe: state.savedRecipe.slice(0, state.savedRecipe.indexOf(action.recipe)).concat(state.savedRecipe.slice(state.savedRecipe.indexOf(action.recipe)+1)) });
     case SAVE_RECIPE:
