@@ -7,54 +7,52 @@ const axios = require('axios');
 module.exports = router;
 
 router.get('/', (req, res, next) => {
-    User.findById(1)
-        .then(user => user.getFridgeItems())
-        .then(items => res.json(items))
-        .catch(next);
+  User.findById(1)
+    .then(user => user.getFridgeItems())
+    .then(items => res.json(items))
+    .catch(next);
 });
 
 router.post('/', (req, res, next) => {
-    // console.log('entire request', req);
-    console.log('items', typeof req.body);
-    const foodItem = req.body.food;
-    let foodAmount;
-    axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
-            headers: {
-                'x-app-id': 'a6e13eff',
-                'x-app-key': '2459b51f4e97d4ad614cf60e1f23e1e0',
-            },
-        })
-        .then((response) => {
-            foodAmount = response.data.foods[0].serving_weight_grams;
-            return response.data.foods;
-            // res.send('next line');
-        })
-        .then(foodData => FridgeItems.findOrCreate({
-            where: {
-                name: foodData[0].food_name,
-                image: foodData[0].photo.highres, // findOrCreate gives an Array
-            },
-        }))
-        .then(([createdItem, wasCreated]) => {
-            if (wasCreated) {
-                Fridge.create({
-                    fridgeItemId: createdItem.id,
-                    userId: 1,
-                    quantity: foodAmount,
-                });
-            } else {
-                Fridge.update({
-                    quantity: foodAmount,
-                }, {
-                    where: {
-                        fridgeItemId: createdItem.id,
-                        userId: 1,
-                    },
-                });
-            }
-        })
-        .then(() => res.send('Updated Sucessfully'))
-        .catch(next);
+  const foodItem = req.body.food;
+  let foodAmount;
+  axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
+    headers: {
+      'x-app-id': process.env.NUTRIX_ID,
+      'x-app-key': process.env.NUTRIX_KEY,
+    },
+  })
+    .then((response) => {
+      foodAmount = response.data.foods[0].serving_weight_grams;
+      return response.data.foods;
+      // res.send('next line');
+    })
+    .then(foodData => FridgeItems.findOrCreate({
+      where: {
+        name: foodData[0].food_name,
+        image: foodData[0].photo.highres, // findOrCreate gives an Array
+      },
+    }))
+    .then(([createdItem, wasCreated]) => {
+      if (wasCreated) {
+        Fridge.create({
+          fridgeItemId: createdItem.id,
+          userId: 1,
+          quantity: foodAmount,
+        });
+      } else {
+        Fridge.update({
+          quantity: foodAmount,
+        }, {
+          where: {
+            fridgeItemId: createdItem.id,
+            userId: 1,
+          },
+        });
+      }
+    })
+    .then(() => res.send('Updated Sucessfully'))
+    .catch(next);
 });
 
 router.delete('/:itemId', (req, res, next) => {
@@ -71,7 +69,7 @@ router.delete('/:itemId', (req, res, next) => {
 });
 
 router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('There was an Express error.')
-})
+  console.error(err.stack);
+  res.status(500).send('There was an Express error.');
+});
 
