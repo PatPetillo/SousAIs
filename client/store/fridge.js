@@ -1,6 +1,8 @@
 import axios from 'axios';
 import history from '../history';
 import { error, fetchRecipe } from './';
+import socket from '../socket';
+
 /**
  * ACTION TYPES
  */
@@ -31,12 +33,13 @@ export const AddProductThunk = item =>
       .then(() => history.push('/myfridge'))
       .catch(() => dispatch(error('Please enter a real food item')));
 
-export const fetchProducts = () =>
-  dispatch =>
-    axios.get('/api/fridge')
-      .then(res =>
-        dispatch(getItems(res.data)))
-      .catch(err => console.log(err));
+export const fetchProducts = () => (dispatch) => {
+  axios.get('/api/fridge').catch(console.error);
+  socket.on('get_fridge', (fridgeItems) => {
+    console.log('UP IN THESE SOCKETS');
+    dispatch(getItems(fridgeItems));
+  });
+};
 
 export const removeItem = itemId =>
   dispatch =>
@@ -47,6 +50,7 @@ export const removeItem = itemId =>
         dispatch(fetchRecipe());
       })
       .catch(err => console.log(err));
+
 
 /**
  * Reducer
