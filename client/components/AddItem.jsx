@@ -37,7 +37,6 @@ class AddItem extends Component {
 
 const mapState = ({ error }) => ({ error });
 const mapDispatch = { AddProductThunk };
-
 export default connect(mapState, mapDispatch)(AddItem);
 
 AddItem.propTypes = {

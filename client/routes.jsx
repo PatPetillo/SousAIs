@@ -28,7 +28,7 @@ class Routes extends Component {
               <Switch>
                 <Route path="/myFridge" component={UserFridge} />
                 <Route path="/savedRecipes" component={SavedRecipes} />
-                <Route path="/singleRecipe/:id/" component={SingleRecipe} />
+                <Route path="/singleRecipe/:recipename/" component={SingleRecipe} />
                 <Route path="/allRecipes" component={AllRecipes} />
                 <Route path="/addItem" component={AddItem} />
                 <Route path="/userPage" component={UserHome} />

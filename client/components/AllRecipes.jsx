@@ -27,17 +27,17 @@ const AllRecipes = (props) => {
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
-            <NavLink to={`/singleRecipe/${oneRecipe.id}`}>
+            <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <NavLink to="#">
-              {savedRecipe.includes(oneRecipe)
-                ? <button className="btn disabled-btn" disabled>
+              {savedRecipe.includes(oneRecipe) ?
+                <button className="btn disabled-btn" disabled>
                   Saved
-                  </button>
-                : <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
+                </button> :
+                <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
                     Save This Recipe
-                  </button>
+                </button>
               }
             </NavLink>
           </div>))
