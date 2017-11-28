@@ -107,7 +107,7 @@ router.get('/repeatstep', (req, res, next) => {
 router.get('/startover', (req, res, next) => {
     User.findById(1)
         .then(foundUser => foundUser.update({
-            crs: -1,
+            crs: 0,
         }))
         .then((update) => {
             res.json({
