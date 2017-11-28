@@ -9,17 +9,17 @@ const GET_SAVED_RECIPE = 'GET_SAVED_RECIPE';
 const SAVE_RECIPE = 'SAVE_RECIPE';
 const DELETE_SAVED_RECIPE = 'DELETE_SAVED_RECIPE';
 const GET_SINGLE_ITEM_RECIPE = 'GET_SINGLE_ITEM_RECIPE';
-const CLEAR_SINGLE_ITEM_RECIPE ='CLEAR_SINGLE_ITEM_RECIPE';
+const CLEAR_SINGLE_ITEM_RECIPE = 'CLEAR_SINGLE_ITEM_RECIPE';
 
 /**
  * ACTION CREATORS
  */
 
-const getRecipe = recipes => ({ type: GET_RECIPE, recipes });
+export const getRecipe = recipes => ({ type: GET_RECIPE, recipes });
 const getSavedRecipe = recipes => ({ type: GET_SAVED_RECIPE, recipes });
 const saveRecipe = recipe => ({ type: SAVE_RECIPE, recipe });
 const deleteSavedRecipe = recipe => ({ type: DELETE_SAVED_RECIPE, recipe });
-const getSingleItemRecipe = recipes => ({ type: GET_SINGLE_ITEM_RECIPE, recipes });
+export const getSingleItemRecipe = recipes => ({ type: GET_SINGLE_ITEM_RECIPE, recipes });
 const clearSingleItemRecipe = recipes => ({ type: CLEAR_SINGLE_ITEM_RECIPE, recipes });
 /**
  * THUNK CREATORS
@@ -31,8 +31,6 @@ export const clearSingleItemRecipeFromStore = () =>
 export const getSingleItemRecipeToStore = itemId =>
   dispatch =>
     axios.get(`/api/recipe/${itemId}`)
-      .then(res =>
-        dispatch(getSingleItemRecipe(res.data)))
       .catch(err => console.log(err));
 
 

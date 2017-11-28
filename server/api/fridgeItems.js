@@ -1,21 +1,24 @@
-// import { create } from '../../../../../../Library/Caches/typescript/2.6/node_modules/@types/react-test-renderer';
-
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
 const { nutrix, nutrixApp } = require('../../secrets');
+const { socket } = require('../');
 
 module.exports = router;
 
 router.get('/', (req, res, next) => {
   User.findById(req.session.passport.user)
     .then(user => user.getFridgeItems())
-    .then(items => res.json(items))
+    .then((items) => {
+      socket.emit('get_fridge', items);
+      res.json(items);
+    })
     .catch(next);
 });
 
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
+
   let foodAmount;
   let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
@@ -34,26 +37,23 @@ router.post('/', (req, res, next) => {
         image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
-    .then(([createdItem, wasCreated]) => { // why is this an array
+    .then(([createdItem]) => {
       itemToReturn = createdItem;
-      if (wasCreated) {
-        Fridge.create({
+      return Fridge.findOrCreate({
+        where: {
           fridgeItemId: createdItem.id,
           userId: req.session.passport.user,
-          quantity: foodAmount,
-        });
-      } else {
-        return Fridge.update({
-          quantity: foodAmount,
-        }, {
-          where: {
-            fridgeItemId: createdItem.id,
-            userId: req.session.passport.user,
-          },
-        });
-      }
+        },
+      });
     })
-    .then(() => res.json(itemToReturn))
+    .then(([fridgeInput]) => (
+      fridgeInput.update({
+        quantity: fridgeInput.quantity + foodAmount,
+      })))
+    .then(() => {
+      socket.emit('post_to_fridge', itemToReturn);
+      res.json(itemToReturn);
+    })
     .catch(next);
 });
 
@@ -66,12 +66,42 @@ router.delete('/:itemId', (req, res, next) => {
         fridgeItemId: itemId,
       },
     }))
-    .then(() => res.json(`Item with ${itemId} was deleted.`))
+    .then(() => {
+      socket.emit('delete_food_item', itemId);
+      res.json(`Item with ${itemId} was deleted.`);
+    })
     .catch(next);
 });
 
+// ALEXA DELETE ROUTE
+router.delete('/alexa/:food', (req, res, next) => {
+  const { food } = req.params;
+  let foodItemId;
+  FridgeItems.findOne({
+    where: {
+      name: food,
+    },
+  })
+    .then((foundFood) => {
+      foodItemId = foundFood.id;
+      return User.findById(req.session.passport.user);
+    })
+    .then(user => Fridge.destroy({
+      where: {
+        userId: user.id,
+        fridgeItemId: foodItemId,
+      },
+    }))
+    .then(() => {
+      socket.emit('delete_food_item', foodItemId);
+      res.json(`${food} was deleted.`);
+    })
+    .catch(next);
+});
+
+
 router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('There was an Express error.')
-})
+  console.error(err.stack);
+  res.status(500).send('There was an Express error.');
+});
 

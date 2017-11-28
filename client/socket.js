@@ -1,9 +1,35 @@
-import io from 'socket.io-client'
-
-const socket = io(window.location.origin)
+import io from 'socket.io-client';
+import history from './history';
+import store, { getItems, addItem, getRecipe, remove, fetchRecipe, getSingleItemRecipe, error } from './store';
+const socket = io(window.location.origin);
 
 socket.on('connect', () => {
-  console.log('Connected!')
-})
+  console.log('Connected!');
+});
 
-export default socket
+socket.on('get_fridge', (items) => {
+  store.dispatch(getItems(items));
+});
+
+socket.on('post_to_fridge', (addedItem) => {
+  store.dispatch(addItem(addedItem));
+  store.dispatch(fetchRecipe());
+  store.dispatch(error(''));
+  history.push('/myfridge');
+});
+
+socket.on('delete_food_item', (itemId) => {
+  store.dispatch(remove(itemId));
+  store.dispatch(fetchRecipe());
+});
+
+socket.on('get_recipes', (recipes) => {
+  store.dispatch(getRecipe(recipes));
+});
+
+socket.on('get_single_item_recipes', (recipes) => {
+  console.log(recipes);
+  store.dispatch(getSingleItemRecipe(recipes));
+});
+
+export default socket;
