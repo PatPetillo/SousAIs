@@ -18,7 +18,7 @@ class SingleItem extends Component {
     const singleItem = this.props.fridge.filter(item => item.id === +this.props.match.params.id);
     const recipes = this.props.recipe.singleItemRecipes;
     return (
-      <div className="singleItem">
+      <div className="singleItem page-content">
         <p>{singleItem.length && singleItem[0].name.toUpperCase()}</p>
         <img src={singleItem.length && singleItem[0].image} alt="Yuchen's fault" />
         <div>
