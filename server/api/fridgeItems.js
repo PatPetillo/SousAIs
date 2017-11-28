@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
-  const { fromBrowser } = req.body;
+
   let foodAmount;
   let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
