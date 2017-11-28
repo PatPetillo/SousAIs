@@ -1,6 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 import { error, fetchRecipe } from './';
+
 /**
  * ACTION TYPES
  */
@@ -11,42 +12,29 @@ const ADD_ITEM_TO_FRIDGE = 'ADD_ITEM_TO_FRIDGE';
 /**
  * ACTION CREATORS
  */
-const getItems = items => ({ type: GET_USER_ITEMS, items });
-const addItem = item => ({ type: ADD_ITEM_TO_FRIDGE, item });
-const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
+export const getItems = items => ({ type: GET_USER_ITEMS, items });
+export const addItem = item => ({ type: ADD_ITEM_TO_FRIDGE, item });
+export const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
 
 /**
  * THUNK CREATORS
  */
-export const AddProductThunk = item =>
-  dispatch =>
+export const addProductThunk = (item) => {
+  return dispatch => 
     axios.post('/api/fridge', item)
-      .then((res) => {
-        dispatch(addItem(res.data));
-        dispatch(error(''));
-      })
-      .then(() => {
-        dispatch(fetchRecipe());
-      })
-      .then(() => history.push('/myfridge'))
       .catch(() => dispatch(error('Please enter a real food item')));
+};
 
-export const fetchProducts = () =>
-  dispatch =>
-    axios.get('/api/fridge')
-      .then(res =>
-        dispatch(getItems(res.data)))
-      .catch(err => console.log(err));
+export const fetchProducts = () => () => {
+  axios.get('/api/fridge').catch(console.error);
+};
 
-export const removeItem = itemId =>
+export const removeItem = itemId => // deletion from browser
   dispatch =>
     axios.delete(`/api/fridge/${itemId}`)
-      .then(res => res.data)
-      .then(dispatch(remove(itemId)))
-      .then(() => {
-        dispatch(fetchRecipe());
-      })
+      .then(() => dispatch(fetchRecipe()))
       .catch(err => console.log(err));
+
 
 /**
  * Reducer

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { fetchProducts } from './fridge';
-import { fetchRecipe } from './recipe';
+import { fetchProducts, fetchRecipe } from './';
 
 /**
  * ACTION TYPES
