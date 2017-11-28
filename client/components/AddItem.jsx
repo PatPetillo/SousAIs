@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { AddProductThunk } from '../store';
+import { addProductThunk } from '../store';
 
 class AddItem extends Component {
   constructor(props) {
@@ -16,15 +16,15 @@ class AddItem extends Component {
   handleSubmit(evt) {
     evt.target.food.value = '';
     evt.preventDefault();
-    this.props.AddProductThunk(this.state);
+    this.props.addProductThunk(this.state, true);
   }
   render() {
-    const { error } = this.props;
+    const { errors } = this.props;
     return (
       <form className="addItemForm page-content" onSubmit={this.handleSubmit}>
         <div>
           {
-            error.length ? <div className="red-words">{error}</div> : <div />
+            errors.length ? <div className="red-words">{errors}</div> : <div />
           }
           <input type="text" autoFocus name="food" onChange={this.handleChange} placeholder="Enter a food item" />
         </div>
@@ -35,11 +35,11 @@ class AddItem extends Component {
   }
 }
 
-const mapState = ({ error }) => ({ error });
-const mapDispatch = { AddProductThunk };
+const mapState = ({ errors }) => ({ errors });
+const mapDispatch = { addProductThunk };
 export default connect(mapState, mapDispatch)(AddItem);
 
 AddItem.propTypes = {
-  AddProductThunk: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired,
+  addProductThunk: PropTypes.func.isRequired,
+  errors: PropTypes.string.isRequired,
 };

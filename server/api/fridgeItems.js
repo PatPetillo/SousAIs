@@ -18,6 +18,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
+  const { fromBrowser } = req.body;
   let foodAmount;
   let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
@@ -56,7 +57,7 @@ router.post('/', (req, res, next) => {
       }
     })
     .then(() => {
-      socket.emit('post_to_fridge', itemToReturn);
+      if (!fromBrowser) socket.emit('post_to_fridge', itemToReturn);
       res.json(itemToReturn);
     })
     .catch(next);
@@ -71,7 +72,10 @@ router.delete('/:itemId', (req, res, next) => {
         fridgeItemId: itemId,
       },
     }))
-    .then(() => res.json(`Item with ${itemId} was deleted.`))
+    .then(() => {
+      socket.emit('delete_food_item', itemId);
+      res.json(`Item with ${itemId} was deleted.`);
+    })
     .catch(next);
 });
 

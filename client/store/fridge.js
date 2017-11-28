@@ -20,25 +20,25 @@ const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
 /**
  * THUNK CREATORS
  */
- let counter = 0;
-export const AddProductThunk = item => (dispatch) => {
-  axios.post('/api/fridge', item).catch(() => dispatch(error('Please enter a real food item')));
-  socket.on('post_to_fridge', (addedItem) => {
-    counter++;
-    console.log(counter)
-    dispatch(addItem(addedItem));
-    dispatch(fetchRecipe());
-    dispatch(error('')); // Empty string === no error
-    history.push('/myfridge');
-  });
+export const addProductThunk = (item, fromBrowser) => {
+  item = Object.assign({}, item, { fromBrowser });
+  return dispatch => 
+    axios.post('/api/fridge', item)
+      .then((res) => {
+        dispatch(addItem(res.data));
+        dispatch(error(''));
+      })
+      .then(() => {
+        dispatch(fetchRecipe());
+      })
+      .then(() => history.push('/myfridge'))
+      .catch(() => dispatch(error('Please enter a real food item')));
 };
 
 export const fetchProducts = () => (dispatch) => {
-  axios.get('/api/fridge').catch(console.error);
-  socket.on('get_fridge', (fridgeItems) => {
-    console.log('UP IN THE get_fridge SOCKET');
-    dispatch(getItems(fridgeItems));
-  });
+  axios.get('/api/fridge')
+    .then(res => dispatch(getItems(res.data)))
+    .catch(console.error);
 };
 
 export const removeItem = itemId =>
