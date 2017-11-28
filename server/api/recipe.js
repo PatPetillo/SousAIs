@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
       const ingredients = foundItems.map(x => x.name);
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=5&ranking=1`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       })
@@ -28,7 +28,7 @@ router.get('/', (req, res, next) => {
           const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
           return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
             headers: {
-              'X-Mashape-Key': key,
+              'X-Mashape-Key': process.env.SPOONACULAR_ID,
               Accept: 'application/json',
             },
           });
@@ -145,7 +145,7 @@ router.get('/:itemId', (req, res, next) => {
       const ingredients = foundItem.name;
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       })
