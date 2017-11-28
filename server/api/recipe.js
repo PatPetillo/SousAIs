@@ -159,14 +159,10 @@ router.put('/deleteRecipe/:recipeId', (req, res, next) => {
 // Get possible recipes only base on  one item.
 
 router.get('/:name', (req, res, next) => {
-    FridgeItems.findOne({
-            where: {
-                name: req.params.name,
-            },
-        })
+    FridgeItems.findById(1)
         .then((foundItem) => {
             const ingredients = foundItem.name;
-            return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
+            return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${req.params.name}&limitLicense=false&number=10&ranking=2`, {
                     headers: {
                         'X-Mashape-Key': process.env.SPOONACULAR_ID,
                         Accept: 'application/json',
