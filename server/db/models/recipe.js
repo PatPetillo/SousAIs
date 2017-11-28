@@ -10,6 +10,10 @@ const Recipe = db.define('recipe', {
   sugar: Sequelize.STRING,
   sodium: Sequelize.STRING,
   image: Sequelize.STRING,
+  currentStep: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 });
 
 module.exports = Recipe;

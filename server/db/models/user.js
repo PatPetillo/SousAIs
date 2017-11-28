@@ -13,7 +13,14 @@ const User = db.define('user', {
         allowNull: false,
     },
     crSteps: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.TEXT,
+    },
+    cr: {
+        type: Sequelize.INTEGER,
+    },
+    crs: {
+        type: Sequelize.INTEGER,
+        defaultValue: -1,
     },
     password: {
         type: Sequelize.STRING,

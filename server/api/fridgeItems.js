@@ -25,17 +25,20 @@ router.delete('/:itemId', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    // console.log('entire request', req);
+    console.log('items', typeof req.body);
     const foodItem = req.body.food;
     let foodAmount;
     axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
             headers: {
-                'x-app-id': process.env.NUTRIX_ID,
-                'x-app-key': process.env.NUTRIX_KEY,
+                'x-app-id': 'a6e13eff',
+                'x-app-key': '2459b51f4e97d4ad614cf60e1f23e1e0',
             },
         })
         .then((response) => {
             foodAmount = response.data.foods[0].serving_weight_grams;
             return response.data.foods;
+            // res.send('next line');
         })
         .then(foodData => FridgeItems.findOrCreate({
             where: {
