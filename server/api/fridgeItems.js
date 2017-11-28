@@ -55,7 +55,10 @@ router.post('/', (req, res, next) => {
         });
       }
     })
-    .then(() => res.json(itemToReturn))
+    .then(() => {
+      socket.emit('post_to_fridge', itemToReturn);
+      res.json(itemToReturn);
+    })
     .catch(next);
 });
 
