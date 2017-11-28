@@ -37,25 +37,19 @@ router.post('/', (req, res, next) => {
         image: foodData[0].photo.highres, // findOrCreate gives an Array
       },
     }))
-    .then(([createdItem, wasCreated]) => { // why is this an array
+    .then(([createdItem]) => {
       itemToReturn = createdItem;
-      if (wasCreated) {
-        Fridge.create({
+      return Fridge.findOrCreate({
+        where: {
           fridgeItemId: createdItem.id,
           userId: req.session.passport.user,
-          quantity: foodAmount,
-        });
-      } else {
-        return Fridge.update({
-          quantity: foodAmount,
-        }, {
-          where: {
-            fridgeItemId: createdItem.id,
-            userId: req.session.passport.user,
-          },
-        });
-      }
+        },
+      });
     })
+    .then(([fridgeInput]) => (
+      fridgeInput.update({
+        quantity: fridgeInput.quantity + foodAmount,
+      })))
     .then(() => {
       if (!fromBrowser) socket.emit('post_to_fridge', itemToReturn);
       res.json(itemToReturn);
