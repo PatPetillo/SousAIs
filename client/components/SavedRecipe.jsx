@@ -5,7 +5,6 @@ import { deleteSavedRecipeFromStore } from '../store/recipe';
 
 const SavedRecipes = (props) => {
   const { savedRecipe } = props.recipe;
-  const { deleteSavedRecipeFromStore } = props;
 
   return (
     <div className="page-content">
@@ -13,10 +12,11 @@ const SavedRecipes = (props) => {
         savedRecipe.length ? savedRecipe.map(singleRecipe =>
           (<div key={singleRecipe.id}>
             <h2>{singleRecipe.name}</h2>
+            <div><img className="savedRecipeImage" src={singleRecipe.image} /></div>
             <NavLink to={`/singleRecipe/${singleRecipe.id}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
-            <button className="btn btn-primary my-3" onClick={() => deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
+            <button className="btn btn-primary my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
           </div>))
           : <h1>You don't have any saved recipe yet!</h1>
       }

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { saveRecipeToStore } from '../store/recipe';
 import ReactLoading from 'react-loading';
+import { saveRecipeToStore } from '../store';
 
 const disableButton = (e) => {
   const originalSize = e.target.offsetWidth;
@@ -25,27 +25,28 @@ const AllRecipes = (props) => {
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
             <div>
-              <img className="oneRecipeImage" src={oneRecipe.image} />
+              <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
             <NavLink to={`/singleRecipe/${oneRecipe.id}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <NavLink to="#">
-              {/* should dispatch a thunk to add to savedRecipes */}
-              <button
-                className="btn btn-primary my-3"
-                onClick={(e) => {
-                disableButton(e);
-                saveRecipeToStore(oneRecipe);
-                }}
-              >{savedRecipe.includes(oneRecipe) ? 'Saved' : 'Save This Recipe'}
-              </button>
+              {savedRecipe.includes(oneRecipe)
+                ? <button className="btn disabled-btn" disabled>
+                  Saved
+                  </button>
+                : <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
+                    Save This Recipe
+                  </button>
+              }
             </NavLink>
           </div>))
         : (
           <div>
-            <div className="btn btn-primary my-3">Searching for recipes...</div>
-            <div className="react-loading" ><ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" /></div>
+            <div className="react-loading" >
+              <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
+            </div>
+            <div className="center">Searching for recipes...</div>
           </div>
           )
       }
@@ -59,6 +60,7 @@ export default connect(mapState, mapDispatch)(AllRecipes);
 
 
 AllRecipes.propTypes = {
-  recipe: PropTypes.arrayOf(PropTypes.object).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  saveRecipeToStore: PropTypes.func.isRequired,
 };

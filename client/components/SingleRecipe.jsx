@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -27,10 +27,11 @@ const SingleRecipe = (props) => {
   );
 };
 
+
 const mapState = ({ recipe }) => ({ recipe });
 export default connect(mapState)(SingleRecipe);
 
 SingleRecipe.propTypes = {
-  recipe: PropTypes.arrayOf(PropTypes.any).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
