@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const SingleRecipe = (props) => {
-  const { match } = props;
-
-  const recipe = props.recipe.recipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
+  const recipe = props.recipe.recipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') === props.match.params.recipename)[0];
   return (
     <div className="page-content">
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <img className="recipe-image"  src={recipe.image} />
+          <img className="recipe-image" src={recipe.image} alt={recipe.name} />
           <ol>
             {
           recipe.steps.split('$$').map(sentence => (
@@ -38,5 +36,4 @@ export default connect(mapState)(SingleRecipe);
 
 SingleRecipe.propTypes = {
   recipe: PropTypes.objectOf(PropTypes.any).isRequired,
-  match: PropTypes.objectOf(PropTypes.any).isRequired,
 };

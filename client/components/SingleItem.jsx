@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { getSingleItemRecipeToStore, clearSingleItemRecipeFromStore } from '../store/recipe';
 import ReactLoading from 'react-loading';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { getSingleItemRecipeToStore, clearSingleItemRecipeFromStore } from '../store';
+
 
 class SingleItem extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
-    this.props.getSingleItemRecipeToStore(this.props.match.params.id)
+    this.props.getSingleItemRecipeToStore(this.props.match.params.id);
   }
 
   componentWillUnmount() {
@@ -26,12 +25,12 @@ class SingleItem extends Component {
           {recipes.length ? recipes.map(recipe => <div key={recipe.image}><NavLink to={`/${recipe.name.split(' ').join('')}`}>{recipe.name}</NavLink></div>)
           :
           (
-          <div>
-          <div className="react-loading" >
-            <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
-          </div>
-          <div className="center">Searching for recipes...</div>
-        </div>
+            <div>
+              <div className="react-loading" >
+                <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
+              </div>
+              <div className="center">Searching for recipes...</div>
+            </div>
         )
           }
         </div>
@@ -44,3 +43,10 @@ const mapState = ({ fridge, recipe }) => ({ fridge, recipe });
 const mapDispatch = { getSingleItemRecipeToStore, clearSingleItemRecipeFromStore };
 export default connect(mapState, mapDispatch)(SingleItem);
 
+SingleItem.propTypes = {
+  fridge: PropTypes.arrayOf(PropTypes.object).isRequired,
+  recipe: PropTypes.objectOf(PropTypes.array).isRequired,
+  getSingleItemRecipeToStore: PropTypes.func.isRequired,
+  clearSingleItemRecipeFromStore: PropTypes.func.isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};

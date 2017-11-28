@@ -31,13 +31,13 @@ const AllRecipes = (props) => {
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <NavLink to="#">
-              {savedRecipe.includes(oneRecipe)
-                ? <button className="btn disabled-btn" disabled>
+              {savedRecipe.includes(oneRecipe) ?
+                <button className="btn disabled-btn" disabled>
                   Saved
-                  </button>
-                : <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
+                </button> :
+                <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
                     Save This Recipe
-                  </button>
+                </button>
               }
             </NavLink>
           </div>))
