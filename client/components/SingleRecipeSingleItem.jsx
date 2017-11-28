@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const SingleRecipeSingleItem = (props) => {
-  const recipe = props.recipe.singleItemRecipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
-  console.log('Recipe', recipe);
+  const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
+  console.log('Recipe', recipe,'props',props);
   return (
     <div className="page-content">
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <img className="recipeImage" src={recipe.image} />
+          <img className="recipe-image" src={recipe.image} />
           <ol>
             {
           recipe.steps.split('$$').map(sentence => (

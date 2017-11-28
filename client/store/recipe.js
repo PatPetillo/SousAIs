@@ -9,22 +9,24 @@ const GET_SAVED_RECIPE = 'GET_SAVED_RECIPE';
 const SAVE_RECIPE = 'SAVE_RECIPE';
 const DELETE_SAVED_RECIPE = 'DELETE_SAVED_RECIPE';
 const GET_SINGLE_ITEM_RECIPE = 'GET_SINGLE_ITEM_RECIPE';
-// set and get single recipe from single item without writing down to my database
-// const SET_RECIPE_SINGLE_ITEM = 'SET_RECIPE_SINGLE_ITEM';
-// const GET_RECIPE_SINGLE_ITEM = 'GET_RECIPE_SINGLE_ITEM';
+const CLEAR_SINGLE_ITEM_RECIPE ='CLEAR_SINGLE_ITEM_RECIPE';
+
 /**
  * ACTION CREATORS
  */
-// const getRecipeSingleItem = recipes => ({ type: GET_RECIPE_SINGLE_ITEM, recipes });
-// const setRecipeSingleItem = recipes => ({ type: SET_RECIPE_SINGLE_ITEM, recipes });
+
 const getRecipe = recipes => ({ type: GET_RECIPE, recipes });
 const getSavedRecipe = recipes => ({ type: GET_SAVED_RECIPE, recipes });
 const saveRecipe = recipe => ({ type: SAVE_RECIPE, recipe });
 const deleteSavedRecipe = recipe => ({ type: DELETE_SAVED_RECIPE, recipe });
 const getSingleItemRecipe = recipes => ({ type: GET_SINGLE_ITEM_RECIPE, recipes });
+const clearSingleItemRecipe = recipes => ({ type: CLEAR_SINGLE_ITEM_RECIPE, recipes });
 /**
  * THUNK CREATORS
  */
+export const clearSingleItemRecipeFromStore = () =>
+  dispatch =>
+    dispatch(clearSingleItemRecipe([]));
 
 export const getSingleItemRecipeToStore = itemId =>
   dispatch =>
@@ -66,12 +68,15 @@ const initialState = {
   recipes: [],
   savedRecipe: [],
   singleItemRecipes: [],
+  singleItemRecipeList: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_SINGLE_ITEM_RECIPE:
+    case CLEAR_SINGLE_ITEM_RECIPE:
       return Object.assign({}, state, { singleItemRecipes: action.recipes });
+    case GET_SINGLE_ITEM_RECIPE:
+      return Object.assign({}, state, { singleItemRecipes: action.recipes, singleItemRecipeList: action.recipes });
     case DELETE_SAVED_RECIPE:
       return Object.assign({}, state, { savedRecipe: state.savedRecipe.slice(0, state.savedRecipe.indexOf(action.recipe)).concat(state.savedRecipe.slice(state.savedRecipe.indexOf(action.recipe)+1)) });
     case SAVE_RECIPE:

@@ -13,7 +13,7 @@ const SavedRecipes = (props) => {
           (<div key={singleRecipe.id}>
             <h2>{singleRecipe.name}</h2>
             <div><img className="savedRecipeImage" src={singleRecipe.image} /></div>
-            <NavLink to={`/singleRecipe/${singleRecipe.id}`}>
+            <NavLink to={`/singleRecipe/${singleRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
             <button className="btn btn-primary my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
