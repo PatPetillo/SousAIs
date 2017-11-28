@@ -21,6 +21,7 @@ class SingleItem extends Component {
       <div className="singleItem page-content">
         <p>{singleItem.length && singleItem[0].name.toUpperCase()}</p>
         <img src={singleItem.length && singleItem[0].image} alt="Yuchen's fault" />
+        <p>Recipes for {singleItem.length && singleItem[0].name}</p>
         <div>
           {recipes.length ? recipes.map(recipe => <div key={recipe.image}><NavLink to={`/${recipe.name.split(' ').join('')}`}>{recipe.name}</NavLink></div>)
           :
