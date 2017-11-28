@@ -4,6 +4,7 @@ const {
 } = require('../db/models');
 const axios = require('axios');
 const key = require('../../secrets').spoon;
+const { socket } = require('../');
 
 module.exports = router;
 
@@ -48,6 +49,7 @@ router.get('/', (req, res, next) => {
         sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
         image: meal.image,
       }));
+      socket.emit('get_recipes', info);
       res.json(info);
       info.forEach(el => Recipe.findOrCreate({
         where: {
@@ -140,7 +142,7 @@ router.get('/:itemId', (req, res, next) => {
           const arrToUpdate = [];
           const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
           const info = meals.map(meal => ({
- name: meal.title,
+            name: meal.title,
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
             calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
             fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
@@ -152,9 +154,60 @@ router.get('/:itemId', (req, res, next) => {
           info.forEach(el => arrToUpdate.push(Recipe.build(el)));
           return Promise.all(arrToUpdate)
             .then((recipes) => {
+              socket.emit('get_single_item_recipes', recipes);
               res.json(recipes);
             });
         });
     })
     .catch(next);
 });
+
+// SINGLE ITEM RECIPES ROUTE FOR ALEXA
+router.get('/alexa/:food', (req, res, next) => {
+  const { food } = req.params;
+  FridgeItems.findOne({
+    where: {
+      name: food,
+    },
+  })
+    .then((foundItem) => {
+      const ingredients = foundItem.name;
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
+        headers: {
+          'X-Mashape-Key': key,
+          Accept: 'application/json',
+        },
+      })
+        .then((apiRes) => {
+          const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
+          return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
+            headers: {
+              'X-Mashape-Key': key,
+              Accept: 'application/json',
+            },
+          });
+        })
+        .then((rcps) => {
+          const arrToUpdate = [];
+          const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
+          const info = meals.map(meal => ({
+            name: meal.title,
+            steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
+            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            image: meal.image,
+          }));
+          info.forEach(el => arrToUpdate.push(Recipe.build(el)));
+          return Promise.all(arrToUpdate)
+            .then((recipes) => {
+              socket.emit('get_single_item_recipes', recipes);
+              res.json(recipes);
+            });
+        });
+    })
+    .catch(next);
+});
+

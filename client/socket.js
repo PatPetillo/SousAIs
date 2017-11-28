@@ -1,22 +1,35 @@
 import io from 'socket.io-client';
-import store, { addProductThunk, fetchProducts, removeItem } from './store';
-
+import history from './history';
+import store, { getItems, addItem, getRecipe, remove, fetchRecipe, getSingleItemRecipe, error } from './store';
 const socket = io(window.location.origin);
 
 socket.on('connect', () => {
   console.log('Connected!');
 });
 
-socket.on('post_to_fridge', (addedItem) => {
-  // store.dispatch(addProductThunk(addedItem));
+socket.on('get_fridge', (items) => {
+  store.dispatch(getItems(items));
 });
 
-socket.on('get_fridge', (fridgeItems) => {
-  console.log(fridgeItems);
-  // store.dispatch(fetchProducts(fridgeItems));
+socket.on('post_to_fridge', (addedItem) => {
+  store.dispatch(addItem(addedItem));
+  store.dispatch(fetchRecipe());
+  store.dispatch(error(''));
+  history.push('/myfridge');
 });
 
 socket.on('delete_food_item', (itemId) => {
-  // store.dispatch(removeItem(itemId));
+  store.dispatch(remove(itemId));
+  store.dispatch(fetchRecipe());
 });
+
+socket.on('get_recipes', (recipes) => {
+  store.dispatch(getRecipe(recipes));
+});
+
+socket.on('get_single_item_recipes', (recipes) => {
+  console.log(recipes);
+  store.dispatch(getSingleItemRecipe(recipes));
+});
+
 export default socket;

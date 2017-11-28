@@ -51,7 +51,7 @@ router.post('/', (req, res, next) => {
         quantity: fridgeInput.quantity + foodAmount,
       })))
     .then(() => {
-      if (!fromBrowser) socket.emit('post_to_fridge', itemToReturn);
+      socket.emit('post_to_fridge', itemToReturn);
       res.json(itemToReturn);
     })
     .catch(next);
@@ -73,8 +73,35 @@ router.delete('/:itemId', (req, res, next) => {
     .catch(next);
 });
 
+// ALEXA DELETE ROUTE
+router.delete('/alexa/:food', (req, res, next) => {
+  const { food } = req.params;
+  let foodItemId;
+  FridgeItems.findOne({
+    where: {
+      name: food,
+    },
+  })
+    .then((foundFood) => {
+      foodItemId = foundFood.id;
+      return User.findById(req.session.passport.user);
+    })
+    .then(user => Fridge.destroy({
+      where: {
+        userId: user.id,
+        fridgeItemId: foodItemId,
+      },
+    }))
+    .then(() => {
+      socket.emit('delete_food_item', foodItemId);
+      res.json(`${food} was deleted.`);
+    })
+    .catch(next);
+});
+
+
 router.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('There was an Express error.')
-})
+  console.error(err.stack);
+  res.status(500).send('There was an Express error.');
+});
 
