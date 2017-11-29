@@ -86,7 +86,7 @@ router.delete('/alexa/:food', (req, res, next) => {
   })
     .then((foundFood) => {
       foodItemId = foundFood.id;
-      return User.findById(req.session.passport.user);
+      return User.findById(1);
     })
     .then(user => Fridge.destroy({
       where: {
