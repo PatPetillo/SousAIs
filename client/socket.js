@@ -28,7 +28,6 @@ socket.on('get_recipes', (recipes) => {
 });
 
 socket.on('get_single_item_recipes', (recipes) => {
-  console.log(recipes);
   store.dispatch(getSingleItemRecipe(recipes));
 });
 
