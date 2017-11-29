@@ -1,13 +1,13 @@
 # SousAIs
 **Devlopers**: Brian Deriel | Devon JohnBaptiste | Pat Petillo | Olawale Jegede | Yuchen Chen 
 
-**Technologies**: Node.js, Express, React, React-Redux, PostgreSQL, Sequelize, AWS Lambda, Heroku (microservice API)
+**Technologies**: Node.js, Express, React, React-Redux, PostgreSQL, Sequelize, AWS Lambda, Heroku (Microservice API)
 
 An *Amazon Alexa* skill that acts as your *personal* **Sous Chef** in the kitchen
 
-Accompanied by an intergrated Web interface via *https://sousais.herokuapp.com/*
+Accompanied by an intergrated Web Application via *https://sousais.herokuapp.com/*
 
-## Prompting Sous through an Amazon Echo Dot will allow you to:
+## Prompting Sous through an Amazon Echo will allow you to:
 * Add items to your "fridge" as a user of SousAIs
 * Search for recipes that include the items in your fridge that will persist in our database
 * Search for recipes for a single item provided to Sous 
@@ -15,7 +15,7 @@ Accompanied by an intergrated Web interface via *https://sousais.herokuapp.com/*
 * Remove items from your fridge (and our database) 
 * Remove saved recipes that will persist per user
 
-## The accompanied Web interfae will allow you to:
+## The accompanied Web Application will allow you to:
 * View your personal fridge
 * Search for recipes for single items in your fridge
 * Save recipes for single items from your fridge
@@ -25,4 +25,5 @@ Accompanied by an intergrated Web interface via *https://sousais.herokuapp.com/*
 * View your saved recipes
 * Remove recipes from your saved recipes list
 
-Thank you for taking the time to view our product!
+
+**Thank you for taking the time to view our product!**
