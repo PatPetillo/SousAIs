@@ -5,6 +5,7 @@ const {
 const axios = require('axios');
 const key = require('../../secrets').spoon;
 const { socket } = require('../');
+const chalk = require('chalk');
 
 module.exports = router;
 
@@ -99,21 +100,31 @@ router.get('/savedRecipes', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/saveRecipe/:recipeId', (req, res, next) => {
-  const id = Number(req.params.recipeId);
-  User.findById(req.session.passport.user)
-    .then((foundUser) => {
-      RecipeUser.update(
-        { saved: true },
-        {
-          where: {
-            userId: foundUser.id,
-            recipeId: id,
-          },
-        },
-      );
+router.put('/saveRecipe/:recipeName', (req, res, next) => {
+  let name = req.params.recipeName;
+  name = name.split('-').join(' ');
+  let recipeId;
+  Recipe.findOne({
+    where: {
+      name,
+    },
+  })
+    .then((foundRecipe) => {
+      recipeId = foundRecipe.id;
+      return User.findById(req.session.passport.user)
+        .then((foundUser) => {
+          RecipeUser.update(
+            { saved: true },
+            {
+              where: {
+                userId: foundUser.id,
+                recipeId,
+              },
+            },
+          )
+            .then(() => res.json(`${name} has been saved`));
+        });
     })
-    .then(() => res.json(`Recipe with ${id} was saved.`))
     .catch(next);
 });
 
@@ -162,11 +173,11 @@ router.get('/:itemId', (req, res, next) => {
           const info = meals.map(meal => ({
             name: meal.title,
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
-            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
-            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
-            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
-            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
-            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            calories: `${meal.nutrition.nutrients[0].amount} ${meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount} ${meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount} ${meal.nutrition.nutrients[3].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount} ${meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
             image: meal.image,
           }));
           info.forEach(el => arrToUpdate.push(Recipe.build(el)));
@@ -211,11 +222,11 @@ router.get('/alexa/:food', (req, res, next) => {
           const info = meals.map(meal => ({
             name: meal.title,
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
-            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
-            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
-            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
-            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
-            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            calories: `${meal.nutrition.nutrients[0].amount} ${meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount} ${meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount} ${meal.nutrition.nutrients[3].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount} ${meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
             image: meal.image,
           }));
           info.forEach(el => arrToUpdate.push(Recipe.build(el)));

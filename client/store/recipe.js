@@ -44,7 +44,7 @@ export const saveRecipeToStore = recipe =>
   dispatch =>{
   
     let { name } = recipe;
-    let recipeName=name.split(' ').join('')
+    let recipeName=name.split(' ').join('-')
     console.log(recipeName)
     axios.put(`/api/recipe/saveRecipe/${recipeName}`)
       .then(dispatch(saveRecipe(recipe)))
