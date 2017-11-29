@@ -11,6 +11,8 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
   let user;
+  const missingIng = {};
+  const request = 2; // change on production
   User.findById(req.session.passport.user)
     .then((founduser) => {
       user = founduser;
@@ -19,7 +21,7 @@ router.get('/', (req, res, next) => {
     .then((foundItems) => {
       if (foundItems) {
         const ingredients = foundItems.map(x => x.name);
-        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=2&ranking=2`, {
+        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=${request}&ranking=2`, {
           headers: {
             'X-Mashape-Key': key,
             Accept: 'application/json',
@@ -29,6 +31,10 @@ router.get('/', (req, res, next) => {
     })
     .then((apiRes) => {
       // console.log(apiRes, 'apiRes');
+      apiRes.data.forEach((el) => {
+        missingIng[el.id] = el.missedIngredientCount;
+      });
+      // console.log(missingIng);
       const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
         headers: {
@@ -39,7 +45,7 @@ router.get('/', (req, res, next) => {
     })
     .then((rcps) => {
       // const arrToUpdate = [];
-      // console.log(rcps.data[0].nutrition.nutrients);
+      console.log(rcps.data[0].nutrition.ingredients);
       const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
       const info = meals.map(meal => ({
         name: meal.title,
@@ -58,6 +64,7 @@ router.get('/', (req, res, next) => {
         sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
         protein: `${meal.nutrition.nutrients[7].amount} ${meal.nutrition.nutrients[7].unit}`,
         image: meal.image,
+        missedIngredientCount: missingIng[meal.id],
       }));
       socket.emit('get_recipes', info);
       res.json(info);
@@ -196,7 +203,7 @@ router.get('/alexa/:food', (req, res, next) => {
   })
     .then((foundItem) => {
       const ingredients = foundItem.name;
-      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=15&ranking=2`, {
         headers: {
           'X-Mashape-Key': key,
           Accept: 'application/json',
@@ -217,11 +224,11 @@ router.get('/alexa/:food', (req, res, next) => {
           const info = meals.map(meal => ({
             name: meal.title,
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
-            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
-            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
-            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
-            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
-            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            calories: `${meal.nutrition.nutrients[0].amount } ${meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount } ${meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount } ${meal.nutrition.nutrients[3].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount } ${meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount } ${meal.nutrition.nutrients[6].unit}`,
             image: meal.image,
           }));
           info.forEach(el => arrToUpdate.push(Recipe.build(el)));
