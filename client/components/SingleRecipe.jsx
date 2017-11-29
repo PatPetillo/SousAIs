@@ -12,15 +12,8 @@ const SingleRecipe = (props) => {
           <div>serves: {recipe.servings}</div>
           <div>ready in {recipe.readyIn} minutes | {recipe.diets.split('$$').join(', ')} | spoonacular rating: {recipe.spoonacularScore}</div>
           <img className="recipe-image" src={recipe.image} alt={recipe.name} />
-          <h2>Directions</h2>
-          <ol>
-            {
-          recipe.steps.split('$$').map(sentence => (
-            (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
-            }
-          </ol>
-          <div className="single-recipe-footer">
-            <div className="single-recipe-footer-item">
+          <div className="single-recipe-details">
+            <div className="single-recipe-item">
               <h2>Ingredients</h2>
               <div>
                 {
@@ -29,9 +22,9 @@ const SingleRecipe = (props) => {
                 }
               </div>
             </div>
-            <div className="single-recipe-footer-item">
+            <div className="single-recipe-item">
               <h2>Nutritional Value</h2>
-              <div>(per serving)</div>
+              <div className="lead p-0">(per serving)</div>
               <div>calories: {recipe.calories}</div>
               <div>total fat: {recipe.fat}</div>
               <div>carbohydrates: {recipe.carbohydrates}</div>
@@ -41,6 +34,13 @@ const SingleRecipe = (props) => {
               <div>protein: {recipe.protein}</div>
             </div>
           </div>
+          <h2>Directions</h2>
+          <ol>
+            {
+          recipe.steps.split('$$').map(sentence => (
+            (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
+            }
+          </ol>
         </div>
     :
         <div>recipe doest not exist yet</div>

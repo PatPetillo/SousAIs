@@ -11,11 +11,6 @@
   width: 191px;
 }
 
-.single-recipe-footer {
-  display: flex;
-  justify-content: center;
-}
-
 .auth-form {
   margin-top: 10em!important;
   background-color: #fff;
@@ -135,6 +130,14 @@
   1px 1px 0 #fff;
 }
 
+.savedRecipes { /* what is this affecting? */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .singleItem{
   text-align: center;
   p{
@@ -146,16 +149,22 @@
     width: 300px;
   }
   a{
-    color:rgba(130,30,100,1);;
+    color:rgba(130,30,100,1);
   }
 }
 
-.savedRecipes { /* what is this affecting? */
+.single-recipe-details {
   display: flex;
-  flex: 1;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  text-align: justify;
+
+  .single-recpe-item {
+    h2 {
+      background-color: red;
+      margin-bottom: 0.4em;
+    }
+  }
 }
 
 .welcome-page {
@@ -180,7 +189,7 @@
       width: 60%;
       height: 60vh;
       text-align: center;
-      background-image: url('/imgs/breakfast-bg.jpg');
+      background-image: url('/imgs/breakfast-bg-min.jpg');
       background-size: 100%;
       background-position-y: bottom;
       justify-content: center;
