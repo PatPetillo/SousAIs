@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const SingleRecipeSingleItem = (props) => {
   const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
-  console.log('Recipe', recipe, 'props', props);
+  // console.log('Recipe', recipe, 'props', props);
   return (
     <div className="page-content">
       { recipe ?
