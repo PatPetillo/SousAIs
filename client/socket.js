@@ -32,8 +32,8 @@ socket.on('get_single_item_recipes', (recipes) => {
 });
 
 socket.on('alexa_get_one_recipe', (recipe) => {
-  console.log('ALEXA', recipe)
-  history.push(`/singleRecipe/${recipe.name}`);
+  console.log('ALEXA', recipe);
+  history.push(`/singleRecipe/${recipe.name}/`);
 });
 
 export default socket;
