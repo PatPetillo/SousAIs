@@ -32,7 +32,6 @@ export const fetchProducts = () => () => {
 export const removeItem = itemId => // deletion from browser
   dispatch =>
     axios.delete(`/api/fridge/${itemId}`)
-      .then(() => dispatch(fetchRecipe()))
       .catch(err => console.log(err));
 
 
