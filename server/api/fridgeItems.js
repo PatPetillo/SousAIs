@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
       return Fridge.findOrCreate({
         where: {
           fridgeItemId: createdItem.id,
-          userId: req.session.passport.user,
+          userId: 1,
         },
       });
     })
