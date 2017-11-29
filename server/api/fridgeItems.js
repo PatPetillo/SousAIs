@@ -20,16 +20,16 @@ router.post('/', (req, res, next) => {
   const foodItem = req.body.food;
 
   let foodAmount;
+  let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': process.env.NUTRIX_ID,
-      'x-app-key': process.env.NUTRIX_KEY,
+      'x-app-id': nutrixApp,
+      'x-app-key': nutrix,
     },
   })
     .then((response) => {
       foodAmount = response.data.foods[0].serving_weight_grams;
       return response.data.foods;
-      // res.send('next line');
     })
     .then(foodData => FridgeItems.findOrCreate({
       where: {
@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
       return Fridge.findOrCreate({
         where: {
           fridgeItemId: createdItem.id,
-          userId: 1,
+          userId: req.session.passport.user,
         },
       });
     })
@@ -56,6 +56,7 @@ router.post('/', (req, res, next) => {
     })
     .catch(next);
 });
+
 
 router.delete('/:itemId', (req, res, next) => {
   const itemId = Number(req.params.itemId);
