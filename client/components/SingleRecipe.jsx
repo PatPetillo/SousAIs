@@ -4,23 +4,30 @@ import { connect } from 'react-redux';
 
 const SingleRecipe = (props) => {
   const recipe = props.recipe.recipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') === props.match.params.recipename)[0];
+  console.log(recipe);
   return (
     <div className="page-content">
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <div>serves: {recipe.servings}</div>
-          <div>ready in {recipe.readyIn} minutes | {recipe.diets.split('$$').join(', ')} | spoonacular rating: {recipe.spoonacularScore}</div>
+          <h5>Serves: {recipe.servings}</h5>
+          <div key={recipe.name}>
+            <ul className="recipe-header">
+              <li className="ready-in">ready in {recipe.readyInMinutes} minutes</li>
+              <li className="diet">{recipe.diets.split('$$').join(', ')}</li>
+              <li className="spoonacular-rating">spoonacular rating: {recipe.spoonacularScore}</li>
+            </ul>
+          </div>
           <img className="recipe-image" src={recipe.image} alt={recipe.name} />
           <h2>Directions</h2>
-          <ol>
+          <ol className="single-recipe-directions">
             {
           recipe.steps.split('$$').map(sentence => (
             (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
             }
           </ol>
           <div className="single-recipe-footer">
-            <div className="single-recipe-footer-item">
+            <div className="single-recipe-footer-ingredients">
               <h2>Ingredients</h2>
               <div>
                 {
@@ -29,7 +36,7 @@ const SingleRecipe = (props) => {
                 }
               </div>
             </div>
-            <div className="single-recipe-footer-item">
+            <div className="single-recipe-footer-nutrition">
               <h2>Nutritional Value</h2>
               <div>(per serving)</div>
               <div>calories: {recipe.calories}</div>
@@ -43,7 +50,7 @@ const SingleRecipe = (props) => {
           </div>
         </div>
     :
-        <div>recipe doest not exist yet</div>
+        <div>go to recipes page to load a single recipe</div>
     }
     </div>
   );
