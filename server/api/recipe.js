@@ -11,6 +11,7 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
   let user;
+  let missingIng;
   User.findById(req.session.passport.user)
     .then((founduser) => {
       user = founduser;
@@ -19,7 +20,7 @@ router.get('/', (req, res, next) => {
     .then((foundItems) => {
       if (foundItems) {
         const ingredients = foundItems.map(x => x.name);
-        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=12&ranking=2`, {
+        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=5&ranking=2`, {
           headers: {
             'X-Mashape-Key': key,
             Accept: 'application/json',
@@ -28,7 +29,10 @@ router.get('/', (req, res, next) => {
       }
     })
     .then((apiRes) => {
-      // console.log(apiRes, 'apiRes');
+      console.log(apiRes, 'apiRes');
+      missingIng = apiRes.map(el=>{
+        return { el.id: el.missedIngredientCount}
+      })
       const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
         headers: {
@@ -188,7 +192,7 @@ router.get('/alexa/:food', (req, res, next) => {
   })
     .then((foundItem) => {
       const ingredients = foundItem.name;
-      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
+      return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=15&ranking=2`, {
         headers: {
           'X-Mashape-Key': key,
           Accept: 'application/json',
