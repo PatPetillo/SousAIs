@@ -22,7 +22,7 @@ const AllRecipes = (props) => {
       <h1>{`${user.name}'s Recipes`}</h1>
       {
         recipes.length ? recipes.map(oneRecipe => (
-          <div key={oneRecipe.id}>
+          <div key={oneRecipe.image}>
             <h2>{oneRecipe.name}</h2>
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
