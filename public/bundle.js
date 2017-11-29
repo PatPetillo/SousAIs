@@ -12807,7 +12807,7 @@ Routes.propTypes = {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _socket = __webpack_require__(218);
@@ -12827,36 +12827,36 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var socket = (0, _socket2.default)(window.location.origin);
 
 socket.on('connect', function () {
-  console.log('Connected!');
+    console.log('Connected!');
 });
 
 socket.on('get_fridge', function (items) {
-  _store2.default.dispatch((0, _store.getItems)(items));
+    _store2.default.dispatch((0, _store.getItems)(items));
 });
 
 socket.on('post_to_fridge', function (addedItem) {
-  _store2.default.dispatch((0, _store.addItem)(addedItem));
-  _store2.default.dispatch((0, _store.fetchRecipe)());
-  _store2.default.dispatch((0, _store.error)(''));
-  _history2.default.push('/myfridge');
+    _store2.default.dispatch((0, _store.addItem)(addedItem));
+    _store2.default.dispatch((0, _store.fetchRecipe)());
+    _store2.default.dispatch((0, _store.error)(''));
+    _history2.default.push('/myfridge');
 });
 
 socket.on('delete_food_item', function (itemId) {
-  _store2.default.dispatch((0, _store.remove)(itemId));
-  _store2.default.dispatch((0, _store.fetchRecipe)());
+    _store2.default.dispatch((0, _store.remove)(itemId));
+    _store2.default.dispatch((0, _store.fetchRecipe)());
 });
 
 socket.on('get_recipes', function (recipes) {
-  _store2.default.dispatch((0, _store.getRecipe)(recipes));
+    _store2.default.dispatch((0, _store.getRecipe)(recipes));
 });
 
 socket.on('get_single_item_recipes', function (recipes) {
-  _store2.default.dispatch((0, _store.getSingleItemRecipe)(recipes));
+    _store2.default.dispatch((0, _store.getSingleItemRecipe)(recipes));
 });
 
 socket.on('alexa_get_one_recipe', function (recipe) {
-  console.log('ALEXA', recipe);
-  _history2.default.push('/singleRecipe/' + recipe.name + '/');
+    console.log('ALEXA', recipe);
+    _history2.default.push('/singleRecipe/' + recipe.name.replace(' ', '') + '/');
 });
 
 exports.default = socket;
