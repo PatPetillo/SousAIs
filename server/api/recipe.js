@@ -86,8 +86,6 @@ router.get('/', (req, res, next) => {
           }
         }));
     })
-    .then(() => Recipe.findAll())
-    .then(allRecipes => res.json(allRecipes))
     .catch(next);
 });
 
