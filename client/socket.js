@@ -33,7 +33,7 @@ socket.on('get_single_item_recipes', (recipes) => {
 
 socket.on('alexa_get_one_recipe', (recipe) => {
   console.log('ALEXA', recipe);
-  const name = recipe.name.replace(/' '/g, '');
+  const name = recipe.name.replace(/\s/g, '');
   history.push(`/singleRecipe/${name}`);
 });
 
