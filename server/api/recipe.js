@@ -211,11 +211,12 @@ router.get('/alexa', (req, res, next) => { // test only most merge
                     return Promise.all(arrToUpdate)
                         .then((recipes) => {
                             recipes.forEach(toSetR => user.addRecipe(toSetR.id));
+                            const chosen = recipes[Math.floor(Math.random() * recipes.length)];
                             user.update({
-                                cr: recipes[0].id,
-                                crSteps: recipes[0].steps,
+                                cr: chosen.id,
+                                crSteps: chosen.steps,
                             });
-                            res.json(recipes);
+                            res.json(chosen);
                         });
                 });
         });
