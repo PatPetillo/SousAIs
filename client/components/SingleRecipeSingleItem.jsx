@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const SingleRecipeSingleItem = (props) => {
   const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
-  console.log('Recipe', recipe,'props',props);
+  console.log('Recipe', recipe, 'props', props);
   return (
     <div className="page-content">
       { recipe ?
@@ -16,12 +16,28 @@ const SingleRecipeSingleItem = (props) => {
             (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
         }
           </ol>
-          <h2>Nutritional Value</h2>
-          <div>calories: {recipe.calories}</div>
-          <div>fat: {recipe.fat}</div>
-          <div>carbohydrates: {recipe.carbohydrates}</div>
-          <div>sugar: {recipe.sugar}</div>
-          <div>sodium: {recipe.sodium}</div>
+          <div className="single-recipe-footer">
+            <div className="single-recipe-footer-item">
+              <h2>Ingredients</h2>
+              <div>
+                {
+                recipe.ingredientAmount.split('$$').map(amount => (
+                  (amount.length) ? <div key={amount}> {amount}</div> : null))
+                }
+              </div>
+            </div>
+            <div className="single-recipe-footer-item">
+              <h2>Nutritional Value</h2>
+              <div>(per serving)</div>
+              <div>calories: {recipe.calories}</div>
+              <div>total fat: {recipe.fat}</div>
+              <div>carbohydrates: {recipe.carbohydrates}</div>
+              <div>cholesterol: {recipe.cholesterol}</div>
+              <div>sugar: {recipe.sugar}</div>
+              <div>sodium: {recipe.sodium}</div>
+              <div>protein: {recipe.protein}</div>
+            </div>
+          </div>
         </div>
     :
         <div>recipe doest not exist yet</div>

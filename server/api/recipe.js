@@ -159,12 +159,20 @@ router.get('/:itemId', (req, res, next) => {
           const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
           const info = meals.map(meal => ({
             name: meal.title,
+            ingredientAmount: meal.extendedIngredients.map(el => el.originalString).join('$$'),
+            readyInMinutes: meal.readyInMinutes,
+            diets: meal.diets.join('$$'),
+            servings: meal.servings,
+            spoonacularScore: meal.spoonacularScore,
             steps: meal.analyzedInstructions[0].steps.map(el => el.step).join('$$'),
-            calories: `${meal.nutrition.nutrients[0].amount  } ${  meal.nutrition.nutrients[0].unit}`,
-            fat: `${meal.nutrition.nutrients[1].amount  } ${  meal.nutrition.nutrients[1].unit}`,
-            carbohydrates: `${meal.nutrition.nutrients[3].amount  } ${  meal.nutrition.nutrients[3].unit}`,
-            sugar: `${meal.nutrition.nutrients[4].amount  } ${  meal.nutrition.nutrients[4].unit}`,
-            sodium: `${meal.nutrition.nutrients[6].amount  } ${  meal.nutrition.nutrients[6].unit}`,
+            userId: req.session.passport.user,
+            calories: `${meal.nutrition.nutrients[0].amount} ${meal.nutrition.nutrients[0].unit}`,
+            fat: `${meal.nutrition.nutrients[1].amount} ${meal.nutrition.nutrients[1].unit}`,
+            carbohydrates: `${meal.nutrition.nutrients[3].amount} ${meal.nutrition.nutrients[3].unit}`,
+            cholesterol: `${meal.nutrition.nutrients[5].amount} ${meal.nutrition.nutrients[5].unit}`,
+            sugar: `${meal.nutrition.nutrients[4].amount} ${meal.nutrition.nutrients[4].unit}`,
+            sodium: `${meal.nutrition.nutrients[6].amount} ${meal.nutrition.nutrients[6].unit}`,
+            protein: `${meal.nutrition.nutrients[7].amount} ${meal.nutrition.nutrients[7].unit}`,
             image: meal.image,
           }));
           info.forEach(el => arrToUpdate.push(Recipe.build(el)));
