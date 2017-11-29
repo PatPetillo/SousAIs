@@ -44,7 +44,7 @@ const AllRecipes = (props) => {
         : (
           <div>
             <div className="react-loading" >
-              <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
+              <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
             </div>
             <div className="center">Searching for recipes...</div>
           </div>
