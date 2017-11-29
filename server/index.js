@@ -12,7 +12,7 @@ const socketio = require('socket.io');
 const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
 const app = express();
-module.exports = app;
+// module.exports = app;
 
 /**
  * In your development environment, you can keep all of your
@@ -81,6 +81,7 @@ const createApp = () => {
         next();
     });
 
+<<<<<<< HEAD
     // error handling endware
     app.use((err, req, res, next) => {
         console.error(err);
@@ -97,6 +98,30 @@ const startListening = () => {
     const io = socketio(server);
     require('./socket')(io);
 };
+=======
+  // sends index.html
+  app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+  });
+
+  // error handling endware
+  app.use((err, req, res, next) => {
+    console.error(err);
+    console.error(err.stack);
+    res.status(err.status || 500).send(err.message || 'Internal server error.');
+  });
+};
+
+// start listening (and create a 'server' object representing our server)
+const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`));
+
+// set up our socket control center
+const io = socketio(server);
+require('./socket')(io);
+
+module.exports = { app, socket: io };
+
+>>>>>>> master
 
 const syncDb = () => db.sync();
 
@@ -105,10 +130,16 @@ const syncDb = () => db.sync();
 // It will evaluate false when this module is required by another module - for example,
 // if we wanted to require our app in a test spec
 if (require.main === module) {
+<<<<<<< HEAD
     sessionStore.sync()
         .then(syncDb)
         .then(createApp)
         .then(startListening);
+=======
+  sessionStore.sync()
+    .then(syncDb)
+    .then(createApp);
+>>>>>>> master
 } else {
     createApp();
 }
