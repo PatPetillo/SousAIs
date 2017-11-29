@@ -3,9 +3,9 @@
 
 **Technologies**: Node.js, Express, React, React-Redux, PostgreSQL, Sequelize, AWS Lambda, Heroku (Microservice API)
 
-An *Amazon Alexa* skill that acts as your *personal* **Sous Chef** in the kitchen
+### An **Amazon Alexa** skill that acts as your *personal* **Sous Chef** in the kitchen!
 
-Accompanied by an intergrated Web Application via *https://sousais.herokuapp.com/*
+### Accompanied by an intergrated Web Application via *https://sousais.herokuapp.com/*
 
 ## Prompting Sous through an Amazon Echo will allow you to:
 * Add items to your "fridge" as a user of SousAIs
