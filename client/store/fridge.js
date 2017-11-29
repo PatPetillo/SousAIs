@@ -29,10 +29,9 @@ export const fetchProducts = () => () => {
   axios.get('/api/fridge').catch(console.error);
 };
 
-export const removeItem = itemId => // deletion from browser
-  dispatch =>
-    axios.delete(`/api/fridge/${itemId}`)
-      .catch(err => console.log(err));
+export const removeItem = itemId => () => // deletion from browser
+  axios.delete(`/api/fridge/${itemId}`)
+    .catch(err => console.log(err));
 
 
 /**

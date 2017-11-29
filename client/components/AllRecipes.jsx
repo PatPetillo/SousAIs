@@ -21,9 +21,10 @@ const AllRecipes = (props) => {
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
       {
-        recipes.length ? recipes.map(oneRecipe => (
-          <div key={oneRecipe.image}>
+        recipes.length ? recipes.sort((a, b) => a.missedIngredientCount > b.missedIngredientCount).map(oneRecipe => (
+          <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
+            <p>Missing IngredientCount: {oneRecipe.missedIngredientCount}</p>
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
@@ -44,7 +45,7 @@ const AllRecipes = (props) => {
         : (
           <div>
             <div className="react-loading" >
-              <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
+              <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
             </div>
             <div className="center">Searching for recipes...</div>
           </div>
