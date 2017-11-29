@@ -17,7 +17,7 @@ const SavedRecipes = (props) => {
     <div className="page-content">
       {
         savedRecipe.length ? savedRecipe.map(singleRecipe =>
-          (<div key={singleRecipe.id}>
+          (<div key={singleRecipe.image}>
             <h2>{singleRecipe.name}</h2>
             <div><img className="savedRecipeImage" src={singleRecipe.image} /></div>
             <NavLink to={`/singleRecipe/${singleRecipe.name.split(' ').join('')}`}>
