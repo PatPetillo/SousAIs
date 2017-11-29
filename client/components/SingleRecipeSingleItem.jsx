@@ -9,15 +9,17 @@ const SingleRecipeSingleItem = (props) => {
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <img className="recipe-image" src={recipe.image} />
-          <ol>
+          <h5>Serves: {recipe.servings}</h5>
+          <img className="recipe-image" src={recipe.image} alt={recipe.image} />
+          <h2>Directions</h2>
+          <ol className="single-recipe-directions">
             {
           recipe.steps.split('$$').map(sentence => (
             (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
         }
           </ol>
           <div className="single-recipe-footer">
-            <div className="single-recipe-footer-item">
+            <div className="single-recipe-footer-ingredients">
               <h2>Ingredients</h2>
               <div>
                 {
@@ -26,7 +28,7 @@ const SingleRecipeSingleItem = (props) => {
                 }
               </div>
             </div>
-            <div className="single-recipe-footer-item">
+            <div className="single-recipe-footer-nutrition">
               <h2>Nutritional Value</h2>
               <div>(per serving)</div>
               <div>calories: {recipe.calories}</div>
@@ -40,7 +42,7 @@ const SingleRecipeSingleItem = (props) => {
           </div>
         </div>
     :
-        <div>recipe doest not exist yet</div>
+        <div>go to recipes page to load a single recipe</div>
     }
     </div>
   );

@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
     .then((foundItems) => {
       if (foundItems) {
         const ingredients = foundItems.map(x => x.name);
-        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=12&ranking=2`, {
+        return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=2&ranking=2`, {
           headers: {
             'X-Mashape-Key': key,
             Accept: 'application/json',
