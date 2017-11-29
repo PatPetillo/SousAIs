@@ -6,7 +6,6 @@ const {
     RecipeUser,
 } = require('../db/models');
 const axios = require('axios');
-const key = require('../../secrets').spoon;
 const { socket } = require('../');
 
 module.exports = router;
@@ -31,7 +30,6 @@ router.get('/', (req, res, next) => {
             }
         })
         .then((apiRes) => {
-            // console.log(apiRes, 'apiRes');
             const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
             return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
                 headers: {
@@ -41,8 +39,6 @@ router.get('/', (req, res, next) => {
             });
         })
         .then((rcps) => {
-            // const arrToUpdate = [];
-            // console.log(rcps.data[0].nutrition.nutrients);
             const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
             const info = meals.map(meal => ({
                 name: meal.title,
@@ -216,6 +212,7 @@ router.get('/alexa', (req, res, next) => { // test only most merge
                                 cr: chosen.id,
                                 crSteps: chosen.steps,
                             });
+                            socket.emit('alexa_get_one_recipe', chosen);
                             res.json(chosen);
                         });
                 });

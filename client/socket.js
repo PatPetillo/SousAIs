@@ -28,8 +28,11 @@ socket.on('get_recipes', (recipes) => {
 });
 
 socket.on('get_single_item_recipes', (recipes) => {
-  console.log(recipes);
   store.dispatch(getSingleItemRecipe(recipes));
+});
+
+socket.on('alexa_get_one_recipe', (recipe) => {
+  history.push(`/singleRecipe/${recipe.name}`);
 });
 
 export default socket;
