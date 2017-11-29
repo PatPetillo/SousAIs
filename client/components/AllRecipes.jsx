@@ -21,9 +21,10 @@ const AllRecipes = (props) => {
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
       {
-        recipes.length ? recipes.map(oneRecipe => (
+        recipes.length ? recipes.sort((a, b) => a.missedIngredientCount > b.missedIngredientCount).map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
+            <p>Missing IngredientCount: {oneRecipe.missedIngredientCount}</p>
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
