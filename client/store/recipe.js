@@ -64,12 +64,9 @@ export const fetchSavedRecipe = recipes =>
         dispatch(getSavedRecipe(res.data)))
       .catch(err => console.log(err));
 
-export const fetchRecipe = () =>
-  dispatch =>
-    axios.get('/api/recipe')
-      .then(res =>
-        dispatch(getRecipe(res.data)))
-      .catch(err => console.log(err));
+export const fetchRecipe = () => () =>
+  axios.get('/api/recipe')
+    .catch(err => console.log(err));
 /**
  * Reducer
  */

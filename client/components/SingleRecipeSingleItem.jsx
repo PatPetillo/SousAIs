@@ -3,28 +3,46 @@ import { connect } from 'react-redux';
 
 const SingleRecipeSingleItem = (props) => {
   const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
-  console.log('Recipe', recipe,'props',props);
+  // console.log('Recipe', recipe, 'props', props);
   return (
     <div className="page-content">
       { recipe ?
         <div>
           <h2> {recipe.name} </h2>
-          <img className="recipe-image" src={recipe.image} />
-          <ol>
+          <h5>Serves: {recipe.servings}</h5>
+          <img className="recipe-image" src={recipe.image} alt={recipe.image} />
+          <h2>Directions</h2>
+          <ol className="single-recipe-directions">
             {
           recipe.steps.split('$$').map(sentence => (
             (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
         }
           </ol>
-          <h2>Nutritional Value</h2>
-          <div>calories: {recipe.calories}</div>
-          <div>fat: {recipe.fat}</div>
-          <div>carbohydrates: {recipe.carbohydrates}</div>
-          <div>sugar: {recipe.sugar}</div>
-          <div>sodium: {recipe.sodium}</div>
+          <div className="single-recipe-footer">
+            <div className="single-recipe-footer-ingredients">
+              <h2>Ingredients</h2>
+              <div>
+                {
+                recipe.ingredientAmount.split('$$').map(amount => (
+                  (amount.length) ? <div key={amount}> {amount}</div> : null))
+                }
+              </div>
+            </div>
+            <div className="single-recipe-footer-nutrition">
+              <h2>Nutritional Value</h2>
+              <div>(per serving)</div>
+              <div>calories: {recipe.calories}</div>
+              <div>total fat: {recipe.fat}</div>
+              <div>carbohydrates: {recipe.carbohydrates}</div>
+              <div>cholesterol: {recipe.cholesterol}</div>
+              <div>sugar: {recipe.sugar}</div>
+              <div>sodium: {recipe.sodium}</div>
+              <div>protein: {recipe.protein}</div>
+            </div>
+          </div>
         </div>
     :
-        <div>recipe doest not exist yet</div>
+        <div>go to recipes page to load a single recipe</div>
     }
     </div>
   );
