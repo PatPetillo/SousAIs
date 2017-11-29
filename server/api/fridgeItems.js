@@ -23,8 +23,8 @@ router.post('/', (req, res, next) => {
   let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': nutrixApp,
-      'x-app-key': nutrix,
+      'x-app-id': process.env.NUTRIX_ID,
+      'x-app-key': process.env.NUTRIX_KEY,
     },
   })
     .then((response) => {
@@ -56,6 +56,7 @@ router.post('/', (req, res, next) => {
     })
     .catch(next);
 });
+
 
 
 router.delete('/:itemId', (req, res, next) => {
