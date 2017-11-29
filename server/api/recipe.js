@@ -23,7 +23,6 @@ router.get('/searchRecipe/:info', (req, res, next) => {
       Accept: 'application/json',
     },
   })
-  .then(apiRes=>)
 });
 
 router.get('/', (req, res, next) => {
