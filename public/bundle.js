@@ -12856,7 +12856,8 @@ socket.on('get_single_item_recipes', function (recipes) {
 
 socket.on('alexa_get_one_recipe', function (recipe) {
     console.log('ALEXA', recipe);
-    _history2.default.push('/singleRecipe/' + recipe.name.replace(' ', '') + '/');
+    var name = recipe.name.replace(' ', '');
+    _history2.default.push('/singleRecipe/' + name);
 });
 
 exports.default = socket;
