@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
       return user.getFridgeItems();
     })
     .then((foundItems) => {
-      if (foundItems) {
+      if (foundItems.length) {
         const ingredients = foundItems.map(x => x.name);
         return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=${request}&ranking=2`, {
           headers: {
@@ -28,14 +28,15 @@ router.get('/', (req, res, next) => {
             Accept: 'application/json',
           },
         });
+      } else {
+        throw new Error('you have an empty fridge');
       }
     })
     .then((apiRes) => {
-      // console.log(apiRes, 'apiRes');
       apiRes.data.forEach((el) => {
         missingIng[el.id] = el.missedIngredientCount;
       });
-      // console.log(missingIng);
+
       const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
         headers: {
@@ -45,8 +46,6 @@ router.get('/', (req, res, next) => {
       });
     })
     .then((rcps) => {
-      // const arrToUpdate = [];
-      console.log(rcps.data[0].nutrition.ingredients);
       const meals = rcps.data.filter(recipes => !!recipes.analyzedInstructions.length);
       const info = meals.map(meal => ({
         name: meal.title,
@@ -94,7 +93,10 @@ router.get('/', (req, res, next) => {
           }
         }));
     })
-    .catch(next);
+    .catch(() => {
+      socket.emit('get_recipes', [{ name: 'You have no items in your fridge!' }]);
+      res.json([{ name: 'You have no items in your fridge!' }]);
+    });
 });
 
 router.get('/savedRecipes', (req, res, next) => {
