@@ -6,4 +6,3 @@ const FoundRecipe = () => {
 };
 
 export default FoundRecipe;
-
