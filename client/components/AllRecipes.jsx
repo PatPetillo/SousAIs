@@ -26,7 +26,7 @@ const AllRecipes = (props) => {
           .map(oneRecipe => (
             <div key={oneRecipe.name}>
               <h2>{oneRecipe.name}</h2>
-              {(oneRecipe.name === 'You have no items in your fridge.') ? null :
+              {(oneRecipe.name === 'You have no items in your fridge!') ? null :
               <div>
                 <p>Missing IngredientCount: {oneRecipe.missedIngredientCount}</p>
                 <div>
