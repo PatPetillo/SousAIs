@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { WelcomeScreenCarousel } from './';
 
 const descriptions = [
@@ -19,7 +19,6 @@ const WelcomeScreen = () => (
         </div>
       </div>
     </div>
-
     <div className="motto bg-secondary"> <h1> Cooking - reinvented </h1> </div>
 
     <div className="carousel-info">
