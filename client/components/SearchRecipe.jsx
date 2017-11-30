@@ -7,6 +7,7 @@ class SearchRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      type: '',
       cuisine: '',
       diet: '',
       exclude: '',
@@ -23,17 +24,20 @@ class SearchRecipe extends Component {
   }
   submitButton(e) {
     e.preventDefault();
-    const { cuisine, diet, exclude, intolerances } = this.state;
-    const info = `cuisine:${cuisine}/diet:${diet}/exclude:${exclude}/intolerances:${intolerances}`;
-    console.log(info);
-    this.props.getSearchRecipe(info);
+    // const {
+    //   type, cuisine, diet, exclude, intolerances,
+    // } = this.state;
+    // const info = `${type}-${cuisine}-${diet}-${exclude}-${intolerances}`;
+    // console.log(info);
+    this.props.getSearchRecipe(this.state);
   }
   render() {
     return (
       <div className="page-content" onChange={this.inputChange} onSubmit={this.submitButton}>
         <form>
-          <label>Cuisine: <input name="cuisine" /> </label>
-          <label>Diet: <input name="diet" /> </label>
+          <label>Tyoe: <input name="type" placeholder="burger,fried chicken,pasta..etc" /> </label>
+          <label>Cuisine: <input name="cuisine" placeholder="chinese,thai,italian..etc" /> </label>
+          <label>Diet: <input name="diet" placeholder="" /> </label>
           <label>Exclude Ingredients <input name="exclude" /> </label>
           <label>Intolerances: <input name="intolerances" /> </label>
           <input type="submit" value="Submit" />
