@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const SingleRecipeSingleItem = (props) => {
-  const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') == props.match.params.recipename)[0];
-  // console.log('Recipe', recipe, 'props', props);
+  const recipe = props.recipe.singleItemRecipeList.filter(singlerecipe => singlerecipe.name.split(' ').join('') === props.match.params.recipename)[0];
   return (
     <div className="page-content">
       { recipe ?
@@ -51,3 +51,8 @@ const SingleRecipeSingleItem = (props) => {
 const mapState = ({ recipe }) => ({ recipe });
 const mapDispatch = {};
 export default connect(mapState, mapDispatch)(SingleRecipeSingleItem);
+
+SingleRecipeSingleItem.propTypes = {
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
