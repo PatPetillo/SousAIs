@@ -82,7 +82,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_RECIPE:
-      return Object.assign({}, state, { foundRecipes: action.recipes });
+      return Object.assign({}, state, { singleItemRecipeList: action.recipes });
     case CLEAR_SINGLE_ITEM_RECIPE:
       return Object.assign({}, state, { singleItemRecipes: action.recipes });
     case GET_SINGLE_ITEM_RECIPE:

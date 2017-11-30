@@ -4,17 +4,17 @@ import { NavLink } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
 const FoundRecipe = (props) => {
-  const { foundRecipes } = props.recipe;
+  const { singleItemRecipeList } = props.recipe;
   return (
     <div className="page-content">
       {
-        foundRecipes.length ? foundRecipes.map(oneRecipe => (
+        singleItemRecipeList.length ? singleItemRecipeList.map(oneRecipe => (
           <div key={oneRecipe.id}>
             <h2>{oneRecipe.name}</h2>
             <div>
               <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
             </div>
-            <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
+            <NavLink to={`/${oneRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
           </div>))

@@ -24,11 +24,6 @@ class SearchRecipe extends Component {
   }
   submitButton(e) {
     e.preventDefault();
-    // const {
-    //   type, cuisine, diet, exclude, intolerances,
-    // } = this.state;
-    // const info = `${type}-${cuisine}-${diet}-${exclude}-${intolerances}`;
-    // console.log(info);
     this.props.getSearchRecipe(this.state);
   }
   render() {

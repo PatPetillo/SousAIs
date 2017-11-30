@@ -63,7 +63,7 @@ router.post('/searchRecipe', (req, res, next) => {
 router.get('/', (req, res, next) => {
   let user;
   const missingIng = {};
-  const request = 2; // change on production
+  const request = 10; // change on production
   User.findById(req.session.passport.user)
     .then((founduser) => {
       user = founduser;
