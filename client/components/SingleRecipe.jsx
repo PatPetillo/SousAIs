@@ -19,23 +19,23 @@ const SingleRecipe = (props) => {
             </ul>
           </div>
 
-          <div className="single-recipe-footer">
+          <div className="single-recipe-details">
             <img className="recipe-image" src={recipe.image} alt={recipe.name} />
-            <div className="single-recipe-footer-nutrition">
+            <div className="single-recipe-nutrition">
               <h2>Nutritional Value</h2>
               <div>(per serving)</div>
-              <div>calories: {recipe.calories}</div>
-              <div>total fat: {recipe.fat}</div>
-              <div>carbohydrates: {recipe.carbohydrates}</div>
-              <div>cholesterol: {recipe.cholesterol}</div>
-              <div>sugar: {recipe.sugar}</div>
-              <div>sodium: {recipe.sodium}</div>
-              <div>protein: {recipe.protein}</div>
+              <div>Calories: <span className="green-words">{recipe.calories}</span></div>
+              <div>Total Fat: <span className="green-words">{recipe.fat}</span></div>
+              <div>Carbohydrates: <span className="green-words">{recipe.carbohydrates}</span></div>
+              <div>Cholesterol: <span className="green-words">{recipe.cholesterol}</span></div>
+              <div>Sugar: <span className="green-words">{recipe.sugar}</span></div>
+              <div>Sodium: <span className="green-words">{recipe.sodium}</span></div>
+              <div>Protein: <span className="green-words">{recipe.protein}</span></div>
             </div>
           </div>
 
           <div className="single-recipe-details">
-            <div className="single-recipe-footer-ingredients">
+            <div className="single-recipe-ingredients">
               <h2>Ingredients</h2>
               <div>
                 {
@@ -60,7 +60,7 @@ const SingleRecipe = (props) => {
           <div className="react-loading" >
             <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
           </div>
-          <div>loading...</div>
+          <div>loading</div>
         </div>
     }
     </div>

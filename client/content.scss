@@ -62,6 +62,10 @@
   }
 }
 
+.green-words {
+  color: rgb(34,139,34);
+}
+
 .key {
   height: 1.5em;
   width: 1.5em;
@@ -164,16 +168,10 @@
   }
 }
 
-.savedRecipes { /* what is this affecting? */
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .single-recipe-details {
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .single-recipe-directions {
@@ -182,26 +180,21 @@
   }
 }
 
-.single-recipe-footer {
-  display: flex;
-  justify-content: center;
-}
-
-.single-recipe-footer-ingredients {
+.single-recipe-ingredients {
   div {
     color: rgb(51, 124, 108);
   }
 }
 
-.single-recipe-footer-nutrition {
+.single-recipe-nutrition {
   div {
+    text-align: left;
     color: rgb(138, 44, 44); 
   }
 }
 
 .single-recipe-page {
   width: 70%;
-  background-color: rgba(0, 0, 5, 0.1); 
   margin: auto;
 }
 

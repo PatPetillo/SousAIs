@@ -26,7 +26,9 @@ const AllRecipes = (props) => {
           .map(oneRecipe => (
             <div key={oneRecipe.name}>
               <h2>{oneRecipe.name}</h2>
-              {(oneRecipe.name === 'You have no items in your fridge!') ? null :
+              {(oneRecipe.name === 'You have no items in your fridge!')
+              ? <NavLink to="/addItem" className="btn btn-primary">Add An Item</NavLink>
+              :
               <div>
                 <p>Missing IngredientCount: {oneRecipe.missedIngredientCount}</p>
                 <div>
