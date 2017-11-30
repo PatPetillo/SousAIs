@@ -16,3 +16,5 @@ export { default as SavedRecipes } from './SavedRecipe';
 export { default as AllRecipes } from './AllRecipes';
 export { default as SingleRecipe } from './SingleRecipe';
 export { default as SingleRecipeSingleItem } from './SingleRecipeSingleItem';
+export { default as SearchRecipe } from './SearchRecipe';
+export { default as FoundRecipe } from './FoundRecipe';

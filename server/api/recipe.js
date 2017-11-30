@@ -5,6 +5,7 @@ const {
 const axios = require('axios');
 const key = require('../../secrets').spoon;
 const { socket } = require('../');
+const chalk = require('chalk');
 
 module.exports = router;
 
@@ -104,21 +105,31 @@ router.get('/savedRecipes', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/saveRecipe/:recipeId', (req, res, next) => {
-  const id = Number(req.params.recipeId);
-  User.findById(req.session.passport.user)
-    .then((foundUser) => {
-      RecipeUser.update(
-        { saved: true },
-        {
-          where: {
-            userId: foundUser.id,
-            recipeId: id,
-          },
-        },
-      );
+router.put('/saveRecipe/:recipeName', (req, res, next) => {
+  let name = req.params.recipeName;
+  name = name.split('-').join(' ');
+  let recipeId;
+  Recipe.findOne({
+    where: {
+      name,
+    },
+  })
+    .then((foundRecipe) => {
+      recipeId = foundRecipe.id;
+      return User.findById(req.session.passport.user)
+        .then((foundUser) => {
+          RecipeUser.update(
+            { saved: true },
+            {
+              where: {
+                userId: foundUser.id,
+                recipeId,
+              },
+            },
+          )
+            .then(() => res.json(`${name} has been saved`));
+        });
     })
-    .then(() => res.json(`Recipe with ${id} was saved.`))
     .catch(next);
 });
 
