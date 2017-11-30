@@ -1,214 +1,204 @@
+#alexa-help {
+    li {
+        text-align: center;
+        list-style: none
+    }
+}
+
 #amazon {
-  background-image: url('/auth/amazon.png');
-  height: 46px;
-  width: 176px;
-  margin: 10px;
+    background-image: url('/auth/amazon.png');
+    height: 46px;
+    width: 176px;
+    margin: 10px;
 }
 
 #google {
-  background-image: url('/auth/btn_google_signin_light_normal_web.png');
-  height: 46px;
-  width: 191px;
+    background-image: url('/auth/btn_google_signin_light_normal_web.png');
+    height: 46px;
+    width: 191px;
 }
 
 .single-recipe-footer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .auth-form {
-  margin-top: 10em!important;
-  background-color: #fff;
-  border-radius: 5em 5% 35em 5em;
-  padding: 5vw;
+    margin-top: 10em!important;
+    background-color: #fff;
+    border-radius: 5em 5% 35em 5em;
+    padding: 5vw;
 }
 
 .box {
-  width:500em;
-  height:500em;
+    width: 500em;
+    height: 500em;
 }
 
 .carousel-img {
-  width: 100%;
-  height: 60vh;
+    width: 100%;
+    height: 60vh;
 }
 
-.center{
-  text-align: center;
-  margin-top : 3%;
-  margin-bottom: 2%;
+.center {
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 2%;
 }
 
 .disabled-btn {
-  background: rgba(15,180,231,1);
-  color: #fff;
+    background: rgba(15, 180, 231, 1);
+    color: #fff;
 }
 
-.flex-container{
-  display: flex;
-  flex-direction: row;
-  overflow: auto;
-  flex-wrap: wrap;
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    flex-wrap: wrap;
 }
 
-.fridge-items{
-  margin: 10px;
-  text-align: center;
-  font-size: 1.5em;
-  img{
-  width: 200px;
-  height: 200px;
-  }
+.fridge-items {
+    margin: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    img {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 .key {
-  height: 1.5em;
-  width: 1.5em;
+    height: 1.5em;
+    width: 1.5em;
 }
 
 .logo {
-  padding-top: 0.3em;
-  height: 5em;
-  width: 5em;
+    padding-top: 0.3em;
+    height: 5em;
+    width: 5em;
 }
 
 .motto {
-  background: linear-gradient(to right, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%);
-  text-align: center;
-  color: rgb(255, 255, 255);
-  h1 {
-    margin: 0;
-    padding: 0.3em;
-  }
+    background: linear-gradient(to right, rgba(125, 255, 125, 1) 0%, rgba(15, 180, 231, 1) 80%);
+    text-align: center;
+    color: rgb(255, 255, 255);
+    h1 {
+        margin: 0;
+        padding: 0.3em;
+    }
 }
 
 .navbar {
-  height: 60px;
-  position: fixed;
-  width: 100%;
-  background: transparent!important;
-  font-size: 1.2em;
-  top: 0;
-  z-index: 10000;
-  transition: 0.5s;
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    background: transparent!important;
+    font-size: 1.2em;
+    top: 0;
+    z-index: 10000;
+    transition: 0.5s;
 }
 
 .navbar-brand {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 .nav-scrolled {
-  // background-color: rgba(130,10,0,1)!important;
-  background-color: black!important;
+    // background-color: rgba(130,10,0,1)!important;
+    background-color: black!important;
 }
 
 .page-content {
-  text-align: center;
-  padding: 2em;
-  margin: 8em;
-  background: #fff;
-  border-radius: 1em 1em 1em 1em;
-  li {
-    text-align: left;
-  }
-  * {
-    padding: 0.4em;
-  }
+    text-align: center;
+    padding: 2em;
+    margin: 8em;
+    background: #fff;
+    border-radius: 1em 1em 1em 1em;
+    li {
+        text-align: left;
+    }
+    * {
+        padding: 0.4em;
+    }
 }
 
 .page-content.addItemForm {
-  background: linear-gradient(to right, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%);
+    background: linear-gradient(to right, rgba(125, 255, 125, 1) 0%, rgba(15, 180, 231, 1) 80%);
 }
 
 .react-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 
 .red-words {
-  color: rgb(175, 8, 8);
-  text-shadow:
-  -1px -1px 0 #fff,
-  1px -1px 0 #fff,
-  -1px 1px 0 #fff,
-  1px 1px 0 #fff;
+    color: rgb(175, 8, 8);
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
-.singleItem{
-  text-align: center;
-  p{
-    color: black;
-    font-size: 2em;
-  }
-  img{
-    height: 300px;
-    width: 300px;
-  }
-  a{
-    color:rgba(130,30,100,1);;
-  }
+.singleItem {
+    text-align: center;
+    p {
+        color: black;
+        font-size: 2em;
+    }
+    img {
+        height: 300px;
+        width: 300px;
+    }
+    a {
+        color: rgba(130, 30, 100, 1);
+        ;
+    }
 }
 
-.savedRecipes { /* what is this affecting? */
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.savedRecipes {
+    /* what is this affecting? */
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .welcome-page {
-  height: 100%;
-  .banner{
-    height: 50vh;
-  }
-  
-  .carousel-info {
-    display: flex;
-    max-height: 60vh;
-    width: 100%;
-    flex: 1;
-
-    .carousel-container {
-      width: 55%;
-      height: 60vh;
+    height: 100%;
+    .banner {
+        height: 50vh;
     }
-
-    .how-it-works {
-      display: flex;
-      width: 60%;
-      height: 60vh;
-      text-align: center;
-      background-image: url('/imgs/breakfast-bg.jpg');
-      background-size: 100%;
-      background-position-y: bottom;
-      justify-content: center;
-      align-items: center;
-
-      .description-head {
-        color: rgb(133, 44, 44);
-        text-shadow:
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff;
-      }
-
-      .descriptions {
+    .carousel-info {
         display: flex;
-        * {
-          color: #fff;
-          text-shadow:
-          -1px -1px 0 rgb(0,0,0),
-          1px -1px 0 rgb(0,0,0),
-          -1px 1px 0 rgb(0,0,0),
-          1px 1px 0 rgb(0,0,0);
-          padding: 2em;
+        max-height: 60vh;
+        width: 100%;
+        flex: 1;
+        .carousel-container {
+            width: 55%;
+            height: 60vh;
         }
-      }
+        .how-it-works {
+            display: flex;
+            width: 60%;
+            height: 60vh;
+            text-align: center;
+            background-image: url('/imgs/breakfast-bg.jpg');
+            background-size: 100%;
+            background-position-y: bottom;
+            justify-content: center;
+            align-items: center;
+            .description-head {
+                color: rgb(133, 44, 44);
+                text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+            }
+            .descriptions {
+                display: flex;
+                * {
+                    color: #fff;
+                    text-shadow: -1px -1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0), -1px 1px 0 rgb(0, 0, 0), 1px 1px 0 rgb(0, 0, 0);
+                    padding: 2em;
+                }
+            }
+        }
     }
-  }
 }
-

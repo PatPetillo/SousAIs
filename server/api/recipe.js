@@ -141,7 +141,7 @@ router.put('/deleteRecipe/:recipeId', (req, res, next) => {
                     userId: foundUser.id,
                     recipeId: id,
                 },
-            }, );
+            });
         })
         .then(() => res.json(`Recipe with ${id} was unsaved.`))
         .catch(next);

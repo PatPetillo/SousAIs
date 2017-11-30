@@ -16,6 +16,9 @@ const Navbar = props => (
         <li className="nav-item">
           <NavLink to="/myFridge" className="nav-link" >My Fridge</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink to="/alexaHelp" className="nav-link" >Using Alexa</NavLink>
+        </li>
       </ul>
       { !props.isLoggedIn &&
         <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
