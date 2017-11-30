@@ -27,8 +27,9 @@ const searchRecipe = recipes => ({ type: SEARCH_RECIPE, recipes });
  */
 export const getSearchRecipe = info =>
   dispatch =>
-    axios.get(`/api/recipe/searchRecipe/${info}`)
+    axios.post('/api/recipe/searchRecipe', info)
       .then(res => dispatch(searchRecipe(res.data)))
+      .then(() => history.push('/foundRecipe'))
       .catch(err => console.log(err));
 
 export const clearSingleItemRecipeFromStore = () =>
