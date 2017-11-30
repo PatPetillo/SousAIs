@@ -1,5 +1,4 @@
 import axios from 'axios';
-import history from '../history';
 
 /**
  * ACTION TYPES
@@ -11,10 +10,10 @@ const DELETE_SAVED_RECIPE = 'DELETE_SAVED_RECIPE';
 const GET_SINGLE_ITEM_RECIPE = 'GET_SINGLE_ITEM_RECIPE';
 const CLEAR_SINGLE_ITEM_RECIPE = 'CLEAR_SINGLE_ITEM_RECIPE';
 const SEARCH_RECIPE = 'SEARCH_RECIPE';
+
 /**
  * ACTION CREATORS
  */
-
 export const getRecipe = recipes => ({ type: GET_RECIPE, recipes });
 const getSavedRecipe = recipes => ({ type: GET_SAVED_RECIPE, recipes });
 const saveRecipe = recipe => ({ type: SAVE_RECIPE, recipe });
