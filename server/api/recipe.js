@@ -18,7 +18,7 @@ router.post('/searchRecipe', (req, res, next) => {
   if (diet)diet = `diet=${diet}&`;
   if (exclude) exclude = `excludeIngredients=${exclude}&`;
   if (intolerances) intolerances = `intolerances=${intolerances}&`;
-  axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?${cuisine}${diet}instructionsRequired=true${intolerances}limitLicense=false&number=2&offset=0&${type}`, {
+  axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?${cuisine}${diet}instructionsRequired=true${intolerances}limitLicense=false&number=10&offset=0&${type}`, {
     headers: {
       'X-Mashape-Key': key,
       Accept: 'application/json',
