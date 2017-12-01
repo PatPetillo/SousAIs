@@ -49,12 +49,14 @@ const SingleRecipe = (props) => {
             </div>
             <div className="single-recipe-directions">
               <h2>Directions</h2>
-              <ol className="single-recipe-steps">
-                {
-              recipe.steps.split('$$').map(sentence => (
-                (sentence.length) ? <li key={sentence}> {sentence}</li> : null))
-                }
-              </ol>
+              <div className="single-recipe-steps">
+                <ul className="single-recipe-steps">
+                  {
+                  recipe.steps.split('$$').map((sentence, idx) => (
+                  (sentence.length) ? <li key={sentence}>{`${idx + 1}. ${sentence}`}</li> : null))
+                  }
+                </ul>
+              </div>
             </div>
           </div>
         </div>
