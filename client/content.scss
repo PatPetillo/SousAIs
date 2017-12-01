@@ -187,15 +187,26 @@
 }
 
 .single-recipe-nutrition {
+  // margin-top: -3%;
+  padding: 0;
+  h2 {
+    padding: 0;
+  }
+
   div {
+    // margin-top: -18%;
     text-align: left;
     color: rgb(138, 44, 44); 
   }
 }
 
 .single-recipe-page {
-  width: 70%;
+  width: 71%;
   margin: auto;
+}
+
+.small-words {
+  font-size: 0.4em;
 }
 
 .spoonacular-rating {
