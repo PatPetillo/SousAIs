@@ -12850,10 +12850,10 @@ var Routes = function (_Component) {
             null,
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _components.WelcomeScreen }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/signIn', component: _components.Login }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/alexaHelp', component: _components.AlexaHelp }),
             isLoggedIn && _react2.default.createElement(
               _reactRouterDom.Switch,
               null,
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/alexaHelp', component: _components.AlexaHelp }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/myFridge', component: _components.UserFridge }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/savedRecipes', component: _components.SavedRecipes }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/singleRecipe/:recipename/', component: _components.SingleRecipe }),

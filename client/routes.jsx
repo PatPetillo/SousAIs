@@ -23,10 +23,10 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/" component={WelcomeScreen} />
             <Route path="/signIn" component={Login} />
+            <Route path="/alexaHelp" component={AlexaHelp} />
             {
               isLoggedIn &&
               <Switch>
-                <Route path="/alexaHelp" component={AlexaHelp} />
                 <Route path="/myFridge" component={UserFridge} />
                 <Route path="/savedRecipes" component={SavedRecipes} />
                 <Route path="/singleRecipe/:recipename/" component={SingleRecipe} />
