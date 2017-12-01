@@ -5,12 +5,16 @@ import ReactLoading from 'react-loading';
 
 const SingleRecipe = (props) => {
   const recipe = props.recipe.recipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') === props.match.params.recipename)[0];
+  function greaterThanOne(num) {
+    if (num > 1) return '-one';
+    return '-more';
+  }
   return (
     <div className="page-content">
       { recipe ?
         <div className="single-recipe-page">
           <h2> {recipe.name} </h2>
-          <h5>Serves: {recipe.servings}</h5>
+          <h5 className={`serves${greaterThanOne(recipe.servings)}`}>Serves: {recipe.servings}</h5>
           <div key={recipe.name}>
             <ul className="recipe-header">
               <li className="ready-in">ready in {recipe.readyInMinutes} minutes</li>
@@ -22,8 +26,7 @@ const SingleRecipe = (props) => {
           <div className="single-recipe-details">
             <img className="recipe-image" src={recipe.image} alt={recipe.name} />
             <div className="single-recipe-nutrition">
-              <h2>Nutritional Value</h2>
-              <div>(per serving)</div>
+              <h2>Nutritional Value<span className="small-words">(per serving)</span></h2>
               <div>Calories: <span className="green-words">{recipe.calories}</span></div>
               <div>Total Fat: <span className="green-words">{recipe.fat}</span></div>
               <div>Carbohydrates: <span className="green-words">{recipe.carbohydrates}</span></div>
