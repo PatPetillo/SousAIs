@@ -31,7 +31,7 @@ class UserFridge extends Component {
                     <img src={item.image} alt={item.name} />
                   </div>
                 </NavLink>
-                <button onClick={() => handleClick(item.id)}>Remove Item</button>
+                <button className="btn btn-danger" onClick={() => handleClick(item.id)}>Remove Item</button>
               </div>
             ))
             : <h2 className="mx-auto"> Your fridge is empty! </h2>

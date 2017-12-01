@@ -17,7 +17,7 @@ const SavedRecipes = (props) => {
             <NavLink to={`/singleRecipe/${singleRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
-            <button className="btn btn-primary my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
+            <button className="btn btn-danger my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Unsave This Recipe</button>
           </div>))
           : <h1>You don't have any saved recipe yet!</h1>
       }
