@@ -187,14 +187,12 @@
 }
 
 .single-recipe-nutrition {
-  // margin-top: -3%;
   padding: 0;
   h2 {
     padding: 0;
   }
 
   div {
-    // margin-top: -18%;
     text-align: left;
     color: rgb(138, 44, 44); 
   }
@@ -203,6 +201,13 @@
 .single-recipe-page {
   width: 71%;
   margin: auto;
+}
+
+.single-recipe-steps {
+  li {
+    list-style: none;
+  }
+  text-align: center;
 }
 
 .small-words {

@@ -30,7 +30,10 @@ const AllRecipes = (props) => {
               ? <NavLink to="/addItem" className="btn btn-primary">Add An Item</NavLink>
               :
               <div>
-                <p>Missing IngredientCount: {oneRecipe.missedIngredientCount}</p>
+                {oneRecipe.missedIngredientCount!==0 ?
+                <p>Missing Ingredients: {oneRecipe.missedIngredientCount}</p>
+                :<p></p>
+                }
                 <div>
                   <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
                 </div>
