@@ -58,7 +58,6 @@ router.post('/', (req, res, next) => {
 });
 
 
-
 router.delete('/:itemId', (req, res, next) => {
   const itemId = Number(req.params.itemId);
   User.findById(req.session.passport.user)

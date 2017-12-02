@@ -10,6 +10,7 @@ export { default as WelcomeScreenCarousel } from './Carousel';
 export { default as UserHome } from './userHome';
 export { default as UserFridge } from './UserFridge';
 export { Login, Signup } from './AuthForm';
+export { default as SignUp } from './SignUp';
 export { default as SingleItem } from './SingleItem';
 export { default as AddItem } from './AddItem';
 export { default as SavedRecipes } from './SavedRecipe';

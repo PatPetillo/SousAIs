@@ -27,25 +27,25 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-    User.create(req.body)
-        .then((user) => {
-            req.login(user, err => (err ? next(err) :
-                Fridge.findCreateFind({ where: { userId: user.id } })
-                .then(foundCart =>
-                    res.json(foundCart))));
-        })
-        .catch((err) => {
-            if (err.name === 'SequelizeUniqueConstraintError') {
-                res.status(401).send('User already exists');
-            } else {
-                next(err);
-            }
-        });
+  let createdUser;
+  User.create(req.body)
+    .then((user) => {
+      createdUser = user;
+      req.login(user, err => (err ? next(err) :
+        res.json(createdUser)));
+    })
+    .catch((err) => {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        res.status(401).send('User already exists');
+      } else {
+        next(err);
+      }
+    });
 });
 
 router.post('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+  req.logout();
+  res.redirect('/');
 });
 
 router.get('/me', (req, res) => {

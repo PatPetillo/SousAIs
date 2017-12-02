@@ -28,6 +28,10 @@ const Navbar = props => (
         <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/" onClick={props.logOut}>
           <img className="key" src="/icons/key-25.svg" alt="sign-out" /> Sign Out
         </NavLink> }
+      {!props.isLoggedIn &&
+        <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signUp">
+       Sign Up
+        </NavLink> }
     </div>
   </nav>
 );
