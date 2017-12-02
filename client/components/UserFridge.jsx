@@ -22,17 +22,20 @@ class UserFridge extends Component {
           <NavLink to="/addItem" className="btn btn-primary">Add An Item</NavLink>
         </div>
         <div className="container flex-container">
-          {fridge.length && fridge.map(item => (
-            <div key={item.id}>
-              <NavLink to={`/singleItem/${item.id}`} key={item.name}>
-                <div className="fridge-items">
-                  <p>{item.name.toUpperCase()}</p>
-                  <img src={item.image} alt={item.name} />
-                </div>
-              </NavLink>
-              <button onClick={() => handleClick(item.id)}>Remove Item</button>
-            </div>
-          ))}
+          {
+            fridge.length ? fridge.map(item => (
+              <div key={item.name}>
+                <NavLink to={`/singleItem/${item.id}`} key={item.name}>
+                  <div className="fridge-items">
+                    <p>{item.name.toUpperCase()}</p>
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                </NavLink>
+                <button className="btn btn-danger" onClick={() => handleClick(item.id)}>Remove Item</button>
+              </div>
+            ))
+            : <h2 className="mx-auto"> Your fridge is empty! </h2>
+          }
         </div>
       </div>
     );

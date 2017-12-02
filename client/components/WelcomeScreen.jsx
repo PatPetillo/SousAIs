@@ -22,7 +22,6 @@ const WelcomeScreen = () => (
         </div>
       </div>
     </div>
-
     <div className="motto bg-secondary"> <h1> Cooking - reinvented </h1> </div>
 
     <div className="carousel-info">

@@ -29,7 +29,7 @@ const AuthForm = (props) => {
               </div>
               {error && error.response && <div> {error.response.data} </div>}
             </form>
-            <button id="google">
+            {/* <button id="google">
               <a href="/auth/google">{}</a>
             </button>
             <button
@@ -42,7 +42,7 @@ const AuthForm = (props) => {
             }}
             >
               <a href="/auth/amazon">{}</a>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

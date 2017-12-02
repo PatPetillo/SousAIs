@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './history';
-import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe, SingleRecipeSingleItem, AlexaHelp } from './components';
+import { Main, Login, WelcomeScreen, UserHome, UserFridge, SingleItem, AddItem, SavedRecipes, AllRecipes, SingleRecipe, SingleRecipeSingleItem, AlexaHelp, SearchRecipe, FoundRecipe  } from './components';
 import { fetchSavedRecipe, fetchProducts, fetchRecipe, me } from './store';
 
 /**
@@ -24,6 +24,8 @@ class Routes extends Component {
             <Route exact path="/" component={WelcomeScreen} />
             <Route path="/signIn" component={Login} />
             <Route path="/alexaHelp" component={AlexaHelp} />
+            <Route path="/searchRecipe" component={SearchRecipe} />
+            <Route path="/foundRecipe" component={FoundRecipe} />
             {
               isLoggedIn &&
               <Switch>

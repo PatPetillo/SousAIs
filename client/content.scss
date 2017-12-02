@@ -46,6 +46,10 @@
     margin-bottom: 2%;
 }
 
+.diet {
+  color: rgb(51, 124, 108)
+}
+
 .disabled-btn {
     background: rgba(15, 180, 231, 1);
     color: #fff;
@@ -66,6 +70,10 @@
         width: 200px;
         height: 200px;
     }
+}
+
+.green-words {
+  color: rgb(34,139,34);
 }
 
 .key {
@@ -132,9 +140,92 @@
     justify-content: center;
 }
 
+.ready-in {
+  color: rgb(138, 44, 44);
+}
+
+.recipe-header {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  li {
+    display: inline-block;
+  }
+}
+
 .red-words {
-    color: rgb(175, 8, 8);
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  color: rgb(175, 8, 8);
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+}
+
+.singleItem{
+  text-align: center;
+  p{
+    color: black;
+    font-size: 2em;
+  }
+  img{
+    height: 300px;
+    width: 300px;
+  }
+  a{
+    color:rgba(130,30,100,1);;
+  }
+}
+
+.single-recipe-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.single-recipe-directions {
+  li {
+    color: rgb(97, 49, 97);
+  }
+}
+
+.single-recipe-ingredients {
+  div {
+    color: rgb(51, 124, 108);
+  }
+}
+
+.single-recipe-nutrition {
+  padding: 0;
+  h2 {
+    padding: 0;
+  }
+
+  div {
+    text-align: left;
+    color: rgb(138, 44, 44); 
+  }
+}
+
+.single-recipe-page {
+  width: 71%;
+  margin: auto;
+}
+
+.single-recipe-steps {
+  li {
+    list-style: none;
+  }
+  text-align: center;
+}
+
+.small-words {
+  font-size: 0.4em;
+}
+
+.spoonacular-rating {
+  color: rgb(97, 49, 97);
 }
 
 .singleItem {

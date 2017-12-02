@@ -1,14 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { deleteSavedRecipeFromStore } from '../store/recipe';
-import EventEmitter from 'events';
-
-class MyEmitter extends EventEmitter {}
-const myEmitter = new MyEmitter();
-myEmitter.on('event', () => {
-  console.log('an event occurred!');
-});
+import { deleteSavedRecipeFromStore } from '../store';
 
 const SavedRecipes = (props) => {
   const { savedRecipe } = props.recipe;
@@ -16,14 +10,14 @@ const SavedRecipes = (props) => {
   return (
     <div className="page-content">
       {
-        savedRecipe.length ? savedRecipe.map(singleRecipe =>
-          (<div key={singleRecipe.id}>
+        savedRecipe.length ? savedRecipe.map(singleRecipe => (
+          <div key={singleRecipe.image}>
             <h2>{singleRecipe.name}</h2>
-            <div><img className="savedRecipeImage" src={singleRecipe.image} /></div>
+            <div><img className="savedRecipeImage" src={singleRecipe.image} alt={singleRecipe.name} /></div>
             <NavLink to={`/singleRecipe/${singleRecipe.name.split(' ').join('')}`}>
               <div className="btn btn-primary my-3">Directions</div>
             </NavLink>
-            <button className="btn btn-primary my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Remove</button>
+            <button className="btn btn-danger my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Unsave This Recipe</button>
           </div>))
           : <h1>You don't have any saved recipe yet!</h1>
       }
@@ -34,3 +28,7 @@ const mapState = ({ recipe }) => ({ recipe });
 const mapDispatch = { deleteSavedRecipeFromStore };
 
 export default connect(mapState, mapDispatch)(SavedRecipes);
+
+SavedRecipes.propTypes = {
+  recipe: PropTypes.objectOf(PropTypes.any).isRequired,
+};

@@ -21,30 +21,42 @@ const AllRecipes = (props) => {
     <div className="page-content">
       <h1>{`${user.name}'s Recipes`}</h1>
       {
-        recipes.length ? recipes.map(oneRecipe => (
-          <div key={oneRecipe.id}>
-            <h2>{oneRecipe.name}</h2>
-            <div>
-              <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
-            </div>
-            <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
-              <div className="btn btn-primary my-3">Directions</div>
-            </NavLink>
-            <NavLink to="#">
-              {savedRecipe.includes(oneRecipe) ?
-                <button className="btn disabled-btn" disabled>
-                  Saved
-                </button> :
-                <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
-                    Save This Recipe
-                </button>
+        recipes.length
+        ? recipes.sort((a, b) => a.missedIngredientCount > b.missedIngredientCount)
+          .map(oneRecipe => (
+            <div key={oneRecipe.name}>
+              <h2>{oneRecipe.name}</h2>
+              {(oneRecipe.name === 'You have no items in your fridge!')
+              ? <NavLink to="/addItem" className="btn btn-primary">Add An Item</NavLink>
+              :
+              <div>
+                {oneRecipe.missedIngredientCount !== 0 ?
+                  <p>Missing Ingredients: {oneRecipe.missedIngredientCount}</p>
+                : <p />
+                }
+                <div>
+                  <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
+                </div>
+                <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
+                  <div className="btn btn-primary my-3">Directions</div>
+                </NavLink>
+                <NavLink to="#">
+                  {savedRecipe.includes(oneRecipe) ?
+                    <button className="btn disabled-btn" disabled>
+                      Saved
+                    </button> :
+                    <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
+                        Save This Recipe
+                    </button>
+                  }
+                </NavLink>
+              </div>
               }
-            </NavLink>
-          </div>))
+            </div>))
         : (
           <div>
             <div className="react-loading" >
-              <ReactLoading type="spinningBubbles" color="#7df096" height="50px" width="50px" />
+              <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
             </div>
             <div className="center">Searching for recipes...</div>
           </div>
