@@ -4,7 +4,7 @@
 
 ### Accompanied by an intergrated Web Application via: *https://sousais.herokuapp.com/*
 
-**Devlopers**: Brian Deriel | Devon JohnBaptiste | Pat Petillo | Olawale Jegede | Yuchen Chen 
+**Developers**: [Brian Deriel](https://github.com/Brian4292) | [Devon JohnBaptiste](https://github.com/devondacoda) | [Pat Petillo](https://github.com/PatPetillo) | [Olawale Jegede](https://github.com/walejegs) | [Yuchen Chen](https://github.com/yuchchen1314)
 
 **Technologies**: Node.js, Express, React, React-Redux, PostgreSQL, Sequelize, AWS Lambda, Heroku (Microservice API)
 
