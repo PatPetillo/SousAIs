@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
-const FoundRecipe = (props) => {
+export const FoundRecipe = (props) => {
   const { foundRecipes } = props.recipe;
   return (
     <div className="page-content">

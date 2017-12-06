@@ -3,7 +3,7 @@ import history from '../history';
 import { getSearchRecipe } from '../store';
 import { connect } from 'react-redux';
 
-class SearchRecipe extends Component {
+export class SearchRecipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
