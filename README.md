@@ -11,9 +11,9 @@
 ## Prompting Sous through an Amazon Echo will allow you to:
 * Add items to your "fridge" as a user of SousAIs
 * Search for recipes that include the items in your fridge that will persist in our database
-* Search for recipes for a single item provided to Sous 
-* Save recipes that you enjoyed or want to cook in the future that will persist in our database  
-* Remove items from your fridge (and our database) 
+* Search for recipes for a single item provided to Sous
+* Save recipes that you enjoyed or want to cook in the future that will persist in our database
+* Remove items from your fridge (and our database)
 * Remove saved recipes that will persist per user
 
 ## The accompanied Web Application will allow you to:
@@ -25,6 +25,8 @@
 * Save recipes that you enjoyed or want to cook in the future
 * View your saved recipes
 * Remove recipes from your saved recipes list
+
+## For information on how to use our Alexa Skill, visit: *https://sousais.herokuapp.com/alexaHelp*
 
 
 **Thank you for taking the time to view our product!**
