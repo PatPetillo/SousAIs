@@ -20,7 +20,7 @@ export const remove = itemId => ({ type: REMOVE_FRIDGE_ITEM, itemId });
  * THUNK CREATORS
  */
 export const addProductThunk = (item) => {
-  return dispatch => 
+  return dispatch =>
     axios.post('/api/fridge', item)
       .catch(() => dispatch(error('Please enter a real food item')));
 };
