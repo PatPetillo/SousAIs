@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { removeItem } from '../store';
 
-class UserFridge extends Component {
+export class UserFridge extends Component {
   componentDidMount() {
     document.querySelector('body').classList.add('fridge');
   }
