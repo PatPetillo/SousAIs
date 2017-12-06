@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { getSingleItemRecipeToStore, clearSingleItemRecipeFromStore } from '../store';
 
 
-class SingleItem extends Component {
+export class SingleItem extends Component {
   componentDidMount() {
     this.props.getSingleItemRecipeToStore(this.props.match.params.id);
   }
@@ -19,7 +19,7 @@ class SingleItem extends Component {
     const recipes = this.props.recipe.singleItemRecipes;
     return (
       <div className="singleItem page-content">
-        <p>{singleItem.length && singleItem[0].name.toUpperCase()}</p>
+        <p className="item-title">{singleItem.length && singleItem[0].name.toUpperCase()}</p>
         <img src={singleItem.length && singleItem[0].image} alt="Yuchen's fault" />
         <p>Recipes for {singleItem.length && singleItem[0].name}</p>
         <div>
