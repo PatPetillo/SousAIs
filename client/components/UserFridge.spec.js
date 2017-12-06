@@ -15,6 +15,7 @@ describe('<UserFridge />', () => {
   let user;
   let fridge;
   let userFridgeWrapper;
+  let handleClick;
 
   beforeEach('Create <UserFridge /> wrapper', () => {
     user = { name: 'Pat' },
@@ -22,7 +23,8 @@ describe('<UserFridge />', () => {
       name: 'Potato',
       image: 'thisIsAnImageOfAPotato.jpeg',
     }],
-    userFridgeWrapper = shallow(<UserFridge user={user} fridge={fridge} />);
+    handleClick = sinon.stub();
+    userFridgeWrapper = shallow(<UserFridge user={user} fridge={fridge} handleClick={handleClick}/>);
   });
 
   it('has user props', () => {
