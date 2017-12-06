@@ -4,7 +4,7 @@ import 'jsdom-global/register';
 import React from 'react';
 import enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import sinon from 'sinon';
+import sinon, { stub } from 'sinon';
 import { expect } from 'chai';
 import { UserFridge } from './UserFridge';
 
@@ -15,16 +15,14 @@ describe('<UserFridge />', () => {
   let user;
   let fridge;
   let userFridgeWrapper;
-  let spy;
-  let onClick;
-  let handleClick;
+
   beforeEach('Create <UserFridge /> wrapper', () => {
     user = { name: 'Pat' },
     fridge = [{
       name: 'Potato',
       image: 'thisIsAnImageOfAPotato.jpeg',
     }],
-    userFridgeWrapper = shallow(<UserFridge user={user} fridge={fridge} handleClick={handleClick} componentDidMount={spy}/>);
+    userFridgeWrapper = shallow(<UserFridge user={user} fridge={fridge} />);
   });
 
   it('has user props', () => {
@@ -46,17 +44,9 @@ describe('<UserFridge />', () => {
     expect(userFridgeWrapper.find('p').text()).to.be.equal('POTATO');
   });
 
-  // it('handles a click action', () => {
-  //   onClick = sinon.spy();
-  //   userFridgeWrapper.find('button').simulate('click');
-  //   expect(onClick).to.have.property('callCount', 1);
-  // });
-
-  // it('calls componentDidMount', () => {
-  //   // const inst = userFridgeWrapper.instance()
-  //   // inst.componentDidMount
-  //   sinon.spy(userFridgeWrapper, 'componentDidMount');
-  //   expect(userFridgeWrapper.componentDidMount).to.have.property('callCount', 1);
-  //   // userFridgeWrapper.componentDidMount.restore();
-  // });
+  it('properly displays fridge item image', () => {
+    expect(userFridgeWrapper.find('img').filterWhere((item) => {
+      return item.prop('src') === 'thisIsAnImageOfAPotato.jpeg';
+    })).to.have.lengthOf(1);
+  });
 });
