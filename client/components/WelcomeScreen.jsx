@@ -9,12 +9,11 @@ const descriptions = [
 
 const WelcomeScreen = () => (
   <div className="welcome-page">
-    <div className="py-5 text-center banner">
-      <div className="container py-5">
+    <div className="py-5 text-center banner mt-6 mb-4">
+      <div className="container">
         <div className="row">
           <div className="col-md-12 text-white">
-            <h1 className="display-3 mb-4">Sous with <span className="red-words">Alexa</span></h1>
-            <p className="lead mb-5" />
+            <h1 className="display-3">Sous with <span className="red-words">Alexa</span></h1>
           </div>
         </div>
       </div>
