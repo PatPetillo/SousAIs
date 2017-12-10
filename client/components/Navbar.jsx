@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = props => (
   <nav className="navbar navbar-expand-md navbar-dark">
-    <div className="container">
+    <div className="container navbar-items">
       <NavLink to="/"><img className="logo" src="/icons/logo.svg" alt="logo" /></NavLink>
       <ul className="navbar-nav">
         <li className="nav-item">
@@ -20,18 +20,20 @@ const Navbar = props => (
           <NavLink to="/alexaHelp" className="nav-link" >Using Alexa</NavLink>
         </li>
       </ul>
-      { !props.isLoggedIn &&
-        <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
-          <img className="key" src="/icons/key-25.svg" alt="sign-in" /> Sign In
-        </NavLink> }
-      { props.isLoggedIn &&
-        <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/" onClick={props.logOut}>
-          <img className="key" src="/icons/key-25.svg" alt="sign-out" /> Sign Out
-        </NavLink> }
-      {!props.isLoggedIn &&
-        <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signUp">
-       Sign Up
-        </NavLink> }
+      <div className="sign-btns">
+        { !props.isLoggedIn &&
+          <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signIn">
+            <img className="key" src="/icons/key-25.svg" alt="sign-in" /> Sign In
+          </NavLink> }
+        { props.isLoggedIn &&
+          <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/" onClick={props.logOut}>
+            <img className="key" src="/icons/key-25.svg" alt="sign-out" /> Sign Out
+          </NavLink> }
+        {!props.isLoggedIn &&
+          <NavLink className="btn navbar-btn ml-2 text-white btn-secondary" to="/signUp">
+            Sign Up
+          </NavLink> }
+      </div>
     </div>
   </nav>
 );

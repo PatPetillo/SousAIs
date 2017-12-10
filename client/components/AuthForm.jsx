@@ -25,7 +25,7 @@ const AuthForm = (props) => {
                 <input className="form-control" name="password" type="password" />
               </div>
               <div className="form-group">
-                <button type="submit">Log in</button>
+                <button type="submit">Log In</button>
               </div>
               {error && error.response && <div> {error.response.data} </div>}
             </form>
