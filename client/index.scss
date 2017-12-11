@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
 @import './style.scss';
 @import './content.scss';
+@import './mobile.scss';
+
 * {
   font-family: 'Muli', sans-serif!important;
 }
@@ -9,6 +11,8 @@ body {
   margin: 0;
   background: url('/imgs/more-food.jpg') no-repeat fixed;
   background-size: cover;
+  height: 100%;
+  width: 100%;
   
   a {
     text-decoration: none;
