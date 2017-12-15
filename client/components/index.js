@@ -18,3 +18,4 @@ export { default as SingleRecipe } from './SingleRecipe';
 export { default as SingleRecipeSingleItem } from './SingleRecipeSingleItem';
 export { default as SearchRecipe } from './SearchRecipe';
 export { default as FoundRecipe } from './FoundRecipe';
+export { default as AlexaHelp } from './AlexaHelp';
