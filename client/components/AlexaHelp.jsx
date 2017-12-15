@@ -3,8 +3,8 @@ import React from 'react';
 export default function AlexaHelp() {
   return (
     <div>
-      <div className="page-content" id="alexa-help">
-        <h1> SousAIs Alexa Instructions </h1>
+      <div className="page-content">
+        <h1 className="alexa-help-header"> SousAIs Alexa Instructions </h1>
         <ul>
           <li> To start using SousAIs, say "Alexa, Ask For Sous" and she will ask you for the food you have available </li>
           <li> To add an item to your fridge, for example chicken, say "Add chicken" and Sous will confirm the chicken is in your fridge</li>
@@ -15,6 +15,11 @@ export default function AlexaHelp() {
           <li> If you want to hear the last step repeated, say "Say that again" </li>
           <li> To hear the recipe from the beginning, ask Sous "Can you start over" </li>
         </ul>
+        <div className="video-outer-container">
+          <div className="video-container">
+            <iframe title="SousAIs demo" src="https://www.youtube.com/embed/pcK-FI9s9X4?&loop=1&modestbranding=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen />
+          </div>
+        </div>
       </div>
     </div>
   );
