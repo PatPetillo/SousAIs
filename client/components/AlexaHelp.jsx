@@ -17,7 +17,7 @@ export default function AlexaHelp() {
         </ul>
         <div className="video-outer-container">
           <div className="video-container">
-            <iframe title="SousAIs demo" src="https://www.youtube.com/embed/pcK-FI9s9X4?&loop=1&modestbranding=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen />
+            <iframe title="SousAIs demo" src="https://www.youtube.com/embed/pcK-FI9s9X4?&loop=1&modestbranding=1" frameBorder="0" gesture="media" allow="encrypted-media" allowFullscreen />
           </div>
         </div>
       </div>
