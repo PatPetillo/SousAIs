@@ -12,6 +12,16 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  crSteps: {
+    type: Sequelize.TEXT,
+  },
+  cr: {
+    type: Sequelize.INTEGER,
+  },
+  crs: {
+    type: Sequelize.INTEGER,
+    defaultValue: -1,
+  },
   password: {
     type: Sequelize.STRING,
   },
@@ -19,6 +29,9 @@ const User = db.define('user', {
     type: Sequelize.STRING,
   },
   googleId: {
+    type: Sequelize.STRING,
+  },
+  amazonId: {
     type: Sequelize.STRING,
   },
 });

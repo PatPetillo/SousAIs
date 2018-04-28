@@ -17,6 +17,9 @@ const Recipe = db.define('recipe', {
   sodium: Sequelize.STRING,
   protein: Sequelize.STRING,
   image: Sequelize.STRING,
+  currentStep: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 });
-
 module.exports = Recipe;
