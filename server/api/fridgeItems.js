@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, FridgeItems, Fridge } = require('../db/models/');
 const axios = require('axios');
-const { nutrix, nutrixApp } = require('../../secrets');
 const { socket } = require('../');
 
 module.exports = router;
@@ -23,8 +22,8 @@ router.post('/', (req, res, next) => {
   let itemToReturn;
   axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', { query: foodItem }, {
     headers: {
-      'x-app-id': nutrixApp,
-      'x-app-key': nutrix,
+      'x-app-id': process.env.NUTRIX_ID,
+      'x-app-key': process.env.NUTRIX_KEY,
     },
   })
     .then((response) => {
@@ -100,7 +99,7 @@ router.delete('/alexa/:food', (req, res, next) => {
 });
 
 
-router.use((err, req, res, next) => {
+router.use((err, req, res) => {
   console.error(err.stack);
   res.status(500).send('There was an Express error.');
 });
