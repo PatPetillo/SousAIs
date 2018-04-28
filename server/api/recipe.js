@@ -5,7 +5,6 @@ const {
 const axios = require('axios');
 const { socket } = require('../');
 const chalk = require('chalk');
-
 module.exports = router;
 
 router.post('/searchRecipe', (req, res, next) => {
@@ -165,6 +164,7 @@ router.put('/saveRecipe/:recipeName', (req, res, next) => {
     },
   })
     .then((foundRecipe) => {
+      console.log(chalk.blue('RECIPEEEEEEEEEEEEEEEEEEEE' + foundRecipe))
       recipeId = foundRecipe.id;
       return User.findById(req.session.passport.user)
         .then((foundUser) => {
@@ -197,7 +197,7 @@ router.put('/deleteRecipe/:recipeId', (req, res, next) => {
         },
       );
     })
-    .then(() => res.json(`Recipe with ${id} was unsaved.`))
+    .then(() => res.json(`Recipe with id: ${id} was unsaved.`))
     .catch(next);
 });
 
