@@ -3,7 +3,6 @@ const {
   User, FridgeItems, Recipe, RecipeUser,
 } = require('../db/models');
 const axios = require('axios');
-const key = require('../../secrets').spoon;
 const { socket } = require('../');
 const chalk = require('chalk');
 
@@ -20,7 +19,7 @@ router.post('/searchRecipe', (req, res, next) => {
   if (intolerances) intolerances = `intolerances=${intolerances}&`;
   axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?${cuisine}${diet}instructionsRequired=true${intolerances}limitLicense=false&number=10&offset=0&${type}`, {
     headers: {
-      'X-Mashape-Key': key,
+      'X-Mashape-Key': process.env.SPOONACULAR_ID,
       Accept: 'application/json',
     },
   })
@@ -28,7 +27,7 @@ router.post('/searchRecipe', (req, res, next) => {
       const rcptIds = apiRes.data.results.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcptIds}&includeNutrition=true`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       });
@@ -74,13 +73,12 @@ router.get('/', (req, res, next) => {
         const ingredients = foundItems.map(x => x.name);
         return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients.join('%2C')}&limitLicense=false&number=${request}&ranking=2`, {
           headers: {
-            'X-Mashape-Key': key,
+            'X-Mashape-Key': process.env.SPOONACULAR_ID,
             Accept: 'application/json',
           },
         });
-      } else {
-        throw new Error('you have an empty fridge');
       }
+      throw new Error('you have an empty fridge');
     })
     .then((apiRes) => {
       apiRes.data.forEach((el) => {
@@ -90,7 +88,7 @@ router.get('/', (req, res, next) => {
       const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       });
@@ -211,7 +209,7 @@ router.get('/:itemId', (req, res, next) => {
       const ingredients = foundItem.name;
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=10&ranking=2`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       })
@@ -219,7 +217,7 @@ router.get('/:itemId', (req, res, next) => {
           const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
           return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
             headers: {
-              'X-Mashape-Key': key,
+              'X-Mashape-Key': process.env.SPOONACULAR_ID,
               Accept: 'application/json',
             },
           });
@@ -268,7 +266,7 @@ router.get('/alexa/:food', (req, res, next) => {
       const ingredients = foundItem.name;
       return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=${ingredients}&limitLicense=false&number=15&ranking=2`, {
         headers: {
-          'X-Mashape-Key': key,
+          'X-Mashape-Key': process.env.SPOONACULAR_ID,
           Accept: 'application/json',
         },
       })
@@ -276,7 +274,7 @@ router.get('/alexa/:food', (req, res, next) => {
           const rcpIds = apiRes.data.map(recipe => recipe.id).join('%2C');
           return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=${rcpIds}&includeNutrition=true`, {
             headers: {
-              'X-Mashape-Key': key,
+              'X-Mashape-Key': process.env.SPOONACULAR_ID,
               Accept: 'application/json',
             },
           });
