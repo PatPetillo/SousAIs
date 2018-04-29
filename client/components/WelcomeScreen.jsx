@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { WelcomeScreenCarousel } from './';
 
 const descriptions = [
@@ -14,6 +15,9 @@ const WelcomeScreen = () => (
         <div className="row">
           <div className="col-md-12 text-white">
             <h1 className="display-3">Sous with <span className="red-words">Alexa</span></h1>
+            <NavLink to="/alexaHelp">
+              <div className="btn btn-primary m-2">Find Out More</div>
+            </NavLink>
           </div>
         </div>
       </div>

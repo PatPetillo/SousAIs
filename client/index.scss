@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  background: url('/imgs/more-food.jpg') no-repeat fixed;
+  background: url('/imgs/more-food.jpeg') no-repeat fixed;
   background-size: 100% contain;
   height: 100%;
   width: 100%;
@@ -39,6 +39,10 @@ body {
    nav a {
     display: inline-block;
     margin: 0 1em;
+  }
+
+  ul {
+    list-style: square;
   }
 
 }
