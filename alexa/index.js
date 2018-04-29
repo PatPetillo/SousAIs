@@ -34,10 +34,11 @@ const handlers = {
   },
   'AMAZON.HelpIntent': function () {
     let speechOutput = '';
-    speechOutput += 'Here are some things you can say: ';
-    speechOutput += 'Tell me something interesting about Java. ';
-    speechOutput += 'Tell me about the skill developer. ';
-    speechOutput += "You can also say stop if you're done. ";
+    speechOutput += 'Here are some things you can say: <break time="1s"/>';
+    speechOutput += 'What recipes can I make? <break time="1s"/>';
+    speechOutput += 'Say add and then the item to add to fridge <break time="1s"/>';
+    speechOutput += 'Say remove and then the item to remove from fridge <break time="1s"/>';
+    speechOutput += 'You can also say stop if you\'re done.<break time="1s"/>';
     speechOutput += 'So how can I help?';
     this.emit(':ask', speechOutput, speechOutput);
   },
