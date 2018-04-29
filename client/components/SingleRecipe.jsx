@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 
 const SingleRecipe = (props) => {
-  const recipe = props.recipe.recipes.filter(singlerecipe => singlerecipe.name.split(' ').join('') === props.match.params.recipename)[0];
+  const recipe = props.recipe.recipes.filter(singlerecipe =>
+    singlerecipe.name.replace(/\s/g, '') === props.match.params.recipename)[0];
+
   function greaterThanOne(num) {
     if (num > 1) return '-one';
     return '-more';
