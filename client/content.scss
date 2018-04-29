@@ -296,11 +296,12 @@
   .source-code-link {
     position: absolute;
     width: 100%;
-    opacity: 0.8;
-    transition: 0.8s ease-in-out;
+    text-align: center;
+    background: rgba(15,180,231,1);
+    h2 {color: white}
   }
   .source-code-link:hover {
-    opacity: 1;
-    background: linear-gradient(to left, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%)!important;
+    background: white;
+    h2 { color: rgba(15,180,231,1) }
   }
 }

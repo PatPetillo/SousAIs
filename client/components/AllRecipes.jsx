@@ -35,7 +35,7 @@ const AllRecipes = (props) => {
                 <div>
                   <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
                 </div>
-                <NavLink to={`/singleRecipe/${oneRecipe.name.replace(' ', '')}`}>
+                <NavLink to={`/singleRecipe/${oneRecipe.name.replace(/\s/g, '')}`}>
                   <div className="btn btn-primary my-3">Directions</div>
                 </NavLink>
                 {
