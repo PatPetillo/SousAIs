@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -29,10 +29,10 @@ class Main extends Component {
   render() {
     const { children, handleClick, isLoggedIn } = this.props;
     return (
-      <div>
+      <Fragment>
         <Navbar isLoggedIn={isLoggedIn} logOut={handleClick} />
         {children}
-      </div>
+      </Fragment>
     );
   }
 }

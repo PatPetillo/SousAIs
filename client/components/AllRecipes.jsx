@@ -6,10 +6,8 @@ import ReactLoading from 'react-loading';
 import { saveRecipeToStore } from '../store';
 
 const disableButton = (e) => {
-  const originalSize = e.target.offsetWidth;
   e.target.setAttribute('disabled', true);
   e.target.innerHTML = 'Saved';
-  e.target.style.width = `${originalSize}px`;
   e.target.classList.add('disabled-btn');
   e.target.classList.remove('btn-primary');
 };
@@ -37,26 +35,26 @@ const AllRecipes = (props) => {
                 <div>
                   <img className="oneRecipeImage" src={oneRecipe.image} alt={oneRecipe.name} />
                 </div>
-                <NavLink to={`/singleRecipe/${oneRecipe.name.split(' ').join('')}`}>
+                <NavLink to={`/singleRecipe/${oneRecipe.name.replace(' ', '')}`}>
                   <div className="btn btn-primary my-3">Directions</div>
                 </NavLink>
-                <NavLink to="#">
-                  {savedRecipe.includes(oneRecipe) ?
-                    <button className="btn disabled-btn" disabled>
-                      Saved
-                    </button> :
-                    <button className="btn btn-primary my-3" onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}>
+                {
+                  savedRecipe.filter(recipe => recipe.name === oneRecipe.name).length ?
+                    <button className="btn disabled-btn" disabled>Saved</button> :
+                    <button
+                      className="btn btn-primary my-3"
+                      onClick={(e) => { disableButton(e); saveRecipeToStore(oneRecipe); }}
+                    >
                         Save This Recipe
                     </button>
-                  }
-                </NavLink>
+                }
               </div>
               }
             </div>))
         : (
           <div>
             <div className="react-loading" >
-              <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
+              <ReactLoading type="spinningBubbles" color="#7df096" height={100} width={100} />
             </div>
             <div className="center">Searching for recipes...</div>
           </div>

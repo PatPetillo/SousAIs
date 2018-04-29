@@ -28,7 +28,7 @@ export class SingleItem extends Component {
           (
             <div>
               <div className="react-loading" >
-                <ReactLoading type="spinningBubbles" color="#7df096" height="100px" width="100px" />
+                <ReactLoading type="spinningBubbles" color="#7df096" height={100} width={100} />
               </div>
               <div className="center">Searching for recipes...</div>
             </div>

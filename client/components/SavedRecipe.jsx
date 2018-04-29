@@ -19,7 +19,7 @@ const SavedRecipes = (props) => {
             </NavLink>
             <button className="btn btn-danger my-3" onClick={() => props.deleteSavedRecipeFromStore(singleRecipe)}>Unsave This Recipe</button>
           </div>))
-          : <h1>You don't have any saved recipe yet!</h1>
+          : <h1>You haven't saved a recipe yet</h1>
       }
     </div>
   );

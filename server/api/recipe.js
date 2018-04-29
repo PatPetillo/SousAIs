@@ -5,7 +5,6 @@ const {
 const axios = require('axios');
 const { socket } = require('../');
 const chalk = require('chalk');
-
 module.exports = router;
 
 router.post('/searchRecipe', (req, res, next) => {
@@ -156,30 +155,21 @@ router.get('/savedRecipes', (req, res, next) => {
 });
 
 router.put('/saveRecipe/:recipeName', (req, res, next) => {
-  let name = req.params.recipeName;
-  name = name.split('-').join(' ');
-  let recipeId;
-  Recipe.findOne({
-    where: {
-      name,
-    },
-  })
-    .then((foundRecipe) => {
-      recipeId = foundRecipe.id;
-      return User.findById(req.session.passport.user)
-        .then((foundUser) => {
+  const name = req.params.recipeName;
+  Recipe.findOne({ where: { name } })
+    .then(foundRecipe =>
+      User.findById(req.session.passport.user)
+        .then(foundUser =>
           RecipeUser.update(
             { saved: true },
             {
               where: {
                 userId: foundUser.id,
-                recipeId,
+                recipeId: foundRecipe.id,
               },
             },
           )
-            .then(() => res.json(`${name} has been saved`));
-        });
-    })
+            .then(() => res.json(`${name} has been saved`))))
     .catch(next);
 });
 
@@ -197,7 +187,7 @@ router.put('/deleteRecipe/:recipeId', (req, res, next) => {
         },
       );
     })
-    .then(() => res.json(`Recipe with ${id} was unsaved.`))
+    .then(() => res.json(`Recipe with id: ${id} was unsaved.`))
     .catch(next);
 });
 

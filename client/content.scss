@@ -27,11 +27,6 @@
   height:500em;
 }
 
-.carousel-img {
-  width: 100%;
-  height: 60vh;
-}
-
 .center {
   text-align: center;
   justify-content: center;
@@ -45,8 +40,9 @@
 }
 
 .disabled-btn {
-  background: rgba(15,180,231,1);
+  background: rgb(80, 123, 136);
   color: #fff;
+  width: 88px;
 }
 
 .flex-container {
@@ -76,16 +72,14 @@
 }
 
 .logo {
-  padding-top: 0.3em;
-  height: 5em;
   width: 5em;
 }
 
 .motto {
   background: linear-gradient(to right, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%);
   text-align: center;
-  color: rgb(255, 255, 255);
   h1 {
+    color: rgb(255, 255, 255);
     margin: 0;
     padding: 0.3em;
   }
@@ -99,11 +93,7 @@
   font-size: 1.2em;
   top: 0;
   z-index: 10000;
-  transition: 0.5s;
-}
-
-.navbar-brand {
-  font-size: 1.5em;
+  transition: 0.3s;
 }
 
 .nav-scrolled {
@@ -248,24 +238,31 @@
 .welcome-page {
   height: 100%;
   .banner {
-    height: 50vh;
+    height: 50%;
   }
   
   .carousel-info {
     display: flex;
-    max-height: 60vh;
+    height: 450px;
     width: 100%;
     flex: 1;
 
     .carousel-container {
       width: 55%;
-      height: 60vh;
+      height: 100%;
+      .carousel {
+        height: 450px;
+        .carousel-img {
+        width: 100%;
+        height: 100%;
+        }
+      }
     }
 
     .how-it-works {
       display: flex;
       width: 60%;
-      height: 60vh;
+      height: 100%;
       text-align: center;
       background-image: url('/imgs/breakfast-bg.jpg');
       background-size: 100%;
@@ -295,6 +292,16 @@
         }
       }
     }
+  }
+  .source-code-link {
+    position: absolute;
+    width: 100%;
+    opacity: 0.8;
+    transition: 0.8s ease-in-out;
+  }
+  .source-code-link:hover {
+    opacity: 1;
+    background: linear-gradient(to left, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%)!important;
   }
 }
 

@@ -35,6 +35,9 @@ const WelcomeScreen = () => (
         </div>
       </div>
     </div>
+    <div className="source-code-link motto">
+      <a href="https://github.com/PatPetillo/SousAIs"><h1>Sauce</h1></a>
+    </div>
   </div>
 );
 
