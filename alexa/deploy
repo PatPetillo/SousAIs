@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+zip -r index.zip *
+
+aws lambda update-function-code \
+    --function-name Sous2 \
+    --zip-file fileb://index.zip \
+    --region us-east-1
+
+rm -rf index.zip
