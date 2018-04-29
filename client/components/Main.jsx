@@ -22,8 +22,9 @@ class Main extends Component {
 
   handleScroll() {
     const [nav] = document.getElementsByClassName('navbar');
-    if (this.scrollY > 70) nav.classList.add('nav-scrolled');
-    else nav.classList.remove('nav-scrolled');
+    const navClasses = nav.classList;
+    if (this.scrollY > 70 && !navClasses.contains('nav-scrolled')) navClasses.add('nav-scrolled');
+    else if (this.scrollY <= 70) navClasses.remove('nav-scrolled');
   }
 
   render() {

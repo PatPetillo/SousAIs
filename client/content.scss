@@ -212,33 +212,33 @@
   color: rgb(97, 49, 97);
 }
 
-.video-outer-container {
-  width:80%;
-  max-width:750;
+.alexa-help-content-container {
+  width: 80%;
   height: 50%;
-  max-height: 500;
-}
-
-.video-container {
-  position:relative;
-  padding-bottom:56.25%;
-  padding-top:30;
-  height:0;
-  overflow:hidden;
-}
-
-.video-container iframe, .video-container object, .video-container embed {
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  margin: auto;
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    iframe, object, embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 .welcome-page {
   height: 100%;
   .banner {
-    height: 50%;
+    height: 320px;
+    padding: 10%;
+    display: flex;
+    align-items: flex-end;
   }
   
   .carousel-info {
@@ -304,4 +304,3 @@
     background: linear-gradient(to left, rgba(125,255,125,1) 0%,rgba(15,180,231,1) 80%)!important;
   }
 }
-
