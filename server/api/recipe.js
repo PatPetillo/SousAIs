@@ -164,11 +164,11 @@ router.put('/saveRecipe/:recipeName', (req, res, next) => {
     },
   })
     .then((foundRecipe) => {
-      console.log(chalk.blue('RECIPEEEEEEEEEEEEEEEEEEEE' + foundRecipe))
+      console.log(chalk.blue('RECIPEEEEEEEEEEEEEEEEEEEE'), foundRecipe.id)
       recipeId = foundRecipe.id;
       return User.findById(req.session.passport.user)
         .then((foundUser) => {
-          RecipeUser.update(
+          return RecipeUser.update(
             { saved: true },
             {
               where: {
@@ -177,7 +177,10 @@ router.put('/saveRecipe/:recipeName', (req, res, next) => {
               },
             },
           )
-            .then(() => res.json(`${name} has been saved`));
+            .then((test) =>{
+              console.log(chalk.blue('final'), test);
+              res.json(`${name} has been saved`)
+            })
         });
     })
     .catch(next);
