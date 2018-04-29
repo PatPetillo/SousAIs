@@ -155,34 +155,21 @@ router.get('/savedRecipes', (req, res, next) => {
 });
 
 router.put('/saveRecipe/:recipeName', (req, res, next) => {
-  let name = req.params.recipeName;
-  name = name.split('-').join(' ');
-  let recipeId;
-  Recipe.findOne({
-    where: {
-      name,
-    },
-  })
-    .then((foundRecipe) => {
-      console.log(chalk.blue('RECIPEEEEEEEEEEEEEEEEEEEE'), foundRecipe.id)
-      recipeId = foundRecipe.id;
-      return User.findById(req.session.passport.user)
-        .then((foundUser) => {
-          return RecipeUser.update(
+  const name = req.params.recipeName;
+  Recipe.findOne({ where: { name } })
+    .then(foundRecipe =>
+      User.findById(req.session.passport.user)
+        .then(foundUser =>
+          RecipeUser.update(
             { saved: true },
             {
               where: {
                 userId: foundUser.id,
-                recipeId,
+                recipeId: foundRecipe.id,
               },
             },
           )
-            .then((test) =>{
-              console.log(chalk.blue('final'), test);
-              res.json(`${name} has been saved`)
-            })
-        });
-    })
+            .then(() => res.json(`${name} has been saved`))))
     .catch(next);
 });
 

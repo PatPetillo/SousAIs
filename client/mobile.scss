@@ -1,9 +1,11 @@
 @media (max-width: 990px) {
-  body, html {
-    .carousel-info {
-      width: 100%;
-      overflow: hidden;
-    }
+  .carousel-info {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-img {
+    height: 60vh!important;
   }
 
   .welcome-page {
