@@ -3,18 +3,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth, fetchProducts } from '../store';
 
-/**
- * COMPONENT
- */
 const AuthForm = (props) => {
   const { name, handleSubmit, error } = props;
-
+  const isSignUpPage = name === 'signup';
   return (
     <div className="py-5">
       <div className="container">
         <div className="row auth-form">
           <div className="col-md-12">
             <form onSubmit={handleSubmit} name={name}>
+              {isSignUpPage ?
+                <div className="form-group">
+                  <label htmlFor="username"><small>Name</small></label>
+                  <input className="form-control" name="username" type="text" />
+                </div> : null
+              }
               <div className="form-group">
                 <label htmlFor="email"><small>Email</small></label>
                 <input className="form-control" name="email" type="text" />
@@ -24,16 +27,13 @@ const AuthForm = (props) => {
                 <input className="form-control" name="password" type="password" />
               </div>
               <div className="form-group">
-                <button type="submit">Log in</button>
+                {isSignUpPage ?
+                  <button type="submit">Sign up</button> :
+                  <button type="submit">Log in</button>
+                }
               </div>
               {error && error.response && <div> {error.response.data} </div>}
             </form>
-            {/* <button id="google">
-            <a href="/auth/google">{}</a>
-            </button>
-            <button id="amazon">
-              <a href="/auth/amazon">{}</a>
-            </button> */}
           </div>
         </div>
       </div>
@@ -64,9 +64,10 @@ const mapDispatch = dispatch => ({
   handleSubmit(evt) {
     evt.preventDefault();
     const formName = evt.target.name;
+    const name = formName === 'signup' ? evt.target.username.value : null;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    dispatch(auth(email, password, formName));
+    dispatch(auth(email, password, formName, name));
     dispatch(fetchProducts());
   },
 });
@@ -79,7 +80,6 @@ export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
  */
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object,
+  error: PropTypes.objectOf(PropTypes.any),
 };

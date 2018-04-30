@@ -27,12 +27,14 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
+  let createdUser;
   User.create(req.body)
     .then((user) => {
-      req.login(user, err => (err ? next(err)
-        : Fridge.findCreateFind({ where: { userId: user.id } })
-          .then(foundCart =>
-            res.json(foundCart))));
+      createdUser = user;
+      req.login(user, err => (
+        err ?
+          next(err) :
+          res.json(createdUser)));
     })
     .catch((err) => {
       if (err.name === 'SequelizeUniqueConstraintError') {
