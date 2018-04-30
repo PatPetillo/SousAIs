@@ -1,7 +1,7 @@
-const db = require('./server/db/db');
-const User = require('./server/db/models/user');
-const FridgeItems = require('./server/db/models/fridgeItems');
-const Fridge = require('./server/db/models/fridge');
+const db = require('../server/db/db');
+const User = require('../server/db/models/user');
+const FridgeItems = require('../server/db/models/fridgeItems');
+const Fridge = require('../server/db/models/fridge');
 
 User.belongsToMany(FridgeItems, { through: Fridge });
 FridgeItems.belongsToMany(User, { through: Fridge });
