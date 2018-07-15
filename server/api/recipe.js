@@ -134,15 +134,12 @@ router.get('/', (req, res, next) => {
           image: el.image,
         },
       })
-        .then(([recipe, wasCreated]) => {
-          if (wasCreated) {
-            user.addRecipe(recipe.id);
-          }
-        }));
+        .then(([recipe]) => user.addRecipe(recipe.id)));
     })
     .catch(() => {
       socket.emit('get_recipes', [{ name: 'You have no items in your fridge!' }]);
       res.json([{ name: 'You have no items in your fridge!' }]);
+      next();
     });
 });
 
